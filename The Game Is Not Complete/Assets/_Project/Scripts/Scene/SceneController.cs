@@ -2,6 +2,7 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SceneController : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class SceneController : MonoBehaviour
     public List<EnemySpawn> spawnLocations;
     public int waveNumber;
     public bool isWaveInProgress = false;
+    public Slider waveTimerVisual;
 
     public static SceneController Instance { get; private set; }
 
@@ -25,6 +27,7 @@ public class SceneController : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        waveTimerVisual.maxValue = timeBetweenWaves;
     }
 
     private void Update()
@@ -36,6 +39,7 @@ public class SceneController : MonoBehaviour
             {
                 StartWave();
             }
+            waveTimerVisual.value = timeBetweenWaves - waveTimer;
         }
     }
 
