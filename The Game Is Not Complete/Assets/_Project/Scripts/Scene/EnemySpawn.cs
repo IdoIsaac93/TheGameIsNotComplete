@@ -6,20 +6,30 @@ public class EnemySpawn : MonoBehaviour
 {
     public List<Vector3> path;
     public float spawnDelay;
-    //public Wave currentWave;
+    public SceneController controller;
+
+    private void Awake()
+    {
+        controller = FindAnyObjectByType<SceneController>();
+    }
 
     public void SpawnWave(Wave currentWave)
     {
-        foreach (Enemy enemy in currentWave.enemyList)
-        {
-            Instantiate(enemy.enemyPrefab, transform.position, Quaternion.identity);
-            enemy.path = path;
-            StartCoroutine(SpawnDelay());
-        }
+        StartCoroutine(SpawnEnemies(currentWave));
     }
 
-    public IEnumerator SpawnDelay()
+    private IEnumerator SpawnEnemies(Wave currentWave)
     {
-        yield return new WaitForSeconds(spawnDelay);
+        foreach (Enemy enemy in currentWave.enemyList)
+        {
+            // Instantiate a new enemy and assign it a path
+            Enemy newEnemy = Instantiate(enemy.enemyPrefab, transform.position, Quaternion.identity).GetComponent<Enemy>();
+            newEnemy.path = path;
+            // Wait beofre spawning another enemy
+            yield return new WaitForSeconds(spawnDelay);
+        }
+
+        // Notify SceneController that the wave is completed
+        controller.WaveCompleted();
     }
 }

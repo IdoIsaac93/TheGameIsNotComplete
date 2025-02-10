@@ -8,9 +8,9 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] private float currentHealth;
     [SerializeField] private Slider healthBar;
 
-    private void Awake()
+    public void Awake()
     {
-        healthBar = GetComponent<Slider>();
+        healthBar = GetComponentInChildren<Slider>();
         healthBar.maxValue = Maxhealth;
         currentHealth = Maxhealth;
         UpdateHealthBar();
@@ -23,7 +23,7 @@ public class EnemyHealth : MonoBehaviour
         UpdateHealthBar();
     }
 
-    public void Die()
+    public virtual void Die()
     {
         //TODO//
         //Find PlayerResources and add system points and score

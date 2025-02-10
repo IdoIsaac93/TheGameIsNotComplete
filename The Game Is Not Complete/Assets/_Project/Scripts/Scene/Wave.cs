@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Wave : MonoBehaviour
+[CreateAssetMenu(fileName = "NewWave", menuName = "Wave")]
+public class Wave : ScriptableObject
 {
     public List<Enemy> enemyList;
+    public int spawnLocationNumber;
 }
