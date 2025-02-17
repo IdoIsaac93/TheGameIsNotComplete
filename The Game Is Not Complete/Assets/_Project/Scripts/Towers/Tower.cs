@@ -60,7 +60,7 @@ public abstract class Tower : MonoBehaviour
         }
 
         Enemy closestEnemy = null;
-        float closestDistance = attackRange;
+        float closestDistance = rangeCollider.radius;
         foreach (Enemy enemy in enemiesInRange)
         {
             float distance = Vector3.Distance(transform.position, enemy.transform.position);
