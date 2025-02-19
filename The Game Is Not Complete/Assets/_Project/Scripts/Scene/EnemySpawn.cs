@@ -32,4 +32,20 @@ public class EnemySpawn : MonoBehaviour
         // Notify SceneController that the wave is completed
         controller.WaveCompleted();
     }
+
+    private void OnDrawGizmos()
+    {
+        if (path.Count > 0)
+        {
+            Gizmos.color = Color.green;
+            for (int i = 0; i < path.Count; i++)
+            {
+                Gizmos.DrawSphere(path[i], 0.5f);
+                if (i > 0)
+                {
+                    Gizmos.DrawLine(path[i - 1], path[i]);
+                }
+            }
+        }
+    }
 }

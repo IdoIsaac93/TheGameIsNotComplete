@@ -328,7 +328,8 @@ MonoBehaviour:
   path:
   - {x: 0, y: 0, z: 0}
   - {x: -20, y: 0, z: -20}
-  - {x: -20, y: 0, z: -20}
+  - {x: 10, y: 0, z: -8.5}
+  - {x: 5, y: 0, z: 10}
   spawnDelay: 2
   controller: {fileID: 0}
 --- !u!4 &572070603
