@@ -8,18 +8,23 @@ public abstract class Tower : MonoBehaviour
     [SerializeField] protected float attackRange;
     [SerializeField] protected float price;
     [SerializeField] protected SphereCollider rangeCollider;
+    [SerializeField] protected Tower[] upgradeOptions;
 
     protected float attackTimer;
     protected HashSet<Enemy> enemiesInRange = new();
     private IAttackEffect attackEffect;
+    private IAreaEffect areaEffect;
 
 
-    protected virtual void Awake()
+    private void Start()
     {
+        SetValues();
         rangeCollider = gameObject.GetComponent<SphereCollider>();
         rangeCollider.isTrigger = true;
         rangeCollider.radius = attackRange;
+
     }
+
 
     protected virtual void Update()
     {
@@ -87,6 +92,7 @@ public abstract class Tower : MonoBehaviour
         attackTimer = attackSpeed;
         target.health.TakeDamage(attackDamage);
         attackEffect?.ApplyEffect(target);
+        areaEffect?.ApplyAreaEffect(enemiesInRange);
 
     }
 
@@ -95,13 +101,28 @@ public abstract class Tower : MonoBehaviour
         this.attackEffect = attackEffect;
     }
 
+    protected void SetAreaEffect(IAreaEffect areaEffect)
+    {
+        this.areaEffect = areaEffect;
+    }
+
     protected abstract void SetValues();
+
+    public bool CanUpgrade()
+    {
+        return upgradeOptions != null && upgradeOptions.Length > 0;
+    }
 
     private void CleanUpEnemies()
     {
         enemiesInRange.RemoveWhere(enemy => enemy == null);
     }
 
-    
+    public Tower[] GetUpgradeOptions()
+    {
+        return upgradeOptions;
+    }
+
+
 
 }

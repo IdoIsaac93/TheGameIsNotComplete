@@ -1,12 +1,12 @@
 using UnityEngine;
 
-public class BasicTower : Tower
+public class FastBasicTower : Tower
 {
     protected override void SetValues()
     {
         attackDamage = 5;
-        attackSpeed = 1;
+        attackSpeed = 0.5f;
         attackRange = 3;
-        price = 100;
+        price = 200;
     }
 }

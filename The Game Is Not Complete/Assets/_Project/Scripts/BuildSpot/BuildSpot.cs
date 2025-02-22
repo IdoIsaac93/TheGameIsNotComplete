@@ -33,9 +33,38 @@ public class BuildSpot : MonoBehaviour
         }
     }
 
-    public void UpgradeTower(Tower towerPrefab)
+    public void UpgradeTower(int upgradeIndex)
     {
-        //Upgrade the tower
+        if (!isOccupied || currentTower == null)
+        {
+            Debug.LogWarning("No tower to upgrade!");
+            return;
+        }
+
+        if (!currentTower.CanUpgrade())
+        {
+            Debug.LogWarning("This tower cannot be upgraded further!");
+            return;
+        }
+
+        Tower[] upgrades = currentTower.GetUpgradeOptions();
+
+        if (upgradeIndex < 0 || upgradeIndex >= upgrades.Length)
+        {
+            Debug.LogWarning("Invalid upgrade index.");
+            return;
+        }
+
+        Tower upgradedTowerPrefab = upgrades[upgradeIndex];
+
+        if (upgradedTowerPrefab != null)
+        {
+            Vector3 towerPosition = currentTower.transform.position;
+            Destroy(currentTower.gameObject);
+
+            currentTower = Instantiate(upgradedTowerPrefab, towerPosition, Quaternion.identity);
+            Debug.Log("Tower upgraded to " + currentTower.name);
+        }
     }
 
     public void TestBuild()
