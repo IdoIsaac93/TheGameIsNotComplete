@@ -7,6 +7,10 @@ public class MainMenuEvents : MonoBehaviour
 {
     private UIDocument _uiDocument;
     private Button _startButton;
+    private Button _settingsButton;
+    private Button _creditsButton;
+    private Button _quitGameButton;
+    
     private List<Button> _menuButtons = new List<Button>();
     private AudioSource _audioSource;
 
@@ -22,17 +26,19 @@ public class MainMenuEvents : MonoBehaviour
             return;
         }
 
-        // Get the start button and register click event
+        // Get buttons from UIDocument and register click events
         _startButton = _uiDocument.rootVisualElement.Q<Button>("StartButton");
+        _settingsButton = _uiDocument.rootVisualElement.Q<Button>("Settings");
+        _creditsButton = _uiDocument.rootVisualElement.Q<Button>("Credits");
+        _quitGameButton = _uiDocument.rootVisualElement.Q<Button>("Exit");
 
-        if (_startButton != null)
-        {
-            _startButton.clicked += OnPlayGameClick;
-        }
-        else
-        {
-            Debug.LogError("Start Button Not Found");
-        }
+
+        _startButton.clicked += OnPlayGameClick;
+        _settingsButton.clicked += OnSettingsClick;
+        _creditsButton.clicked += OnCreditsClick;
+        _quitGameButton.clicked += OnExitGame;
+
+
 
         // Get all buttons and register click event
         _menuButtons = _uiDocument.rootVisualElement.Query<Button>().ToList();
@@ -56,6 +62,23 @@ public class MainMenuEvents : MonoBehaviour
         {
             _audioSource.Play();
         }
+    }
+
+    //Settings button click event
+    private void OnSettingsClick()
+    {
+        Debug.Log("Settings Button Clicked"); // remove when adding functionality
+    }
+
+    private void OnExitGame()
+    {
+        Debug.Log("Exit Game Button Clicked"); // remove when adding functionality
+        Application.Quit();
+    }
+
+    private void OnCreditsClick()
+    {
+        Debug.Log("Credits Button Clicked"); // remove when adding functionality
     }
 
 
