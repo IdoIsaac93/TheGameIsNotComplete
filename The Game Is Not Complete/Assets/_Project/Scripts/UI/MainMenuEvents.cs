@@ -48,6 +48,12 @@ public class MainMenuEvents : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// ********************************************************************************************************
+    /// Buttons Click Events
+    /// </summary>
+
+
     //Play game button click event :: start button
     private void OnPlayGameClick()
     {
