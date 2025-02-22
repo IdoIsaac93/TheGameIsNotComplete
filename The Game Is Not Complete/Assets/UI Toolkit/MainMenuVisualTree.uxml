@@ -4,7 +4,7 @@
         <engine:Label text="The Game is not finished yet&#10;" name="Title" class="main" style="font-size: 64px;" />
         <engine:Label text="Main Menu" name="Menu" class="header title main" />
         <engine:Label name="SpacingLabal" />
-        <engine:Button text="Start" name="StartButton" class="button" />
+        <engine:Button text="Start" name="StartButton" class="button" style="background-color: rgba(55, 55, 55, 0);" />
         <engine:Button text="Settings" name="Settings" class="button" />
         <engine:Button text="Exit" name="Exit" class="button" />
         <engine:Button text="Button" name="Online" class="button" />
