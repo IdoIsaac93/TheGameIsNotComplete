@@ -126,4 +126,6 @@ MonoBehaviour:
   attackRange: 0
   price: 0
   rangeCollider: {fileID: 0}
-  upgradeOptions: []
+  upgradeOptions:
+  - {fileID: 1864318022834923439, guid: 4915dd2fca5636740aea006a7d2acf2e, type: 3}
+  - {fileID: 8191018977909911052, guid: 535c810e344cde4458b8daa3385ad5ab, type: 3}

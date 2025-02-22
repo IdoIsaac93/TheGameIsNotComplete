@@ -4,6 +4,12 @@ using UnityEngine;
 public class ChainEffect : IAttackEffect
 {
     private float chainRange = 8;
+    private int chainAmmount;
+
+    public ChainEffect(int chainAmmount)
+    {
+        this.chainAmmount = chainAmmount;
+    }
 
     public void ApplyEffect(Enemy target)
     {
@@ -13,7 +19,7 @@ public class ChainEffect : IAttackEffect
         Enemy lastAffectedEnemy = target;
         HashSet<Enemy> affectedEnemies = new HashSet<Enemy> { target }; // Track already affected enemies
 
-        for (int i = 0; i < 2; i++) // Apply to two closest enemies
+        for (int i = 0; i < chainAmmount; i++) // Apply to two closest enemies
         {
             // Find nearby enemies within range of the last affected enemy
             Collider[] hitColliders = Physics.OverlapSphere(lastAffectedEnemy.transform.position, chainRange);

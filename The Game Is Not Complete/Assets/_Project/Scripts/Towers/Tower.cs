@@ -11,6 +11,8 @@ public abstract class Tower : MonoBehaviour
     [SerializeField] protected Tower[] upgradeOptions;
 
     protected float attackTimer;
+    protected BuildSpot buildSpot;
+
     protected HashSet<Enemy> enemiesInRange = new();
     private IAttackEffect attackEffect;
     private IAreaEffect areaEffect;
@@ -18,12 +20,17 @@ public abstract class Tower : MonoBehaviour
 
     private void Start()
     {
-        SetValues();
         rangeCollider = gameObject.GetComponent<SphereCollider>();
         rangeCollider.isTrigger = true;
         rangeCollider.radius = attackRange;
 
     }
+
+    private void Awake()
+    {
+        SetValues();
+    }
+    
 
 
     protected virtual void Update()
@@ -122,6 +129,22 @@ public abstract class Tower : MonoBehaviour
     {
         return upgradeOptions;
     }
+
+    public void SetBuildSpot(BuildSpot buildSpot)
+    {
+        this.buildSpot = buildSpot;
+    }
+
+    public void Upgrade(int upgradeIndex)
+    {
+        if (!CanUpgrade() && buildSpot != null)
+        {
+            Debug.LogWarning("This tower cannot be upgraded further!");
+            return;
+        }
+        buildSpot.UpgradeTower(upgradeIndex);
+    }
+
 
 
 

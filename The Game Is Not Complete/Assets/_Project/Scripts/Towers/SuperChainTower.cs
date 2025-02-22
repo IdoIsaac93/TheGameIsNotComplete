@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ChainTower : Tower
+public class SuperChainTower : Tower
 {
     protected override void SetValues()
     {
@@ -8,6 +8,6 @@ public class ChainTower : Tower
         attackSpeed = 1;
         attackRange = 8;
         price = 200;
-        SetAttackEffect(new ChainEffect(2));
+        SetAttackEffect(new ChainEffect(5));
     }
 }

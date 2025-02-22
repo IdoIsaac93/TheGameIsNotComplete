@@ -105,7 +105,8 @@ MonoBehaviour:
   attackRange: 0
   price: 0
   rangeCollider: {fileID: 0}
-  upgradeOptions: []
+  upgradeOptions:
+  - {fileID: 8785861530081033856, guid: 67af55ebb58b479428a579353986c5ff, type: 3}
 --- !u!135 &4720126054203499540
 SphereCollider:
   m_ObjectHideFlags: 0
