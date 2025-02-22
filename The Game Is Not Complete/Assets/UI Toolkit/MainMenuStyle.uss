@@ -1,0 +1,23 @@
+.header {
+    font-size: 45px;
+    color: rgb(255, 255, 255);
+}
+
+.title {
+}
+
+.main {
+    color: rgb(255, 255, 255);
+}
+
+.button {
+    font-size: 24px;
+    width: 220px;
+    height: 50px;
+    color: rgb(255, 255, 255);
+    border-left-color: rgba(255, 255, 255, 0);
+    border-right-color: rgba(255, 255, 255, 0);
+    border-top-color: rgba(255, 255, 255, 0);
+    border-bottom-color: rgba(255, 255, 255, 0);
+    -unity-text-align: upper-left;
+}
