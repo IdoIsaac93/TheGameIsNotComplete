@@ -25,8 +25,9 @@ public class EnemyHealth : MonoBehaviour
 
     public virtual void Die()
     {
-        //TODO//
-        //Find PlayerResources and add system points and score
+        EnemyController enemy = GetComponent<EnemyController>();
+        PlayerResources.Instance.GainScore(enemy.scoreWorth);
+        PlayerResources.Instance.GainSystemPoints(enemy.resourceWorth);
         Destroy(gameObject);
     }
 

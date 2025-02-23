@@ -14,19 +14,8 @@ public class SceneController : Singleton<SceneController>
     public bool isWaveInProgress = false;
     public Slider waveTimerVisual;
 
-    public static SceneController Instance { get; private set; }
-
-    private void Awake()
+    new private void Awake()
     {
-        //Singleton pattern to ensure only one SceneController
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
         waveTimerVisual.maxValue = timeBetweenWaves;
     }
 
