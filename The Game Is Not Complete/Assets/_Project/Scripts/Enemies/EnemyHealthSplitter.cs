@@ -1,16 +1,16 @@
 using System.IO;
 using UnityEngine;
 
-public class SplittingEnemy : EnemyHealth
+public class EnemyHealthSplitter : EnemyHealth
 {
     public GameObject miniEnemyPrefab;
     public int splitAmount;
-    public Enemy self;
+    public EnemyController self;
 
-    private void Awake()
+    //"New" keyword so both this and the base class "awake" methods run
+    new private void Awake()
     {
-        self = GetComponent<Enemy>();
-        base.Awake();
+        self = GetComponent<EnemyController>();
     }
     public override void Die()
     {
@@ -18,19 +18,10 @@ public class SplittingEnemy : EnemyHealth
         //Find PlayerResources and add system points and score
         for (int i = 0; i < splitAmount; i++)
         {
-            Enemy newEnemy = Instantiate(miniEnemyPrefab, transform.position, Quaternion.identity).GetComponent<Enemy>();
+            EnemyController newEnemy = Instantiate(miniEnemyPrefab, transform.position, Quaternion.identity).GetComponent<EnemyController>();
             newEnemy.path = self.path;
             newEnemy.pathIndex = self.pathIndex;
         }
         Destroy(gameObject);
-    }
-
-    //TESTING REMOVE THIS
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            Die();
-        }
     }
 }

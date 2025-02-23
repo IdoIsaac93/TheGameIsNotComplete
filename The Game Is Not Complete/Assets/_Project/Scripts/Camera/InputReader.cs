@@ -9,6 +9,7 @@ public class InputReader : ScriptableObject, IPlayerActions
 {
 
     public event UnityAction<Vector2> Move = delegate { };
+    public event UnityAction<float> Zoom = delegate { };
 
     InputSystem_Actions input;
 
@@ -65,4 +66,13 @@ public class InputReader : ScriptableObject, IPlayerActions
     public void OnFire(InputAction.CallbackContext context)
     {
     }
+
+    public void OnZoom(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            Zoom?.Invoke(context.ReadValue<float>());
+        }
+    }
+
 }

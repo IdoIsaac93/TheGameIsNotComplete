@@ -20,10 +20,10 @@ public class EnemySpawn : MonoBehaviour
 
     private IEnumerator SpawnEnemies(Wave currentWave)
     {
-        foreach (Enemy enemy in currentWave.enemyList)
+        foreach (EnemyController enemy in currentWave.enemyList)
         {
             // Instantiate a new enemy and assign it a path
-            Enemy newEnemy = Instantiate(enemy.enemyPrefab, transform.position, Quaternion.identity).GetComponent<Enemy>();
+            EnemyController newEnemy = Instantiate(enemy.enemyPrefab, transform.position, Quaternion.identity).GetComponent<EnemyController>();
             newEnemy.path = path;
             // Wait beofre spawning another enemy
             yield return new WaitForSeconds(spawnDelay);

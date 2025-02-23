@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.AI;
 using System.Collections;
 
-public class Enemy : MonoBehaviour
+public class EnemyController : MonoBehaviour
 {
     [Header("Components")]
     //Components

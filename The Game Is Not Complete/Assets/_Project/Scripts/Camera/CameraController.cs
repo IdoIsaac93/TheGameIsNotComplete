@@ -1,24 +1,69 @@
-using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using Unity.Cinemachine;
 
-public class CameraController : Singleton<CameraController>
+[RequireComponent(typeof(CinemachineCamera))]
+[RequireComponent (typeof(InputReader))]
+public class CameraController : MonoBehaviour
 {
-    //[SerializeField] private CinemachineCamera freeLookCam;
-    //[SerializeField] private Transform playerTransform;
+    [Header("Components")]
+    [SerializeField] private CinemachineCamera cinemachineCamera;
+    [SerializeField] private InputReader inputReader;
 
-    //"New" keyword because base class has an awake method and we want to run both, not override it
-    new private void Awake()
-    {
-        /*
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-        if (playerTransform != null) { return; }
-        playerTransform = GameObject.FindWithTag("Player").transform;
-        */
-    }
+    [Header("Movement")]
+    [SerializeField] private float moveSpeed = 5f;
+    private Vector2 moveInput;
+
+    [Header("Zoom")]
+    [SerializeField] private float zoomSpeed = 10f;
+    [SerializeField] private float minFOV = 20f;
+    [SerializeField] private float maxFOV = 60f;
+    private float zoomLevel = 0f;
 
     private void OnEnable()
     {
-        //freeLookCam.Target.TrackingTarget = playerTransform;
+        if (inputReader != null)
+        {
+            inputReader.Move += OnMove;
+            inputReader.Zoom += ZoomCamera;
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (inputReader != null)
+        {
+            inputReader.Move -= OnMove;
+            inputReader.Zoom -= ZoomCamera;
+        }
+    }
+
+    private void Update()
+    {
+        MoveCamera();
+    }
+
+    private void OnMove(Vector2 input)
+    {
+        moveInput = input;
+    }
+
+    private void MoveCamera()
+    {
+        Vector3 moveDirection = new Vector3(moveInput.x, 0, moveInput.y);
+        transform.position += moveDirection * moveSpeed * Time.deltaTime;
+    }
+
+    private void ZoomCamera(float zoomInput)
+    {
+        if (cinemachineCamera == null) return;
+
+        zoomLevel = Mathf.Clamp(
+            cinemachineCamera.Lens.FieldOfView - (zoomInput * zoomSpeed),
+            minFOV,
+            maxFOV
+        );
+
+        cinemachineCamera.Lens.FieldOfView = zoomLevel;
     }
 }
