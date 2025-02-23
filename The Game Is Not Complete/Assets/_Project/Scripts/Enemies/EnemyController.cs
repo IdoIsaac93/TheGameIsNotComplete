@@ -34,9 +34,6 @@ public class EnemyController : MonoBehaviour
         {
             agent.SetDestination(path[0]);
         }
-
-        // Set speed
-        //agent.speed = moveSpeed;
     }
 
     private void Update()
@@ -53,8 +50,8 @@ public class EnemyController : MonoBehaviour
         agent.SetDestination(path[pathIndex]);
 
         // Ignore Y-axis when checking distance
-        Vector3 flatPosition = new Vector3(transform.position.x, 0, transform.position.z);
-        Vector3 flatTarget = new Vector3(path[pathIndex].x, 0, path[pathIndex].z);
+        Vector3 flatPosition = new (transform.position.x, 0, transform.position.z);
+        Vector3 flatTarget = new (path[pathIndex].x, 0, path[pathIndex].z);
 
         // When close enough to the target, change to next path point
         if (Vector3.Distance(flatPosition, flatTarget) <= 0.5f)
@@ -67,10 +64,7 @@ public class EnemyController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("SystemCore"))
         {
-            //TODO//
-            // deal damage to the system core
-            // reduce score
-
+            PlayerResources.Instance.TakeDamage(damage, resourceWorth/2);
             Destroy(gameObject);
         }
     }

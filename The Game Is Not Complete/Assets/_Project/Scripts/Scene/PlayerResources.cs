@@ -1,16 +1,50 @@
 using UnityEngine;
 
-public class PlayerResources : MonoBehaviour
+public class PlayerResources : Singleton<PlayerResources>
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] private int lives;
+    [SerializeField] private int score;
+    [SerializeField] private int systemPoints;
+    public int GetLives() {  return lives; }
+    public int GetScore() { return score; }
+    public int GetSystemPoints() { return systemPoints; }
+
+
+    public void TakeDamage(int damage, int scoreDamage)
     {
-        
+        //If you have enough lives take damage, otherwise set lives to 0 and Die
+        lives = (lives > damage) ? lives - damage : 0;
+        if (lives == 0) Die();
+
+        //Makes sure score doesn't go below 0
+        score = (score > scoreDamage) ? score - scoreDamage : 0;
+
+        Debug.Log(lives);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Die()
     {
-        
+        //Display lose screen
+    }
+
+    public void GainSystemPoints(int sysPoints)
+    {
+        systemPoints += sysPoints;
+    }
+
+    public bool SpendSystemPoints(int sysPoints)
+    {
+        //Returns false if you don't have enough points
+        if (systemPoints < sysPoints) return false;
+        else
+        {
+            systemPoints -= sysPoints;
+            return true;
+        }
+    }
+
+    public void GainScore(int score)
+    {
+        this.score += score;
     }
 }

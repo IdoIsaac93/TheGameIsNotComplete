@@ -6,8 +6,8 @@ public abstract class Singleton<T> : MonoBehaviour where T : Component
 {
     public bool autoUnparentOnAwake = true;
     protected static T instance;
-    public static bool hasInstance => instance != null;
-    public static T TryGetInstance() => hasInstance ? instance : null;
+    public static bool HasInstance => instance != null;
+    public static T TryGetInstance() => HasInstance ? instance : null;
     public static T Instance
     {
         get
