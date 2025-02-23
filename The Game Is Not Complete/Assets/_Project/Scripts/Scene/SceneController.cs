@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SceneController : MonoBehaviour
+public class SceneController : Singleton<SceneController>
 {
     public float timeBetweenWaves;
     public float waveTimer;
