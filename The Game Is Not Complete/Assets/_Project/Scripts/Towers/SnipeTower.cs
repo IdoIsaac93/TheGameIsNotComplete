@@ -8,5 +8,6 @@ public class SnipeTower : Tower
         attackSpeed = 3f;
         attackRange = 20;
         price = 300;
+        towerId = TowerId.SnipeTower;
     }
 }

@@ -3,5 +3,5 @@ using UnityEngine;
 
 public interface IAreaEffect
 {
-    void ApplyAreaEffect(HashSet<Enemy> enemiesInRange);
+    void ApplyAreaEffect(HashSet<EnemyController> enemiesInRange);
 }

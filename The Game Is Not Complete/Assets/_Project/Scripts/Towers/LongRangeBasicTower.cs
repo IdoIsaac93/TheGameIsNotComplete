@@ -8,5 +8,6 @@ public class LongRangeBasicTower : Tower
         attackSpeed = 1;
         attackRange = 6;
         price = 200;
+        towerId = TowerId.LongRangeBasicTower;
     }
 }

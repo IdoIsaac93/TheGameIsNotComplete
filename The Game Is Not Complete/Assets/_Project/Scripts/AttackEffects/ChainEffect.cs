@@ -11,23 +11,23 @@ public class ChainEffect : IAttackEffect
         this.chainAmmount = chainAmmount;
     }
 
-    public void ApplyEffect(Enemy target)
+    public void ApplyEffect(EnemyController target)
     {
         if (target == null) return;
 
         // Keep track of the last affected enemy and affected enemies in this chain
-        Enemy lastAffectedEnemy = target;
-        HashSet<Enemy> affectedEnemies = new HashSet<Enemy> { target }; // Track already affected enemies
+        EnemyController lastAffectedEnemy = target;
+        HashSet<EnemyController> affectedEnemies = new HashSet<EnemyController> { target }; // Track already affected enemies
 
         for (int i = 0; i < chainAmmount; i++) // Apply to two closest enemies
         {
             // Find nearby enemies within range of the last affected enemy
             Collider[] hitColliders = Physics.OverlapSphere(lastAffectedEnemy.transform.position, chainRange);
-            List<Enemy> nearbyEnemies = new List<Enemy>();
+            List<EnemyController> nearbyEnemies = new List<EnemyController>();
 
             foreach (var hitCollider in hitColliders)
             {
-                Enemy enemy = hitCollider.GetComponent<Enemy>();
+                EnemyController enemy = hitCollider.GetComponent<EnemyController>();
                 // Add enemy to the list if it's valid and hasn't been affected yet
                 if (enemy != null && enemy != lastAffectedEnemy && !affectedEnemies.Contains(enemy))
                 {

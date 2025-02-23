@@ -8,5 +8,6 @@ public class HeavyTower : Tower
         attackSpeed = 2f;
         attackRange = 3;
         price = 250;
+        towerId = TowerId.HeavyTower;
     }
 }

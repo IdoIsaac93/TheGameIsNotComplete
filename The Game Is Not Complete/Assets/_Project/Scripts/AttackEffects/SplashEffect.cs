@@ -4,12 +4,12 @@ using UnityEngine;
 public class SplashEffect : IAttackEffect
 {
     private float splashRange = 5;
-    public void ApplyEffect(Enemy target)
+    public void ApplyEffect(EnemyController target)
     {
         Collider[] hitColliders = Physics.OverlapSphere(target.transform.position, splashRange);
         foreach (var hitCollider in hitColliders)
         {
-            Enemy enemy = hitCollider.GetComponent<Enemy>();
+            EnemyController enemy = hitCollider.GetComponent<EnemyController>();
             if (enemy != null && enemy != target)
             {
                 enemy.health.TakeDamage(20);

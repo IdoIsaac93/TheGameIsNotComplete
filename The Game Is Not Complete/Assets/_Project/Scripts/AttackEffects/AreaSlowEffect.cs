@@ -12,7 +12,7 @@ public class AreaSlowEffect : IAreaEffect
         this.duration = duration;
     }
 
-    public void ApplyAreaEffect(HashSet<Enemy> enemiesInRange)
+    public void ApplyAreaEffect(HashSet<EnemyController> enemiesInRange)
     {
         foreach (var enemy in enemiesInRange)
         {

@@ -121,5 +121,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9498e1dfaab783d4b8d7da70e9084bff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentTower: {fileID: 0}
   towers:
-  - {fileID: 712946962793989044, guid: 25fa010a147ee0840b8f7d45b1eee372, type: 3}
+  - {fileID: 428205930175823241, guid: 8488d7c10dbdc9b468d9fc2c383ac65b, type: 3}
+  - {fileID: 8531115870301784904, guid: 708fb6f54c85a6d46a0f36b22f345e67, type: 3}
+  - {fileID: 7899728380308012601, guid: d6065f1771483674a89b6bc188258e2b, type: 3}
+  - {fileID: 6070661728475043978, guid: c6ba4655f735a7445bcb630c4d6e10df, type: 3}
+  - {fileID: 6031957529369926726, guid: 1e737c5da61918b4caeee9126b0a0c88, type: 3}

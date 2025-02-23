@@ -9,5 +9,6 @@ public class SuperChainTower : Tower
         attackRange = 8;
         price = 200;
         SetAttackEffect(new ChainEffect(5));
+        towerId = TowerId.SuperChainTower;
     }
 }

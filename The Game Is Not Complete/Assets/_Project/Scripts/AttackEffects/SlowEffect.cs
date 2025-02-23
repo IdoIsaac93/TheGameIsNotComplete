@@ -10,7 +10,7 @@ public class SlowEffect : IAttackEffect
         this.slowAmount = slowAmount;
         this.duration = duration;
     }
-    public void ApplyEffect(Enemy target)
+    public void ApplyEffect(EnemyController target)
     {
         if (target != null)
         {

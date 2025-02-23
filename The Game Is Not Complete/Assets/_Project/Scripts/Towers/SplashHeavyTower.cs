@@ -9,5 +9,6 @@ public class SplashHeavyTower : Tower
         attackRange = 3;
         price = 250;
         SetAttackEffect(new SplashEffect());
+        towerId = TowerId.SplashHeavyTower;
     }
 }

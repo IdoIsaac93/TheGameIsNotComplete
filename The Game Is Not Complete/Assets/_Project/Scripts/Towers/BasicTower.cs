@@ -8,5 +8,6 @@ public class BasicTower : Tower
         attackSpeed = 1;
         attackRange = 3;
         price = 100;
+        towerId = TowerId.BasicTower;
     }
 }
