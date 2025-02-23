@@ -73,6 +73,6 @@ public class InputReader : ScriptableObject, IPlayerActions
         {
             Zoom?.Invoke(context.ReadValue<float>());
         }
+        Debug.Log($"Zoom input: {context.ReadValue<float>()}");
     }
-
 }

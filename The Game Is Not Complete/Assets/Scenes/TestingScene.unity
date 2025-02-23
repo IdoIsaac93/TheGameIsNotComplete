@@ -785,6 +785,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d22017b66e259294ebca3a1c11484dd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  autoUnparentOnAwake: 1
   timeBetweenWaves: 30
   waveTimer: 0
   waves:
@@ -1126,6 +1127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 081bfdc386f3ea344b19f0696bc7b8ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  autoUnparentOnAwake: 1
   cinemachineCamera: {fileID: 1871027232}
   inputReader: {fileID: 11400000, guid: c22d484214f194c42bb5f2d4aa9160b1, type: 2}
   moveSpeed: 5

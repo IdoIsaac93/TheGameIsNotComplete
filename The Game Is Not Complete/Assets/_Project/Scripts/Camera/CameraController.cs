@@ -4,7 +4,7 @@ using Unity.Cinemachine;
 
 [RequireComponent(typeof(CinemachineCamera))]
 [RequireComponent (typeof(InputReader))]
-public class CameraController : MonoBehaviour
+public class CameraController : Singleton<CameraController>
 {
     [Header("Components")]
     [SerializeField] private CinemachineCamera cinemachineCamera;
