@@ -1,4 +1,5 @@
 //using System.Diagnostics;
+using NUnit.Framework.Internal.Filters;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -6,13 +7,10 @@ public class BuildSpot : MonoBehaviour
 {
     public Tower currentTower;
     public TowerId towerId; // This will be used for presistance later to know which tower is built on this build spot
+
+
     bool isOccupied = false;
     [SerializeField] Tower[] towers;
-
-    public void Update()
-    {
-        TestFunctionality();
-    }
 
     public void BuildTower(Tower towerPrefab) //For Raz: This method will be called by the UI when the player selects a tower to build.
                                               //Each buildspot has a list of towers that can be built on it. The UI needs to send the correct tower prefab to this method
@@ -88,39 +86,6 @@ public class BuildSpot : MonoBehaviour
         }
     }
 
-    public void TestBuild()
-    {
-        if(Input.GetKeyDown(KeyCode.B))
-        {
-            BuildTower(towers[0]);
-            Debug.Log("Built");
-        }
-    }
-
-    public void TestSell()
-    {
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            SellTower();
-            Debug.Log("Sold");
-        }
-    }
-
-    public void TestUpgrade()
-    {
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            UpgradeTower(0);
-            Debug.Log("Upgraded");
-        }
-    }
-
-    public void TestFunctionality()
-    {
-        TestBuild();
-        TestSell();
-        TestUpgrade();
-    }
 
     public Tower[] GetTowers()// For Raz: This method returns the towers that can be built on this build spot.
     {

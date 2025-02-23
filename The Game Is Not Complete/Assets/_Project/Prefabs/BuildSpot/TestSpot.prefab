@@ -66,7 +66,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 30035b38a56296a4f93d36a84f6a8ff1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -122,6 +122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentTower: {fileID: 0}
+  towerId: 0
   towers:
   - {fileID: 428205930175823241, guid: 8488d7c10dbdc9b468d9fc2c383ac65b, type: 3}
   - {fileID: 8531115870301784904, guid: 708fb6f54c85a6d46a0f36b22f345e67, type: 3}
