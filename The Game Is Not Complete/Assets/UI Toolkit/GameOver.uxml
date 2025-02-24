@@ -1,0 +1,10 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/GameOverMenu.uss?fileID=7433441132597879392&amp;guid=3e49832edb252074baf3dbe9d478779c&amp;type=3#GameOverMenu" />
+    <engine:VisualElement name="Container" class="main" style="flex-grow: 1; width: 70%; height: 70%; -unity-text-align: upper-center; background-color: rgba(0, 0, 0, 0.92); max-height: 80%; max-width: 70%; align-self: center; justify-content: center; align-items: auto; align-content: flex-start; margin-top: 5%;">
+        <engine:Label text="Game Over" name="GameOver" style="font-size: 80%; width: 50%; align-self: center; margin-top: 5%; margin-bottom: 5%;" />
+        <engine:Button text="Restart Level" name="RestartLevel" class="button" />
+        <engine:Button text="Main Menu" name="MainMenu" class="button" />
+        <engine:Button text="New Game" name="NewGame" class="button" />
+        <engine:Button text="Exit Game" name="ExitGame" class="button" />
+    </engine:VisualElement>
+</engine:UXML>
