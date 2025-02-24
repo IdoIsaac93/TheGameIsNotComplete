@@ -5,9 +5,9 @@ public class SuperHeavyTower : Tower
     protected override void SetValues()
     {
         attackDamage = 50;
-        attackSpeed = 2f;
-        attackRange = 3;
-        price = 250;
+        attackSpeed = 2;
+        attackRange = 8;
+        price = 150;
     }
 
 }

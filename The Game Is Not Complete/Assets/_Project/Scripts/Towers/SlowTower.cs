@@ -6,8 +6,8 @@ public class SlowTower : Tower
     {
         attackDamage = 0;
         attackSpeed = 2;
-        attackRange = 5;
-        price = 200;
+        attackRange = 10;
+        price = 80;
         SetAreaEffect(new AreaSlowEffect(2.5f, 2));
         towerId = TowerId.SlowTower;
     }

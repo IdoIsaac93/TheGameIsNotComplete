@@ -23,7 +23,7 @@ public class BuildSpot : MonoBehaviour
             //Check if player has enough money
             //Deduct the money from the player
             currentTower = Instantiate(towerPrefab, transform.position, Quaternion.identity);
-            Vector3 towerPosition = new Vector3(transform.position.x, towerPrefab.transform.position.y, transform.position.z);
+            Vector3 towerPosition = new Vector3(transform.position.x, towerPrefab.transform.position.y + transform.position.y, transform.position.z);
             currentTower.transform.position = towerPosition;
             isOccupied = true;
             currentTower.SetBuildSpot(this);
@@ -77,7 +77,7 @@ public class BuildSpot : MonoBehaviour
 
         if (upgradedTowerPrefab != null && PlayerResources.Instance.SpendSystemPoints(upgradedTowerPrefab.GetPrice()))
         {
-            Vector3 towerPosition = new Vector3(transform.position.x, upgradedTowerPrefab.transform.position.y, transform.position.z);
+            Vector3 towerPosition = new Vector3(transform.position.x, transform.position.y + upgradedTowerPrefab.transform.position.y, transform.position.z);
 
             Destroy(currentTower.gameObject);
 

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ChainEffect : IAttackEffect
 {
-    private float chainRange = 8;
+    private float chainRange = 12;
     private int chainAmmount;
 
     public ChainEffect(int chainAmmount)

@@ -6,8 +6,8 @@ public class LongRangeBasicTower : Tower
     {
         attackDamage = 5;
         attackSpeed = 1;
-        attackRange = 6;
-        price = 200;
+        attackRange = 15;
+        price = 100;
         towerId = TowerId.LongRangeBasicTower;
     }
 }

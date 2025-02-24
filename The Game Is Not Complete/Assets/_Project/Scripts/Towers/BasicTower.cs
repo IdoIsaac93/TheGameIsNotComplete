@@ -6,8 +6,8 @@ public class BasicTower : Tower
     {
         attackDamage = 5;
         attackSpeed = 1;
-        attackRange = 3;
-        price = 100;
+        attackRange = 10;
+        price = 30;
         towerId = TowerId.BasicTower;
     }
 }

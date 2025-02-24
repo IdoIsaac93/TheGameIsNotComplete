@@ -100,11 +100,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4666e61d8777f9e43ae320e5f10ab9f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDamage: 5
-  attackSpeed: 0.5
-  attackRange: 10
+  attackDamage: 0
+  attackSpeed: 0
+  attackRange: 0
   price: 0
   rangeCollider: {fileID: 700281674644283987}
+  upgradeOptions: []
 --- !u!135 &700281674644283987
 SphereCollider:
   m_ObjectHideFlags: 0

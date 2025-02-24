@@ -6,7 +6,7 @@ public class SuperSlowTower : Tower
     {
         attackDamage = 0;
         attackSpeed = 2;
-        attackRange = 5;
+        attackRange = 10;
         price = 200;
         SetAreaEffect(new AreaSlowEffect(3, 2));
     }

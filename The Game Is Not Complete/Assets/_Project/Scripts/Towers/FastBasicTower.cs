@@ -6,8 +6,8 @@ public class FastBasicTower : Tower
     {
         attackDamage = 5;
         attackSpeed = 0.5f;
-        attackRange = 3;
-        price = 200;
+        attackRange = 10;
+        price = 120;
         towerId = TowerId.FastBasicTower;
     }
 }

@@ -7,7 +7,7 @@ public class ChainTower : Tower
         attackDamage = 2.5f;
         attackSpeed = 1;
         attackRange = 8;
-        price = 200;
+        price = 50;
         SetAttackEffect(new ChainEffect(2));
         towerId = TowerId.ChainTower;
     }
