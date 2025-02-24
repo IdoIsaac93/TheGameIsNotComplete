@@ -25,6 +25,7 @@ public class PlayerResources : Singleton<PlayerResources>
     public void Die()
     {
         //Display lose screen
+        FindFirstObjectByType<GameOverEvent>().ShowGameOverScreen();
     }
 
     public void GainSystemPoints(int sysPoints)
