@@ -46,7 +46,7 @@ public class MainMenuEvents : MonoBehaviour
     private void OnPlayGameClick()
     {
         Debug.Log("Play Game Button Clicked");
-        //SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene("DemoLevel");
     }
 
     //All buttons click event
