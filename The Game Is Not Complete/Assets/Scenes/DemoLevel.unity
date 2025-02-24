@@ -570,7 +570,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6554052770163092810, guid: 083cae537bbba00428dd399bf28d86fe, type: 3}
       propertyPath: spawnDelay
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6554052770163092810, guid: 083cae537bbba00428dd399bf28d86fe, type: 3}
       propertyPath: path.Array.size
@@ -1962,7 +1962,7 @@ PrefabInstance:
       objectReference: {fileID: 415548612}
     - target: {fileID: 4463931241212032355, guid: d172a4839e1d2f242823ccafe1e2d64e, type: 3}
       propertyPath: timeBetweenWaves
-      value: 1
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 4463931241212032355, guid: d172a4839e1d2f242823ccafe1e2d64e, type: 3}
       propertyPath: 'waves.Array.data[0]'
