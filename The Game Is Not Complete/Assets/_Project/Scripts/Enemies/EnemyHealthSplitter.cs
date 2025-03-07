@@ -21,7 +21,11 @@ public class EnemyHealthSplitter : EnemyHealth
             EnemyController newEnemy = Instantiate(miniEnemyPrefab, transform.position, Quaternion.identity).GetComponent<EnemyController>();
             newEnemy.path = self.path;
             newEnemy.pathIndex = self.pathIndex;
+            // Keep count of enemies alive for wave completion
+            SceneController.Instance.numberOfEnemiesAlive++;
         }
+        // Keep count of enemies alive for wave completion
+        SceneController.Instance.numberOfEnemiesAlive--;
         Destroy(gameObject);
     }
 }

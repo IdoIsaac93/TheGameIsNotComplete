@@ -28,6 +28,8 @@ public class EnemyHealth : MonoBehaviour
         EnemyController enemy = GetComponent<EnemyController>();
         PlayerResources.Instance.GainScore(enemy.scoreWorth);
         PlayerResources.Instance.GainSystemPoints(enemy.resourceWorth);
+        // Keep count of enemies alive for wave completion
+        SceneController.Instance.numberOfEnemiesAlive--;
         Destroy(gameObject);
     }
 

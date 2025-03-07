@@ -13,6 +13,7 @@ public class SceneController : Singleton<SceneController> , IDataPersistance
     public int waveNumber = 0;
     public bool isWaveInProgress = false;
     public Slider waveTimerVisual;
+    public int numberOfEnemiesAlive = 0;
 
     new private void Awake()
     {
@@ -29,6 +30,13 @@ public class SceneController : Singleton<SceneController> , IDataPersistance
                 StartWave();
             }
             waveTimerVisual.value = timeBetweenWaves - waveTimer;
+        }
+        else
+        {
+            if (numberOfEnemiesAlive <= 0)
+            {
+                WaveCompleted();
+            }
         }
     }
 

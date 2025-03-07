@@ -2663,6 +2663,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1081857363071241805, guid: 565c738989aac364babfaffbe3a8c47c, type: 3}
+      propertyPath: buildSpotPointerInstance
+      value: 
+      objectReference: {fileID: 7065943855048059264, guid: 332a35727f381d145842cc04a8f3ff8f, type: 3}
     - target: {fileID: 2652624395586907587, guid: 565c738989aac364babfaffbe3a8c47c, type: 3}
       propertyPath: buildSpotPointerInstance
       value: 

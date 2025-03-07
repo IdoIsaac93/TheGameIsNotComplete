@@ -65,6 +65,8 @@ public class EnemyController : MonoBehaviour
         if (collision.gameObject.CompareTag("SystemCore"))
         {
             PlayerResources.Instance.TakeDamage(damage, resourceWorth/2);
+            // Keep count of enemies alive for wave completion
+            SceneController.Instance.numberOfEnemiesAlive--;
             Destroy(gameObject);
         }
     }

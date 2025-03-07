@@ -6,12 +6,6 @@ public class EnemySpawn : MonoBehaviour
 {
     public List<Vector3> path;
     public float spawnDelay;
-    public SceneController controller;
-
-    private void Awake()
-    {
-        controller = FindAnyObjectByType<SceneController>();
-    }
 
     public void SpawnWave(Wave currentWave)
     {
@@ -25,14 +19,14 @@ public class EnemySpawn : MonoBehaviour
             // Instantiate a new enemy and assign it a path
             EnemyController newEnemy = Instantiate(enemy.enemyPrefab, transform.position, Quaternion.identity).GetComponent<EnemyController>();
             newEnemy.path = path;
+            // Count the enemies spawned to track when wave ends
+            SceneController.Instance.numberOfEnemiesAlive++;
             // Wait beofre spawning another enemy
             yield return new WaitForSeconds(spawnDelay);
         }
-
-        // Notify SceneController that the wave is completed
-        controller.WaveCompleted();
     }
 
+    //Makes the path easier to see
     private void OnDrawGizmos()
     {
         if (path.Count > 0)
