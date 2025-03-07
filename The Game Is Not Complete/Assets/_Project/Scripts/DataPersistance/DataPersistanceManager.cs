@@ -2,11 +2,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
-public class DataPersistanceManager : MonoBehaviour
+public class DataPersistanceManager : Singleton<DataPersistanceManager>
 {
     //Data file configuration
-    [SerializeField] private string fileName;
+    [SerializeField] private string fileName = "SaveFile";
     private FileHandler fileHandler;
 
     //Game data is saved and loaded from this
@@ -15,22 +16,10 @@ public class DataPersistanceManager : MonoBehaviour
     //All objects that will be saved or loaded
     private List<IDataPersistance> dataPersistanceObjects;
 
-    //The data persistance manager that is in the scene
-    public static DataPersistanceManager instance { get; private set; }
-    private void Awake()
-    {
-        //Singleton pattern to make sure only one manager in the game
-        if (instance != null)
-        {
-            Debug.Log("More than one 'Data Persistance Manager' found!");
-        }
-        instance = this;
-    }
-
     private void Start()
     {
         //Create the file handler
-        fileHandler = new FileHandler(Application.persistentDataPath, fileName);
+        fileHandler = new(Application.persistentDataPath, fileName);
         //Find all objects that need to be saved or loaded
         dataPersistanceObjects = FindAllDataPersistanceObjects();
     }
@@ -38,11 +27,7 @@ public class DataPersistanceManager : MonoBehaviour
     private List<IDataPersistance> FindAllDataPersistanceObjects()
     {
         // Find all MonoBehaviour objects that implement IDataPersistance
-
-//FindObjectOfType is obsolete, this gets rid of the warning.
-#pragma warning disable CS0618 // Type or member is obsolete
-        IEnumerable<IDataPersistance> dataPersistanceMonoBehaviours = FindObjectsOfType<MonoBehaviour>().OfType<IDataPersistance>();
-#pragma warning restore CS0618 // Type or member is obsolete
+        IEnumerable<IDataPersistance> dataPersistanceMonoBehaviours = FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None).OfType<IDataPersistance>();
 
         return new List<IDataPersistance>(dataPersistanceMonoBehaviours);
     }
@@ -52,6 +37,7 @@ public class DataPersistanceManager : MonoBehaviour
         //Create new data file and save it then change to first level
         gameData = new GameData();
         SaveGame();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex +1);
     }
 
     public void SaveGame()
@@ -66,7 +52,7 @@ public class DataPersistanceManager : MonoBehaviour
         }
 
         //Save the current level, done from here for simplicity
-        //gameData.currentLevelIndex = SceneManager.GetActiveScene().buildIndex;
+        gameData.currentLevelIndex = SceneManager.GetActiveScene().buildIndex;
 
         //Send the data to the file handler for saving
         fileHandler.Save(gameData);
@@ -74,8 +60,6 @@ public class DataPersistanceManager : MonoBehaviour
 
     public void LoadGame()
     {
-        //Find all objects to load, important here because scene changes
-        dataPersistanceObjects = FindAllDataPersistanceObjects();
 
         //Loads the game data from the file handler
         gameData = fileHandler.Load();
@@ -86,6 +70,34 @@ public class DataPersistanceManager : MonoBehaviour
             Debug.Log("No savefile found, starting a new game");
             NewGame();
         }
+        //Load data if no scene change is needed
+        if (gameData.currentLevelIndex == SceneManager.GetActiveScene().buildIndex)
+        {
+            LoadData();
+        }
+        else
+        {
+            StartCoroutine(WaitForSceneChange(gameData.currentLevelIndex));
+        }
+    }
+
+    private IEnumerator WaitForSceneChange(int targetLevelIndex)
+    {
+        // Wait until the scene is loaded
+        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(targetLevelIndex);
+        while (!asyncOperation.isDone)
+        {
+            yield return null;
+        }
+
+        // After scene has finished loading, load the game data
+        LoadData();
+    }
+
+    public void LoadData()
+    {
+        //Find all objects to load, important here because scene changes
+        dataPersistanceObjects = FindAllDataPersistanceObjects();
         //Load variables to each object
         foreach (IDataPersistance dataPersistanceObject in dataPersistanceObjects)
         {
@@ -93,19 +105,17 @@ public class DataPersistanceManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            Debug.Log("Manual Load");
+            LoadGame();
+        }
 
-    //I had this in last semesters class but I can't remember why so I dont want to delete it yet
-
-    //Needs to be seperate from LoadGame! When LoadGame is called from the scenecontroller it needs to not change the scene
-    //public void LoadLevel()
-    //{
-    //    //Makes sure the main menu isn't loaded, goes to first level instead
-    //    if (gameData.currentLevelIndex == 0)
-    //    {
-    //        gameData.currentLevelIndex++;
-    //    }
-
-    //    //Loads the level that was saved
-    //    sceneController.ChangeScene(gameData.currentLevelIndex);
-    //}
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            DataPersistanceManager.Instance.LoadData();
+        }
+    }
 }

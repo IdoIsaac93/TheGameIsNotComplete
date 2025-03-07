@@ -11,7 +11,7 @@ public class MainMenuEvents : MonoBehaviour
     private Button _creditsButton;
     private Button _quitGameButton;
     
-    private List<Button> _menuButtons = new List<Button>();
+    private List<Button> _menuButtons = new();
     private AudioSource _audioSource;
 
     private void Awake()
@@ -58,7 +58,8 @@ public class MainMenuEvents : MonoBehaviour
     private void OnPlayGameClick()
     {
         Debug.Log("Play Game Button Clicked");
-        SceneManager.LoadScene("DemoLevel");
+        DataPersistanceManager.Instance.NewGame();
+        //SceneManager.LoadScene("DemoLevel");
     }
 
     //All buttons click event

@@ -5,11 +5,11 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
-public class BuildSpotTestManager : MonoBehaviour , IDataPersistance
+public class BuildSpotManager : MonoBehaviour, IDataPersistance
 {
     [SerializeField] private BuildSpot[] allBuildSpots;
-    private static int selectedIndex = 0;
     [SerializeField] private GameObject buildSpotPointerInstance;
+    private static int selectedIndex = 0;
     private List<TowerId> towers = new();
 
     private void Awake()
@@ -24,18 +24,18 @@ public class BuildSpotTestManager : MonoBehaviour , IDataPersistance
 
     private void Update()
     {
-        TestNextSpot();
+        NextSpot();
         HandleInput();
     }
 
-    private void TestNextSpot()
+    private void NextSpot()
     {
-        if (Input.GetKeyDown(KeyCode.N))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             selectedIndex = (selectedIndex + 1) % allBuildSpots.Length;
             UpdatePointerPosition();
         }
-        if (Input.GetKeyDown(KeyCode.B))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             selectedIndex = (selectedIndex - 1 + allBuildSpots.Length) % allBuildSpots.Length;
             UpdatePointerPosition();
@@ -51,87 +51,62 @@ public class BuildSpotTestManager : MonoBehaviour , IDataPersistance
         }
     }
 
+    //Temporary inputs for testing
     private void HandleInput()
     {
         if (allBuildSpots.Length > 0)
         {
+            //Build tower
             for (int i = 0; i < 9; i++)
             {
-                if (Input.GetKeyDown(KeyCode.Alpha1 + i))
+                if (Input.GetKeyDown(KeyCode.Alpha1 + i) || Input.GetKeyDown(KeyCode.Keypad1 + i))
                 {
                     allBuildSpots[selectedIndex].BuildTower(TowerDictionary.GetTowerPrefab(TowerId.BasicTower + i));
                 }
             }
-            for (int i = 0; i < 9; i++)
-            {
-                if (Input.GetKeyDown(KeyCode.Keypad1 + i))
-                {
-                    allBuildSpots[selectedIndex].BuildTower(TowerDictionary.GetTowerPrefab(TowerId.BasicTower + i));
-                }
-            }
-            //if (Input.GetKeyDown(KeyCode.Keypad1))
-            //{
-            //    allBuildSpots[selectedIndex].BuildTower(TowerDictionary.GetTowerPrefab(TowerId.BasicTower));
-            //}
-
-            //if (Input.GetKeyDown(KeyCode.Keypad2))
-            //{
-            //    allBuildSpots[selectedIndex].BuildTower(TowerDictionary.GetTowerPrefab(TowerId.SlowTower));
-            //}
-
-            //if (Input.GetKeyDown(KeyCode.Keypad3))
-            //{
-            //    allBuildSpots[selectedIndex].BuildTower(TowerDictionary.GetTowerPrefab(TowerId.HeavyTower));
-            //}
-
-            //if (Input.GetKeyDown(KeyCode.Keypad4))
-            //{
-            //    allBuildSpots[selectedIndex].BuildTower(TowerDictionary.GetTowerPrefab(TowerId.ChainTower));
-            //}
-
-            //if (Input.GetKeyDown(KeyCode.Keypad5))
-            //{
-            //    allBuildSpots[selectedIndex].BuildTower(TowerDictionary.GetTowerPrefab(TowerId.SnipeTower));
-            //}
-
-            if (Input.GetKeyDown(KeyCode.Keypad0))
+ 
+            //Sell tower
+            if (Input.GetKeyDown(KeyCode.Alpha0) || Input.GetKeyDown(KeyCode.Keypad0))
             {
                 allBuildSpots[selectedIndex].SellTower();
             }
 
-            if (Input.GetKeyDown(KeyCode.H))
+            //Upgrade tower
+            if (Input.GetKeyDown(KeyCode.F))
             {
                 allBuildSpots[selectedIndex].UpgradeTower(0);
             }
 
+            // Open/Close pause menu
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                //Pause Game
                 if (Time.timeScale != 0) { /*Pause()*/ }
                 else { /*Unpause()*/ }
             }
         }
 
+        //Saving
         if (Input.GetKeyDown(KeyCode.O))
         {
             Debug.Log("Manual Save");
             DataPersistanceManager.Instance.SaveGame();
         }
+
+        //Loading
         if (Input.GetKeyDown(KeyCode.P))
         {
             Debug.Log("Manual Load");
             DataPersistanceManager.Instance.LoadGame();
         }
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            DataPersistanceManager.Instance.LoadData();
-        }
     }
 
     public void LoadData(GameData data)
     {
+        // Takes the list of towers from the save file
         towers = data.towers;
-        for (int i = 0;i < allBuildSpots.Length;i++)
+
+        // Loops through all build spots and builds the coresponding tower
+        for (int i = 0; i < allBuildSpots.Length; i++)
         {
             GameObject towerPrefab = TowerDictionary.GetTowerPrefab(towers[i]);
             allBuildSpots[i].LoadBuild(towerPrefab);
@@ -140,11 +115,14 @@ public class BuildSpotTestManager : MonoBehaviour , IDataPersistance
 
     public void SaveData(ref GameData data)
     {
+        // Loops through all build spots and stores their coresponding towers
         foreach (BuildSpot spot in allBuildSpots)
         {
             Debug.Log($"Saving towerId: {spot.towerId} at index {Array.IndexOf(allBuildSpots, spot)}");
             towers.Add(spot.towerId);
         }
+
+        // Updates the save file with the list of towers
         data.towers = towers;
     }
 }

@@ -4,8 +4,8 @@ using System.IO;
 
 public class FileHandler
 {
-    private string dataDirPath = "";
-    private string dataFileName = "";
+    private readonly string dataDirPath = "";
+    private readonly string dataFileName = "";
 
     public FileHandler(string dataDirPath, string dataFileName)
     {
@@ -23,12 +23,10 @@ public class FileHandler
             try
             {
                 string dataToLoad = "";
-                using (FileStream stream = new FileStream(fullPath, FileMode.Open))
+                using (FileStream stream = new (fullPath, FileMode.Open))
                 {
-                    using (StreamReader reader = new StreamReader(stream))
-                    {
-                        dataToLoad = reader.ReadToEnd();
-                    }
+                    using StreamReader reader = new(stream);
+                    dataToLoad = reader.ReadToEnd();
                 }
 
                 //Deserialize the data
@@ -56,13 +54,9 @@ public class FileHandler
             string dataToSave = JsonUtility.ToJson(data, true);
 
             //Using makes it open and close the stream, create means it creates new or overwrites existing
-            using (FileStream stream = new FileStream(fullPath,FileMode.Create))
-            {
-                using (StreamWriter writer = new StreamWriter(stream))
-                {
-                    writer.Write(dataToSave);
-                }
-            }
+            using FileStream stream = new(fullPath, FileMode.Create);
+            using StreamWriter writer = new(stream);
+            writer.Write(dataToSave);
         }
         catch (Exception e)
         {

@@ -1,9 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Unity.Cinemachine;
-
-[RequireComponent(typeof(CinemachineCamera))]
-[RequireComponent (typeof(InputReader))]
 public class CameraController : Singleton<CameraController>
 {
     [Header("Components")]
@@ -50,8 +47,8 @@ public class CameraController : Singleton<CameraController>
 
     private void MoveCamera()
     {
-        Vector3 moveDirection = new Vector3(moveInput.x, 0, moveInput.y);
-        transform.position += moveDirection * moveSpeed * Time.deltaTime;
+        Vector3 moveDirection = new (moveInput.x, 0, moveInput.y);
+        transform.position += moveSpeed * Time.deltaTime * moveDirection;
     }
 
     private void ZoomCamera(float zoomInput)

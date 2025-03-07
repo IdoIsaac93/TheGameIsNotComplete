@@ -4,13 +4,13 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SceneController : Singleton<SceneController>
+public class SceneController : Singleton<SceneController> , IDataPersistance
 {
     public float timeBetweenWaves;
     public float waveTimer;
     public List<Wave> waves;
     public List<EnemySpawn> spawnLocations;
-    public int waveNumber;
+    public int waveNumber = 0;
     public bool isWaveInProgress = false;
     public Slider waveTimerVisual;
 
@@ -52,5 +52,17 @@ public class SceneController : Singleton<SceneController>
     {
         waveNumber++;
         isWaveInProgress = false;
+        DataPersistanceManager.Instance.SaveGame();
+        Debug.Log("Wave completed, Autosaving game");
+    }
+
+    public void LoadData(GameData data)
+    {
+        waveNumber = data.waveNumber;
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.waveNumber = waveNumber;
     }
 }

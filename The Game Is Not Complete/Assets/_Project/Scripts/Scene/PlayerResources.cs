@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerResources : Singleton<PlayerResources>
+public class PlayerResources : Singleton<PlayerResources> , IDataPersistance
 {
     [SerializeField] private int lives;
     [SerializeField] private int score;
@@ -47,5 +47,19 @@ public class PlayerResources : Singleton<PlayerResources>
     public void GainScore(int score)
     {
         this.score += score;
+    }
+
+    public void LoadData(GameData data)
+    {
+        lives = data.lives;
+        score = data.score;
+        systemPoints = data.systemPoints;
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.lives = lives;
+        data.score = score;
+        data.systemPoints = systemPoints;
     }
 }

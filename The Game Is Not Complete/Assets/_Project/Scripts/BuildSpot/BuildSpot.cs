@@ -6,29 +6,62 @@ using UnityEngine.UIElements;
 public class BuildSpot : MonoBehaviour
 {
     public Tower currentTower;
-    public TowerId towerId; // This will be used for presistance later to know which tower is built on this build spot
+    public TowerId towerId = TowerId.Empty; // This will be used for presistance later to know which tower is built on this build spot
 
 
-    bool isOccupied = false;
+    [SerializeField] private bool isOccupied = false;
     [SerializeField] Tower[] towers;
 
-    public void BuildTower(Tower towerPrefab) //For Raz: This method will be called by the UI when the player selects a tower to build.
-                                              //Each buildspot has a list of towers that can be built on it. The UI needs to send the correct tower prefab to this method
-                                              //You may wish to do this with tower ids instead of prefabs. There a method here that returns the tower ids of the towers that can be built on this build spot
-                                              //GetTowers() returns the towers that can be built on this build spot, this could also be used instead
+    public void BuildTower(GameObject towerPrefab) //For Raz: This method will be called by the UI when the player selects a tower to build.
+                                                   //Each buildspot has a list of towers that can be built on it. The UI needs to send the correct tower prefab to this method
+                                                   //You may wish to do this with tower ids instead of prefabs. There a method here that returns the tower ids of the towers that can be built on this build spot
+                                                   //GetTowers() returns the towers that can be built on this build spot, this could also be used instead
     {
-        if (!isOccupied && PlayerResources.Instance.SpendSystemPoints(towerPrefab.GetPrice()))
+        //Build nothing if prefab is null, used when TowerId.Empty
+        if (towerPrefab == null) { return; }
+        Tower towerScript = towerPrefab.GetComponent<Tower>();
+        if (!isOccupied)
         {
-            Debug.Log("Spending " + towerPrefab.GetPrice() + " points to build ");
-            //Check if player has enough money
-            //Deduct the money from the player
-            currentTower = Instantiate(towerPrefab, transform.position, Quaternion.identity);
-            Vector3 towerPosition = new Vector3(transform.position.x, towerPrefab.transform.position.y + transform.position.y, transform.position.z);
-            currentTower.transform.position = towerPosition;
-            isOccupied = true;
-            currentTower.SetBuildSpot(this);
-            towerId = currentTower.GetTowerId();
+            //Check if player has enough money and deduct the money from the player
+            if (PlayerResources.Instance.SpendSystemPoints(towerScript.GetPrice()))
+            {
+                Debug.Log("Spending " + towerScript.GetPrice() + " points to build ");
+                Vector3 towerPosition = new(transform.position.x, towerScript.transform.position.y + transform.position.y, transform.position.z);
+                currentTower = Instantiate(towerScript, towerPosition, Quaternion.identity);
+                isOccupied = true;
+                currentTower.SetBuildSpot(this);
+                towerId = currentTower.GetTowerId();
+            }
+            else { Debug.Log("Not enough System Points to buy tower"); }
         }
+        else { Debug.Log("Build spot is occupied"); }
+    }
+
+    public void LoadBuild(GameObject towerPrefab)
+    {
+
+        //Remove the tower
+        if (isOccupied)
+        {
+            Debug.Log("Removing current tower while loading");
+            Destroy(currentTower.gameObject);
+            currentTower = null;
+            isOccupied = false;
+            towerId = TowerId.Empty;
+        }
+
+        // Build nothing if prefab is null, used when TowerId.Empty
+        if (towerPrefab == null) { return; }
+        Tower towerScript = towerPrefab.GetComponent<Tower>();
+
+        Debug.Log("Building tower for free");
+        Vector3 newTowerPosition = new(transform.position.x, towerPrefab.transform.position.y + transform.position.y, transform.position.z);
+        currentTower = Instantiate(towerPrefab, newTowerPosition, Quaternion.identity).GetComponent<Tower>();
+        isOccupied = true;
+        currentTower.SetBuildSpot(this);
+        // I have no idea why, but when loading it gave towers an ID that is 1 lower than it should be
+        // I couldn't figure out why so I just added this +1 at the end
+        towerId = currentTower.GetTowerId();
     }
 
     public void SellTower() //For Raz: This method will be called by the UI when the player selects to sell a tower.
@@ -41,7 +74,9 @@ public class BuildSpot : MonoBehaviour
 
             //Remove the tower
             Destroy(currentTower.gameObject);
+            currentTower = null;
             isOccupied = false;
+            towerId = TowerId.Empty;
         }
     }
 
@@ -77,7 +112,7 @@ public class BuildSpot : MonoBehaviour
 
         if (upgradedTowerPrefab != null && PlayerResources.Instance.SpendSystemPoints(upgradedTowerPrefab.GetPrice()))
         {
-            Vector3 towerPosition = new Vector3(transform.position.x, transform.position.y + upgradedTowerPrefab.transform.position.y, transform.position.z);
+            Vector3 towerPosition = new(transform.position.x, transform.position.y + upgradedTowerPrefab.transform.position.y, transform.position.z);
 
             Destroy(currentTower.gameObject);
 

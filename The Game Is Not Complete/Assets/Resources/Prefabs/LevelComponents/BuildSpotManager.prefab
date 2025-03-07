@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7603203523159938868}
-  - component: {fileID: 2652624395586907587}
+  - component: {fileID: 1081857363071241805}
   m_Layer: 0
   m_Name: BuildSpotManager
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2652624395586907587
+--- !u!114 &1081857363071241805
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,6 +41,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 3555237905167392217}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51ed35f0b7d4d6c41a385dc096e0ec30, type: 3}
+  m_Script: {fileID: 11500000, guid: 13130d7540cdd62429c6d8542c526bdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  allBuildSpots: []
+  buildSpotPointerInstance: {fileID: 0}

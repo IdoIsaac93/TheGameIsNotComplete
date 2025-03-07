@@ -10,6 +10,8 @@ public class GameData
     public int systemPoints;
     public int waveNumber;
     public int lives;
+    public int currentLevelIndex;
+    public List<TowerId> towers;
 
     //When starting a new game these are the initial values assigned
     public GameData()
