@@ -1,25 +1,34 @@
+using System;
 using UnityEngine;
 
 public class PlayerResources : Singleton<PlayerResources>
 {
-    [SerializeField] private int lives;
+    public static event Action OnHealthChanged;
+    [SerializeField] private int currentHelth;
     [SerializeField] private int score;
     [SerializeField] private int systemPoints;
-    public int GetLives() {  return lives; }
+    [SerializeField] private int maxHealth = 100;
+    public int GetCurrentHealth() {  return currentHelth; }
+    public int GetMaxHealth() { return maxHealth; }
     public int GetScore() { return score; }
     public int GetSystemPoints() { return systemPoints; }
 
 
     public void TakeDamage(int damage, int scoreDamage)
     {
-        //If you have enough lives take damage, otherwise set lives to 0 and Die
-        lives = (lives > damage) ? lives - damage : 0;
-        if (lives == 0) Die();
+        //If you have enough health take damage, otherwise set health to 0 and Die
+        currentHelth = (currentHelth > damage) ? currentHelth - damage : 0;
+        if (currentHelth == 0) Die();
+
+        //for UI when it takes damage
+        OnHealthChanged?.Invoke();
 
         //Makes sure score doesn't go below 0
         score = (score > scoreDamage) ? score - scoreDamage : 0;
 
-        Debug.Log(lives);
+
+
+        Debug.Log(currentHelth);
     }
 
     public void Die()
