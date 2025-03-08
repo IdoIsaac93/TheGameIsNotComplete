@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6614688968258905374
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1773048216702291874}
+  m_Layer: 0
+  m_Name: TowerParticlePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1773048216702291874
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6614688968258905374}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1.023}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3471824429505710763}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &3471824429505318955
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -66,7 +97,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 400000, guid: d6f9b3733628684469fb1a97d64074a8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1773048216702291874}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 100000, guid: d6f9b3733628684469fb1a97d64074a8, type: 3}
       insertIndex: -1
@@ -98,6 +132,9 @@ MonoBehaviour:
   price: 0
   rangeCollider: {fileID: 0}
   upgradeOptions: []
+  shootParticleEffect: {fileID: 7367981846087889174, guid: fb556cfbcd348954bb57e98a625ac07f, type: 3}
+  towerParticlePoint: {fileID: 1773048216702291874}
+  hitParticleEffect: {fileID: 1935215041109294462, guid: cd3639c44d43bad4ebe4ac9c0836717f, type: 3}
 --- !u!135 &1141283017861605234
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -119,3 +156,8 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.69142765
   m_Center: {x: 0, y: 0, z: 0.5}
+--- !u!4 &3471824429505710763 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400000, guid: d6f9b3733628684469fb1a97d64074a8, type: 3}
+  m_PrefabInstance: {fileID: 3471824429505318955}
+  m_PrefabAsset: {fileID: 0}

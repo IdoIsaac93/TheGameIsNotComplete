@@ -7,7 +7,7 @@ public class SuperHeavyTower : Tower
         attackDamage = 50;
         attackSpeed = 2;
         attackRange = 8;
-        price = 150;
+        price = 80;
     }
 
 }

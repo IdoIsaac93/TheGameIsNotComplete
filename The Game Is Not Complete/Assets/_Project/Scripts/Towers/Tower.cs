@@ -9,7 +9,11 @@ public abstract class Tower : MonoBehaviour
     [SerializeField] protected int price;
     [SerializeField] protected SphereCollider rangeCollider;
     [SerializeField] protected Tower[] upgradeOptions; //For Raz: This is an array of towers that a tower can be upgraded to. Each tower prefab contains its own array with each upgrade option. My idea is that the Ui will load each of these options and selecting build/buy will send the index of that tower to the buildspot upgrade method.
-    
+    [SerializeField] protected ParticleSystem shootParticleEffect;
+
+    [SerializeField] private Transform towerParticlePoint;
+    [SerializeField] private ParticleSystem hitParticleEffect;
+
     protected TowerId towerId;
     protected float attackTimer;
     protected BuildSpot buildSpot;
@@ -98,11 +102,31 @@ public abstract class Tower : MonoBehaviour
         {
             return;
         }
+
+        PointAtEnemy(target.transform.position);
+
+        if (shootParticleEffect != null)
+        {
+            Instantiate(shootParticleEffect, towerParticlePoint.position, towerParticlePoint.transform.rotation);
+        }
+
+        if (hitParticleEffect != null)
+        {
+            Instantiate(hitParticleEffect, target.transform.position, Quaternion.identity);
+        }
+
         attackTimer = attackSpeed;
         target.health.TakeDamage(attackDamage);
         attackEffect?.ApplyEffect(target);
         areaEffect?.ApplyAreaEffect(enemiesInRange);
 
+    }
+
+    private void PointAtEnemy(Vector3 targetPosition)
+    {
+        Vector3 direction = (targetPosition - transform.position).normalized;
+        direction.y = 0;
+        transform.rotation = Quaternion.LookRotation(direction);
     }
 
     protected void SetAttackEffect(IAttackEffect attackEffect)

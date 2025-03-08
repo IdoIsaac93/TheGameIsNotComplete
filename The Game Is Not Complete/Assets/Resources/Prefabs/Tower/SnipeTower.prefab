@@ -32,7 +32,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 3859609265006228289}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6862476171011236195
@@ -100,13 +101,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b5116f27d507be42be129c5c60acdcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDamage: 0
-  attackSpeed: 0
-  attackRange: 0
-  price: 0
+  attackDamage: 50
+  attackSpeed: 3
+  attackRange: 20
+  price: 80
   rangeCollider: {fileID: 0}
   upgradeOptions:
   - {fileID: 3120446367209391708, guid: ef59434039160584999fc88592f768c2, type: 3}
+  shootParticleEffect: {fileID: 7367981846087889174, guid: fb556cfbcd348954bb57e98a625ac07f, type: 3}
+  towerParticlePoint: {fileID: 3859609265006228289}
+  hitParticleEffect: {fileID: 793565713931933285, guid: f448959cd35ec494e9b92211a173b2c2, type: 3}
 --- !u!135 &1046585985786889142
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -128,3 +132,34 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!1 &7597967621228039155
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3859609265006228289}
+  m_Layer: 0
+  m_Name: TowerParticlePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3859609265006228289
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7597967621228039155}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5132884452987345761}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

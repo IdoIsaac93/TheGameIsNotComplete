@@ -5,10 +5,12 @@ public class ChainEffect : IAttackEffect
 {
     private float chainRange = 12;
     private int chainAmmount;
+    private ParticleSystem chainParticleEffect;
 
-    public ChainEffect(int chainAmmount)
+    public ChainEffect(int chainAmmount, ParticleSystem chainParticleEffect)
     {
         this.chainAmmount = chainAmmount;
+        this.chainParticleEffect = chainParticleEffect;
     }
 
     public void ApplyEffect(EnemyController target)
@@ -19,7 +21,7 @@ public class ChainEffect : IAttackEffect
         EnemyController lastAffectedEnemy = target;
         HashSet<EnemyController> affectedEnemies = new HashSet<EnemyController> { target }; // Track already affected enemies
 
-        for (int i = 0; i < chainAmmount; i++) // Apply to two closest enemies
+        for (int i = 0; i < chainAmmount; i++)
         {
             // Find nearby enemies within range of the last affected enemy
             Collider[] hitColliders = Physics.OverlapSphere(lastAffectedEnemy.transform.position, chainRange);
@@ -45,7 +47,8 @@ public class ChainEffect : IAttackEffect
             {
                 // Apply the effect to the closest enemy
                 lastAffectedEnemy = nearbyEnemies[0];
-                lastAffectedEnemy.health.TakeDamage(2.5f);
+                lastAffectedEnemy.health.TakeDamage(10);
+                Object.Instantiate(chainParticleEffect, lastAffectedEnemy.transform.position, Quaternion.identity);
 
                 // Add this enemy to the affected enemies set
                 affectedEnemies.Add(lastAffectedEnemy);

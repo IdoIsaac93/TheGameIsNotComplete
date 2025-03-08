@@ -27,7 +27,7 @@ public class BuildSpot : MonoBehaviour
             {
                 Debug.Log("Spending " + towerScript.GetPrice() + " points to build ");
                 Vector3 towerPosition = new(transform.position.x, towerScript.transform.position.y + transform.position.y, transform.position.z);
-                currentTower = Instantiate(towerScript, towerPosition, Quaternion.identity);
+                currentTower = Instantiate(towerScript, towerPosition, towerScript.transform.rotation);
                 isOccupied = true;
                 currentTower.SetBuildSpot(this);
                 towerId = currentTower.GetTowerId();

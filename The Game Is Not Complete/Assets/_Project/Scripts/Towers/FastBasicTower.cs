@@ -4,10 +4,10 @@ public class FastBasicTower : Tower
 {
     protected override void SetValues()
     {
-        attackDamage = 5;
+        attackDamage = 20;
         attackSpeed = 0.5f;
         attackRange = 10;
-        price = 120;
+        price = 60;
         towerId = TowerId.FastBasicTower;
     }
 }

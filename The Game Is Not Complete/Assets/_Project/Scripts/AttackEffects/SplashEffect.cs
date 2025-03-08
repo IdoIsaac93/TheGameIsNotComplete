@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class SplashEffect : IAttackEffect
 {
-    private float splashRange = 5;
+    private float splashRange = 6;
     public void ApplyEffect(EnemyController target)
     {
         Collider[] hitColliders = Physics.OverlapSphere(target.transform.position, splashRange);
