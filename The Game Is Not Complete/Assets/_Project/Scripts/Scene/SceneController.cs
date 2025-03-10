@@ -16,7 +16,8 @@ public class SceneController : Singleton<SceneController>
 
     new private void Awake()
     {
-        waveTimerVisual.maxValue = timeBetweenWaves;
+        //Commented out by Raz
+        //waveTimerVisual.maxValue = timeBetweenWaves;
     }
 
     private void Update()
@@ -28,7 +29,8 @@ public class SceneController : Singleton<SceneController>
             {
                 StartWave();
             }
-            waveTimerVisual.value = timeBetweenWaves - waveTimer;
+            //Commented out by Raz
+            //waveTimerVisual.value = timeBetweenWaves - waveTimer;
         }
     }
 
