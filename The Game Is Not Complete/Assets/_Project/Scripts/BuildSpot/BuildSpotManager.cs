@@ -8,46 +8,53 @@ using UnityEngine;
 public class BuildSpotManager : MonoBehaviour, IDataPersistance
 {
     [SerializeField] private BuildSpot[] allBuildSpots;
-    [SerializeField] private GameObject buildSpotPointerInstance;
-    private static int selectedIndex = 0;
     private List<TowerId> towers = new();
+    [SerializeField] private GameObject buildMenu;
+    private BuildMenu buildMenuScript;
+
+    private int selectedIndex = 1;
 
     private void Awake()
     {
-        allBuildSpots = FindObjectsByType<BuildSpot>(FindObjectsSortMode.InstanceID).OrderBy(spot => spot.transform.position.z).ThenBy(spot => spot.transform.position.x).ToArray();
-        if (buildSpotPointerInstance != null && allBuildSpots.Length > 0)
-        {
-            buildSpotPointerInstance = Instantiate(buildSpotPointerInstance);
-            UpdatePointerPosition();
-        }
+        // Find all build spots and put them in the list
+        allBuildSpots = FindObjectsByType<BuildSpot>(FindObjectsSortMode.InstanceID)
+            .OrderBy(spot => spot.transform.position.z)
+            .ThenBy(spot => spot.transform.position.x).ToArray();
+
+        if (buildMenu != null) { buildMenuScript = buildMenu.GetComponent<BuildMenu>(); }
+        else { Debug.Log("BuildSpotManager did not find the BuildMenu object"); }
     }
 
     private void Update()
     {
-        NextSpot();
         HandleInput();
+        // Mouse left click
+        if (Input.GetMouseButtonDown(0)) { HandleMouseClick(); }
     }
 
-    private void NextSpot()
+    private void HandleMouseClick()
     {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            selectedIndex = (selectedIndex + 1) % allBuildSpots.Length;
-            UpdatePointerPosition();
-        }
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            selectedIndex = (selectedIndex - 1 + allBuildSpots.Length) % allBuildSpots.Length;
-            UpdatePointerPosition();
-        }
-    }
+        // Send a raycast from the camera to the mouse position
+        RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-    private void UpdatePointerPosition()
-    {
-        if (buildSpotPointerInstance != null)
+        if (Physics.Raycast(ray, out hit))
         {
-            Vector3 newPos = allBuildSpots[selectedIndex].transform.position + Vector3.up * 4f;
-            buildSpotPointerInstance.transform.position = newPos;
+            // Check if the hit object is a BuildSpot
+            BuildSpot clickedSpot = hit.collider?.GetComponentInParent<BuildSpot>();
+
+            if (clickedSpot != null)
+            {
+                if (clickedSpot.currentTower == null)
+                {
+                    buildMenuScript.OpenMenu(clickedSpot, clickedSpot.baseTowerOptions);
+                }
+                else
+                {
+                    // Open the menu at the clicked build spot and with its available towers
+                    buildMenuScript.OpenMenu(clickedSpot, clickedSpot.currentTower.GetUpgradeOptions());
+                }
+            }
         }
     }
 
@@ -64,17 +71,11 @@ public class BuildSpotManager : MonoBehaviour, IDataPersistance
                     allBuildSpots[selectedIndex].BuildTower(TowerDictionary.GetTowerPrefab(TowerId.BasicTower + i));
                 }
             }
- 
+
             //Sell tower
             if (Input.GetKeyDown(KeyCode.Alpha0) || Input.GetKeyDown(KeyCode.Keypad0))
             {
                 allBuildSpots[selectedIndex].SellTower();
-            }
-
-            //Upgrade tower
-            if (Input.GetKeyDown(KeyCode.F))
-            {
-                allBuildSpots[selectedIndex].UpgradeTower(0);
             }
 
             // Open/Close pause menu

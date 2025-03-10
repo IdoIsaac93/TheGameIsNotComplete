@@ -9,5 +9,6 @@ public class SnipeTower : Tower
         attackRange = 20;
         price = 80;
         towerId = TowerId.SnipeTower;
+        towerName = "Sniper Tower";
     }
 }

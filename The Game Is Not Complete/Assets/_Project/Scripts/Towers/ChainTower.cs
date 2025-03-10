@@ -10,5 +10,6 @@ public class ChainTower : Tower
         price = 50;
         SetAttackEffect(new ChainEffect(2, shootParticleEffect));
         towerId = TowerId.ChainTower;
+        towerName = "Chain Tower";
     }
 }

@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.6, z: 0}
-  m_LocalScale: {x: 1, y: 0.1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -123,9 +123,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentTower: {fileID: 0}
   towerId: 0
-  towers:
+  isOccupied: 0
+  baseTowerOptions:
   - {fileID: 428205930175823241, guid: 8488d7c10dbdc9b468d9fc2c383ac65b, type: 3}
-  - {fileID: 8531115870301784904, guid: 708fb6f54c85a6d46a0f36b22f345e67, type: 3}
   - {fileID: 7899728380308012601, guid: d6065f1771483674a89b6bc188258e2b, type: 3}
-  - {fileID: 6070661728475043978, guid: c6ba4655f735a7445bcb630c4d6e10df, type: 3}
-  - {fileID: 6031957529369926726, guid: 1e737c5da61918b4caeee9126b0a0c88, type: 3}
+  - {fileID: 8531115870301784904, guid: 708fb6f54c85a6d46a0f36b22f345e67, type: 3}

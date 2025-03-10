@@ -18,6 +18,8 @@ public static class TowerDictionary
         { TowerId.DamageSlowTower, Resources.Load<GameObject>("Prefabs/Tower/DamageSlowTower") },
         { TowerId.SplashHeavyTower, Resources.Load<GameObject>("Prefabs/Tower/SplashHeavyTower") },
         { TowerId.SuperChainTower, Resources.Load<GameObject>("Prefabs/Tower/SuperChainTower") },
+        { TowerId.SuperHeavyTower, Resources.Load<GameObject>("Prefabs/Tower/SuperHeavyTower") },
+        { TowerId.SuperSlowTower, Resources.Load<GameObject>("Prefabs/Tower/SuperSlowTower") },
         { TowerId.SuperSnipeTower, Resources.Load<GameObject>("Prefabs/Tower/SuperSnipeTower") }
     };
 

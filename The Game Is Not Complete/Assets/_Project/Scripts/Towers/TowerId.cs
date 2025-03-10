@@ -13,6 +13,8 @@ public enum TowerId //For Raz: This is an enum of all basic towers in the game. 
     DamageSlowTower,
     SplashHeavyTower,
     SuperChainTower,
+    SuperHeavyTower,
+    SuperSlowTower,
     SuperSnipeTower
 }
 // Will be used for data presistance, deciding which tower to build when a game is loaded.

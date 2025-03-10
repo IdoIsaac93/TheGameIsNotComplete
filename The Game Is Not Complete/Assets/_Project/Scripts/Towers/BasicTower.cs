@@ -9,5 +9,6 @@ public class BasicTower : Tower
         attackRange = 10;
         price = 30;
         towerId = TowerId.BasicTower;
+        towerName = "Basic Tower";
     }
 }

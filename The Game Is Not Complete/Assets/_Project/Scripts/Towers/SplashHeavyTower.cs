@@ -10,5 +10,6 @@ public class SplashHeavyTower : Tower
         price = 80;
         SetAttackEffect(new SplashEffect());
         towerId = TowerId.SplashHeavyTower;
+        towerName = "Splash Upgrade";
     }
 }

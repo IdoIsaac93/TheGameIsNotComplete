@@ -9,5 +9,6 @@ public class SuperSnipeTower : Tower
         attackRange = 1000;
         price = 300;
         towerId = TowerId.SuperSnipeTower;
+        towerName = "Damage Upgrade";
     }
 }

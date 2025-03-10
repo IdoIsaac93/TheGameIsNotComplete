@@ -8,6 +8,8 @@ public class SuperHeavyTower : Tower
         attackSpeed = 2;
         attackRange = 8;
         price = 80;
+        towerId = TowerId.SuperHeavyTower;
+        towerName = "Damage Upgrade";
     }
 
 }

@@ -9,5 +9,6 @@ public class HeavyTower : Tower
         attackRange = 8;
         price = 60;
         towerId = TowerId.HeavyTower;
+        towerName = "Heavy Tower";
     }
 }

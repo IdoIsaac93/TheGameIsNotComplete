@@ -10,5 +10,6 @@ public class SlowTower : Tower
         price = 40;
         SetAreaEffect(new AreaSlowEffect(2.5f, 2));
         towerId = TowerId.SlowTower;
+        towerName = "Slow Tower";
     }
 }

@@ -168,6 +168,7 @@ MonoBehaviour:
   shootParticleEffect: {fileID: 3556169004423702611, guid: c5dec87212775494f9b536fa69133e14, type: 3}
   towerParticlePoint: {fileID: 4210061857494545517}
   hitParticleEffect: {fileID: 0}
+  towerId: 8
 --- !u!1 &8600070712564828550
 GameObject:
   m_ObjectHideFlags: 0

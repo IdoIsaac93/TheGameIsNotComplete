@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2559386680013416861}
   - component: {fileID: 7509386931566590338}
   - component: {fileID: 8531115870301784904}
-  - component: {fileID: 5797552000679177698}
+  - component: {fileID: 6939185338356943319}
   m_Layer: 0
   m_Name: SlowTower
   m_TagString: Untagged
@@ -105,14 +105,15 @@ MonoBehaviour:
   attackSpeed: 0
   attackRange: 0
   price: 0
-  rangeCollider: {fileID: 0}
   upgradeOptions:
   - {fileID: 5663911792429880668, guid: 185b66d467647594184c9f997ab98299, type: 3}
   shootParticleEffect: {fileID: 5164271567880761025, guid: cc106b8b675c2c743a9b9bd0b3c143d7, type: 3}
   towerParticlePoint: {fileID: 7567524926124936306}
   hitParticleEffect: {fileID: 0}
---- !u!135 &5797552000679177698
-SphereCollider:
+  towerId: 2
+  towerName: 
+--- !u!136 &6939185338356943319
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -129,9 +130,11 @@ SphereCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 3
+  m_Direction: 1
+  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &4558894178666822253
 GameObject:
   m_ObjectHideFlags: 0

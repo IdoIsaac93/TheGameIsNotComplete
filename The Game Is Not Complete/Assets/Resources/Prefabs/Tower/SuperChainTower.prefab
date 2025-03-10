@@ -268,7 +268,7 @@ GameObject:
   m_Component:
   - component: {fileID: 70624412544408431}
   - component: {fileID: 8785861530081033856}
-  - component: {fileID: 5572803839154527286}
+  - component: {fileID: 9204709601108188868}
   m_Layer: 0
   m_Name: SuperChainTower
   m_TagString: Untagged
@@ -314,13 +314,14 @@ MonoBehaviour:
   attackSpeed: 0
   attackRange: 0
   price: 0
-  rangeCollider: {fileID: 0}
   upgradeOptions: []
   shootParticleEffect: {fileID: 7621623355740050087, guid: 0977bcffac93db74d8f6f5a50cde4514, type: 3}
   towerParticlePoint: {fileID: 3063251808747360424}
   hitParticleEffect: {fileID: 7621623355740050087, guid: 0977bcffac93db74d8f6f5a50cde4514, type: 3}
---- !u!135 &5572803839154527286
-SphereCollider:
+  towerId: 10
+  towerName: Damage Upgrade
+--- !u!136 &9204709601108188868
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -337,9 +338,11 @@ SphereCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 2
   m_Radius: 0.5
-  m_Center: {x: 0, y: 0.5, z: 0}
+  m_Height: 1.8
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.6, z: 0}
 --- !u!1 &2944285903216494058
 GameObject:
   m_ObjectHideFlags: 0

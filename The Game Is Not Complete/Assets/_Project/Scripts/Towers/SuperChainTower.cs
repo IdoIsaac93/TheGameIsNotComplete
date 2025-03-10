@@ -10,5 +10,6 @@ public class SuperChainTower : Tower
         price = 70;
         SetAttackEffect(new ChainEffect(5, shootParticleEffect));
         towerId = TowerId.SuperChainTower;
+        towerName = "Chain Upgrade";
     }
 }

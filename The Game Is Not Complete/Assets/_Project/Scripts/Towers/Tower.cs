@@ -7,14 +7,14 @@ public abstract class Tower : MonoBehaviour
     [SerializeField] protected float attackSpeed;
     [SerializeField] protected float attackRange;
     [SerializeField] protected int price;
-    [SerializeField] protected SphereCollider rangeCollider;
     [SerializeField] protected Tower[] upgradeOptions; //For Raz: This is an array of towers that a tower can be upgraded to. Each tower prefab contains its own array with each upgrade option. My idea is that the Ui will load each of these options and selecting build/buy will send the index of that tower to the buildspot upgrade method.
     [SerializeField] protected ParticleSystem shootParticleEffect;
 
     [SerializeField] private Transform towerParticlePoint;
     [SerializeField] private ParticleSystem hitParticleEffect;
 
-    protected TowerId towerId;
+    [SerializeField] protected TowerId towerId;
+    [SerializeField] protected string towerName;
     protected float attackTimer;
     protected BuildSpot buildSpot;
     
@@ -23,52 +23,63 @@ public abstract class Tower : MonoBehaviour
     private IAttackEffect attackEffect;
     private IAreaEffect areaEffect;
 
+    //[SerializeField] protected SphereCollider rangeCollider;
+    //private void Start()
+    //{
+    //    rangeCollider = gameObject.GetComponent<SphereCollider>();
+    //    rangeCollider.isTrigger = true;
+    //    rangeCollider.radius = attackRange;
 
-    private void Start()
-    {
-        rangeCollider = gameObject.GetComponent<SphereCollider>();
-        rangeCollider.isTrigger = true;
-        rangeCollider.radius = attackRange;
-
-    }
+    //}
 
     private void Awake()
     {
         SetValues();
     }
-    
-
 
     protected virtual void Update()
     {
-
         CleanUpEnemies();
+
+        // Use OverlapSphere to find enemies in range
+        Collider[] collidersInRange = Physics.OverlapSphere(transform.position, attackRange);
+
+        // Check for enemies in range
+        enemiesInRange.Clear();
+        foreach (var collider in collidersInRange)
+        {
+            EnemyController enemy = collider.GetComponent<EnemyController>();
+            if (enemy != null)
+            {
+                enemiesInRange.Add(enemy);
+            }
+        }
+
         attackTimer -= Time.deltaTime;
 
         if (attackTimer <= 0 && hasTargets())
         {
             Attack(GetClosestEnemy());
         }
-
     }
 
-    protected virtual void OnTriggerEnter(Collider other)
-    {
-        EnemyController enemy = other.GetComponent<EnemyController>();
-        if (enemy != null)
-        {
-            enemiesInRange.Add(enemy);
-        }
-    }
+    //protected virtual void OnTriggerEnter(Collider other)
+    //{
+    //    EnemyController enemy = other.GetComponent<EnemyController>();
+    //    if (enemy != null)
+    //    {
+    //        enemiesInRange.Add(enemy);
+    //    }
+    //}
 
-    protected virtual void OnTriggerExit(Collider other)
-    {
-        EnemyController enemy = other.GetComponent<EnemyController>();
-        if (enemy != null)
-        {
-            enemiesInRange.Remove(enemy);
-        }
-    }
+    //protected virtual void OnTriggerExit(Collider other)
+    //{
+    //    EnemyController enemy = other.GetComponent<EnemyController>();
+    //    if (enemy != null)
+    //    {
+    //        enemiesInRange.Remove(enemy);
+    //    }
+    //}
 
     protected EnemyController GetClosestEnemy()
     {
@@ -78,7 +89,8 @@ public abstract class Tower : MonoBehaviour
         }
 
         EnemyController closestEnemy = null;
-        float closestDistance = rangeCollider.radius;
+        float closestDistance = attackRange;
+        //float closestDistance = rangeCollider.radius;
         foreach (EnemyController enemy in enemiesInRange)
         {
             float distance = Vector3.Distance(transform.position, enemy.transform.position);
@@ -187,16 +199,16 @@ public abstract class Tower : MonoBehaviour
         return price;
     }
 
-    public void Upgrade(int upgradeIndex)//For Raz: My idea is that the ui will load the upgrade options and selecting one will send the index of the tower to this method which will in turn send the index to the buildspot upgrade method.
-    {
-        if (!CanUpgrade())
-        {
-            Debug.LogWarning("This tower cannot be upgraded further!");
-            return;
-        }
+    //public void Upgrade(int upgradeIndex)//For Raz: My idea is that the ui will load the upgrade options and selecting one will send the index of the tower to this method which will in turn send the index to the buildspot upgrade method.
+    //{
+    //    if (!CanUpgrade())
+    //    {
+    //        Debug.LogWarning("This tower cannot be upgraded further!");
+    //        return;
+    //    }
 
-        else if (buildSpot != null) buildSpot.UpgradeTower(upgradeIndex);
-    }
+    //    else if (buildSpot != null) buildSpot.UpgradeTower(upgradeIndex);
+    //}
 
     public void Sell()//For Raz: This method will be called by the UI when the player selects to sell a tower.
     {
@@ -207,6 +219,9 @@ public abstract class Tower : MonoBehaviour
     {
         return towerId;
     }
-
-
+    
+    public string GetTowerName()
+    {
+        return towerName;
+    }
 }

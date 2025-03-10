@@ -10,5 +10,6 @@ public class DamageSlowTower : Tower
         price = 80;
         SetAreaEffect(new DamageSlowEffect(2.5f, 2, 0.25f));
         towerId = TowerId.DamageSlowTower;
+        towerName = "Damage Upgrade";
     }
 }

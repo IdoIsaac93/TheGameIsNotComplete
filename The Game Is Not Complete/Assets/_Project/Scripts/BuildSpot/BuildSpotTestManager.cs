@@ -99,10 +99,10 @@ public class BuildSpotTestManager : MonoBehaviour , IDataPersistance
                 allBuildSpots[selectedIndex].SellTower();
             }
 
-            if (Input.GetKeyDown(KeyCode.H))
-            {
-                allBuildSpots[selectedIndex].UpgradeTower(0);
-            }
+            //if (Input.GetKeyDown(KeyCode.H))
+            //{
+            //    allBuildSpots[selectedIndex].UpgradeTower(0);
+            //}
 
             if (Input.GetKeyDown(KeyCode.Escape))
             {

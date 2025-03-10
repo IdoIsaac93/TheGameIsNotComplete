@@ -232,7 +232,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 1
+  m_Radius: 2
   m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &1864318022834923439
 MonoBehaviour:
@@ -250,8 +250,9 @@ MonoBehaviour:
   attackSpeed: 0.5
   attackRange: 10
   price: 120
-  rangeCollider: {fileID: 0}
   upgradeOptions: []
-  towerParticlePoint: {fileID: 2199879301623030973}
   shootParticleEffect: {fileID: 7367981846087889174, guid: fb556cfbcd348954bb57e98a625ac07f, type: 3}
+  towerParticlePoint: {fileID: 2199879301623030973}
   hitParticleEffect: {fileID: 1935215041109294462, guid: cd3639c44d43bad4ebe4ac9c0836717f, type: 3}
+  towerId: 6
+  towerName: Speed Upgrade

@@ -6,11 +6,11 @@ using UnityEngine.UIElements;
 public class BuildSpot : MonoBehaviour
 {
     public Tower currentTower;
-    public TowerId towerId = TowerId.Empty; // This will be used for presistance later to know which tower is built on this build spot
-
+    public TowerId towerId = TowerId.Empty;
+    public Tower[] baseTowerOptions;
 
     [SerializeField] private bool isOccupied = false;
-    [SerializeField] Tower[] towers;
+    public bool IsOccupied { get { return isOccupied; } }
 
     public void BuildTower(GameObject towerPrefab) //For Raz: This method will be called by the UI when the player selects a tower to build.
                                                    //Each buildspot has a list of towers that can be built on it. The UI needs to send the correct tower prefab to this method
@@ -27,7 +27,7 @@ public class BuildSpot : MonoBehaviour
             {
                 Debug.Log("Spending " + towerScript.GetPrice() + " points to build ");
                 Vector3 towerPosition = new(transform.position.x, towerScript.transform.position.y + transform.position.y, transform.position.z);
-                currentTower = Instantiate(towerScript, towerPosition, towerScript.transform.rotation);
+                currentTower = Instantiate(towerScript, towerPosition, towerScript.transform.rotation, transform);
                 isOccupied = true;
                 currentTower.SetBuildSpot(this);
                 towerId = currentTower.GetTowerId();
@@ -80,13 +80,7 @@ public class BuildSpot : MonoBehaviour
         }
     }
 
-    public void UpgradeTower(int upgradeIndex) //For Raz: This is the method to upgrade a tower.
-                                               //Some towers cover the build spot so it might be better to upgrade by clicking on a tower rather than the build spot. There is a method in tower that can call this method
-                                               //Each tower has an array of upgrade options that can be accessed by calling GetUpgradeOptions() on the tower
-                                               //The UI needs to send the index of the correct tower to this method
-                                               //It may be difficult to use tower id's here as the id enum will not have the same index as the upgrade options array
-
-
+    public void UpgradeTower(GameObject towerPrefab)
     {
         if (!isOccupied || currentTower == null)
         {
@@ -100,46 +94,41 @@ public class BuildSpot : MonoBehaviour
             return;
         }
 
-        Tower[] upgrades = currentTower.GetUpgradeOptions();
-
-        if (upgradeIndex < 0 || upgradeIndex >= upgrades.Length)
+        if (towerPrefab != null)
         {
-            Debug.LogWarning("Invalid upgrade index.");
-            return;
-        }
+            Tower towerScript = towerPrefab.GetComponent<Tower>();
+            if (PlayerResources.Instance.SpendSystemPoints(towerScript.GetPrice()))
+            {
+                Vector3 towerPosition = new(transform.position.x, transform.position.y + towerPrefab.transform.position.y, transform.position.z);
 
-        Tower upgradedTowerPrefab = upgrades[upgradeIndex];
+                Destroy(currentTower.gameObject);
 
-        if (upgradedTowerPrefab != null && PlayerResources.Instance.SpendSystemPoints(upgradedTowerPrefab.GetPrice()))
-        {
-            Vector3 towerPosition = new(transform.position.x, transform.position.y + upgradedTowerPrefab.transform.position.y, transform.position.z);
-
-            Destroy(currentTower.gameObject);
-
-            currentTower = Instantiate(upgradedTowerPrefab, towerPosition, Quaternion.identity);
-            currentTower.SetBuildSpot(this);
+                currentTower = Instantiate(towerScript, towerPosition, Quaternion.identity);
+                currentTower.SetBuildSpot(this);
+                towerId = currentTower.GetTowerId();
+            }
         }
     }
 
 
-    public Tower[] GetTowers()// For Raz: This method returns the towers that can be built on this build spot.
-    {
-        return towers;
-    }
+    //public Tower[] GetTowers()// For Raz: This method returns the towers that can be built on this build spot.
+    //{
+    //    return towers;
+    //}
 
-    public TowerId[] GetTowerIds()// For Raz : This method returns the tower ids of the towers that can be built on this build spot.
-                                  //This can be used to determine which tower to build when the player clicks on a build spot.
-                                  //The UI object could have a list of towers, then use a switch statement to determine which tower to build based on the tower id selected in the UI
-    {
+    //public TowerId[] GetTowerIds()// For Raz : This method returns the tower ids of the towers that can be built on this build spot.
+    //                              //This can be used to determine which tower to build when the player clicks on a build spot.
+    //                              //The UI object could have a list of towers, then use a switch statement to determine which tower to build based on the tower id selected in the UI
+    //{
 
-        TowerId[] towerIds = new TowerId[towers.Length];
+    //    TowerId[] towerIds = new TowerId[towers.Length];
 
-        for (int i = 0; i < towers.Length; i++)
-        {
-            towerIds[i] = towers[i].GetTowerId();
-        }
+    //    for (int i = 0; i < towers.Length; i++)
+    //    {
+    //        towerIds[i] = towers[i].GetTowerId();
+    //    }
 
-        return towerIds;
-    }
+    //    return towerIds;
+    //}
 
 }

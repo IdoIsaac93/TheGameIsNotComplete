@@ -42,8 +42,8 @@ GameObject:
   - component: {fileID: 8048457252843370662}
   - component: {fileID: 5339948085977318739}
   - component: {fileID: 1048720316242441453}
-  - component: {fileID: 3325202427173469047}
   - component: {fileID: 428205930175823241}
+  - component: {fileID: 4848910072999023814}
   m_Layer: 0
   m_Name: BasicTower
   m_TagString: Untagged
@@ -120,8 +120,32 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &3325202427173469047
-SphereCollider:
+--- !u!114 &428205930175823241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2769344779355156533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4666e61d8777f9e43ae320e5f10ab9f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackDamage: 20
+  attackSpeed: 1
+  attackRange: 10
+  price: 30
+  upgradeOptions:
+  - {fileID: 1864318022834923439, guid: 4915dd2fca5636740aea006a7d2acf2e, type: 3}
+  - {fileID: 7910485722378376882, guid: 13de44b6cc63b73458860cd87bcef4d7, type: 3}
+  shootParticleEffect: {fileID: 1935215041109294462, guid: cd3639c44d43bad4ebe4ac9c0836717f, type: 3}
+  towerParticlePoint: {fileID: 2461471136787613576}
+  hitParticleEffect: {fileID: 1935215041109294462, guid: cd3639c44d43bad4ebe4ac9c0836717f, type: 3}
+  towerId: 1
+  towerName: Basic Tower
+--- !u!136 &4848910072999023814
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -138,29 +162,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 3
+  m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!114 &428205930175823241
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2769344779355156533}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4666e61d8777f9e43ae320e5f10ab9f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackDamage: 0
-  attackSpeed: 0
-  attackRange: 0
-  price: 0
-  rangeCollider: {fileID: 0}
-  upgradeOptions:
-  - {fileID: 1864318022834923439, guid: 4915dd2fca5636740aea006a7d2acf2e, type: 3}
-  - {fileID: 8191018977909911052, guid: 535c810e344cde4458b8daa3385ad5ab, type: 3}
-  towerParticlePoint: {fileID: 2461471136787613576}
-  shootParticleEffect: {fileID: 1935215041109294462, guid: cd3639c44d43bad4ebe4ac9c0836717f, type: 3}
-  hitParticleEffect: {fileID: 1935215041109294462, guid: cd3639c44d43bad4ebe4ac9c0836717f, type: 3}

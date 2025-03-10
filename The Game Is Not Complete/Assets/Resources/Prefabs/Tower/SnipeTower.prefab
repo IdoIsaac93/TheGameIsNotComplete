@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6862476171011236195}
   - component: {fileID: 7948086814923320547}
   - component: {fileID: 6031957529369926726}
-  - component: {fileID: 1046585985786889142}
+  - component: {fileID: 7680267779938501442}
   m_Layer: 0
   m_Name: SnipeTower
   m_TagString: Untagged
@@ -105,14 +105,15 @@ MonoBehaviour:
   attackSpeed: 3
   attackRange: 20
   price: 80
-  rangeCollider: {fileID: 0}
   upgradeOptions:
   - {fileID: 3120446367209391708, guid: ef59434039160584999fc88592f768c2, type: 3}
   shootParticleEffect: {fileID: 7367981846087889174, guid: fb556cfbcd348954bb57e98a625ac07f, type: 3}
   towerParticlePoint: {fileID: 3859609265006228289}
   hitParticleEffect: {fileID: 793565713931933285, guid: f448959cd35ec494e9b92211a173b2c2, type: 3}
---- !u!135 &1046585985786889142
-SphereCollider:
+  towerId: 5
+  towerName: Sniper Tower
+--- !u!136 &7680267779938501442
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -129,8 +130,10 @@ SphereCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 3
+  m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &7597967621228039155
 GameObject:

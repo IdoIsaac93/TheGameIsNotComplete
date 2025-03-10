@@ -9,5 +9,6 @@ public class LongRangeBasicTower : Tower
         attackRange = 15;
         price = 50;
         towerId = TowerId.LongRangeBasicTower;
+        towerName = "Range Upgrade";
     }
 }

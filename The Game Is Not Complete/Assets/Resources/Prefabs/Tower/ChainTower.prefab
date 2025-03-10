@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 4630648905349693102}
   - component: {fileID: 5166860479260496820}
   - component: {fileID: 6070661728475043978}
-  - component: {fileID: 4720126054203499540}
+  - component: {fileID: 301035929870860715}
   m_Layer: 0
   m_Name: ChainTower
   m_TagString: Untagged
@@ -136,14 +136,15 @@ MonoBehaviour:
   attackSpeed: 0
   attackRange: 0
   price: 0
-  rangeCollider: {fileID: 0}
   upgradeOptions:
   - {fileID: 8785861530081033856, guid: 67af55ebb58b479428a579353986c5ff, type: 3}
-  towerParticlePoint: {fileID: 8506830470742820591}
   shootParticleEffect: {fileID: 7621623355740050087, guid: 0977bcffac93db74d8f6f5a50cde4514, type: 3}
+  towerParticlePoint: {fileID: 8506830470742820591}
   hitParticleEffect: {fileID: 7621623355740050087, guid: 0977bcffac93db74d8f6f5a50cde4514, type: 3}
---- !u!135 &4720126054203499540
-SphereCollider:
+  towerId: 4
+  towerName: 
+--- !u!136 &301035929870860715
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -160,6 +161,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 3
+  m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}

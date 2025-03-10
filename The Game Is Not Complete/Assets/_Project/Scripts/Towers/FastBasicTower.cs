@@ -9,5 +9,6 @@ public class FastBasicTower : Tower
         attackRange = 10;
         price = 60;
         towerId = TowerId.FastBasicTower;
+        towerName = "Speed Upgrade";
     }
 }
