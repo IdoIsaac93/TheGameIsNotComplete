@@ -14,7 +14,10 @@ public class BuildMenu : MonoBehaviour
     [SerializeField] private List<Button> buttons;
 
     [SerializeField] Transform container;
+    [SerializeField] Transform panel;
     [SerializeField] Transform buttonTemplate;
+    private Vector2 originalPanelPosition;
+
 
     private void Awake()
     {
@@ -22,9 +25,11 @@ public class BuildMenu : MonoBehaviour
         {
             buttonTemplate.gameObject.SetActive(false);
         }
+        originalPanelPosition = panel.GetComponent<RectTransform>().anchoredPosition;
     }
     private void Update()
     {
+        //Disable or enable buttons
         if (buttons.Count >= availableTowers.Length)
         {
             for (int i = 0; i < availableTowers.Length; i++)
@@ -35,6 +40,12 @@ public class BuildMenu : MonoBehaviour
                 // Enable or disable the button accordingly
                 buttons[i].interactable = hasEnoughPoints;
             }
+        }
+
+        //Close menu on right click
+        if (Input.GetMouseButtonDown(1))
+        {
+            CloseMenu();
         }
     }
     public void OpenMenu(BuildSpot spot, Tower[] towers)
@@ -62,7 +73,11 @@ public class BuildMenu : MonoBehaviour
 
         // Update the container's width
         float totalWidth = availableTowers.Length * 200f;
-        container.GetComponent<RectTransform>().sizeDelta = new Vector2(totalWidth, container.GetComponent<RectTransform>().sizeDelta.y);
+        RectTransform panelRect = panel.GetComponent<RectTransform>();
+        panelRect.sizeDelta = new Vector2(totalWidth, panelRect.sizeDelta.y);
+        // Update the container's position
+        panelRect.anchoredPosition = originalPanelPosition;
+        panelRect.anchoredPosition += new Vector2(totalWidth / 2, 0);
     }
 
     public void CreateButton(Tower tower, int index)
@@ -74,7 +89,6 @@ public class BuildMenu : MonoBehaviour
         //Move the button to the side
         float buttonWidth = 200f;
         newButton.localPosition = new Vector3(index * buttonWidth, 0, 0);
-        Debug.Log(newButton.position);
 
         // Set the name of the tower/upgrade
         newButton.GetComponentInChildren<TextMeshProUGUI>().text = tower.GetTowerName();

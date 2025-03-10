@@ -138,7 +138,7 @@ MonoBehaviour:
   price: 30
   upgradeOptions:
   - {fileID: 1864318022834923439, guid: 4915dd2fca5636740aea006a7d2acf2e, type: 3}
-  - {fileID: 7910485722378376882, guid: 13de44b6cc63b73458860cd87bcef4d7, type: 3}
+  - {fileID: 8191018977909911052, guid: 535c810e344cde4458b8daa3385ad5ab, type: 3}
   shootParticleEffect: {fileID: 1935215041109294462, guid: cd3639c44d43bad4ebe4ac9c0836717f, type: 3}
   towerParticlePoint: {fileID: 2461471136787613576}
   hitParticleEffect: {fileID: 1935215041109294462, guid: cd3639c44d43bad4ebe4ac9c0836717f, type: 3}
