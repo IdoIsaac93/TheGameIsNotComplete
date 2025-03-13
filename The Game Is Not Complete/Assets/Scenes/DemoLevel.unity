@@ -2338,7 +2338,7 @@ PrefabInstance:
       objectReference: {fileID: 415548612}
     - target: {fileID: 4463931241212032355, guid: d172a4839e1d2f242823ccafe1e2d64e, type: 3}
       propertyPath: timeBetweenWaves
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4463931241212032355, guid: d172a4839e1d2f242823ccafe1e2d64e, type: 3}
       propertyPath: 'waves.Array.data[0]'
@@ -2909,7 +2909,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1923235416657889728, guid: a5b658ff641f0d147938222af8ba6942, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 20
+      value: 7.93
       objectReference: {fileID: 0}
     - target: {fileID: 1923235416657889728, guid: a5b658ff641f0d147938222af8ba6942, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2917,7 +2917,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1923235416657889728, guid: a5b658ff641f0d147938222af8ba6942, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 20.5
+      value: -19.86
       objectReference: {fileID: 0}
     - target: {fileID: 1923235416657889728, guid: a5b658ff641f0d147938222af8ba6942, type: 3}
       propertyPath: m_LocalRotation.w

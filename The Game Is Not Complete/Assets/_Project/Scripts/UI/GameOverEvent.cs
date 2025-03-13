@@ -107,22 +107,23 @@ public class GameOverEvent : MonoBehaviour
 
 
     //Enumerators Overraids  for smooth transitions-->> no arguments current scene, scene name, scene index also available
-    private IEnumerator LoadSceneWithDelay() {
-        yield return new WaitForSeconds(sceneTransitionDelay);
+    private IEnumerator LoadSceneWithDelay()
+    {
+        yield return new WaitForSecondsRealtime(sceneTransitionDelay);
         Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     private IEnumerator LoadSceneWithDelay(string sceneName)
     {
-        yield return new WaitForSeconds(sceneTransitionDelay);
+        yield return new WaitForSecondsRealtime(sceneTransitionDelay);
         Time.timeScale = 1;
         SceneManager.LoadScene(sceneName);
     }
 
     private IEnumerator LoadSceneWithDelay(int sceneIndex)
     {
-        yield return new WaitForSeconds(sceneTransitionDelay);
+        yield return new WaitForSecondsRealtime(sceneTransitionDelay);
         Time.timeScale = 1;
         SceneManager.LoadScene(sceneIndex);
     }
