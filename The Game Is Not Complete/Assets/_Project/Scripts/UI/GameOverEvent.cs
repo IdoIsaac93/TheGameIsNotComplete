@@ -49,13 +49,23 @@ public class GameOverEvent : MonoBehaviour
 
     public void ShowGameOverScreen()
     {
+        if (_uiDocument == null)
+        {
+            _uiDocument = GetComponent<UIDocument>();
+            if (_uiDocument == null)
+            {
+                Debug.LogError("UIDocument is not found on GameOverEvent!");
+                return;
+            }
+        }
+
         if (!_uiDocument.gameObject.activeSelf)
         {
-            _uiDocument.gameObject.SetActive(true);  // Enable the UI object if disabled
+            _uiDocument.gameObject.SetActive(true);
         }
 
         _uiDocument.rootVisualElement.style.display = DisplayStyle.Flex;
-        Time.timeScale = 0; // Pause the game
+        Time.timeScale = 0;
     }
 
     /// <summary>

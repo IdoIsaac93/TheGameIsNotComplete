@@ -13,6 +13,9 @@ public class PlayerResources : Singleton<PlayerResources> , IDataPersistance
     public int GetScore() { return score; }
     public int GetSystemPoints() { return systemPoints; }
 
+    GameOverEvent _gameOverEvent;
+
+
 
     public void TakeDamage(int damage, int scoreDamage)
     {
@@ -33,8 +36,17 @@ public class PlayerResources : Singleton<PlayerResources> , IDataPersistance
 
     public void Die()
     {
-        //Display lose screen
-        FindFirstObjectByType<GameOverEvent>().ShowGameOverScreen();
+        if (_gameOverEvent == null)
+        {
+            _gameOverEvent = Resources.FindObjectsOfTypeAll<GameOverEvent>()[0];
+            if (_gameOverEvent == null)
+            {
+                Debug.LogError("GameOverEvent is not found in the scene!");
+                return;
+            }
+        }
+
+        _gameOverEvent.ShowGameOverScreen();
     }
 
     public void GainSystemPoints(int sysPoints)
