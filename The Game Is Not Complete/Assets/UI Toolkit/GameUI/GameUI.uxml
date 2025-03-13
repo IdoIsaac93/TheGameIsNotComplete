@@ -1,0 +1,8 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <engine:VisualElement name="HealthBarBackground" style="flex-grow: 1; position: absolute; width: 500px; height: 100px; background-image: url(&quot;project://database/Assets/_Project/Art/UI/HealthbarBackground.png?fileID=2800000&amp;guid=1e6453d9f2b8da448b99535107626ba3&amp;type=3#HealthbarBackground&quot;); margin-top: 50px; margin-left: 50px;">
+        <engine:VisualElement name="HealthBarMask" style="flex-grow: 1; position: absolute; width: 60%; height: 100px; overflow: hidden;">
+            <engine:VisualElement name="HealthBarFill" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/_Project/Art/UI/HealthBarFill.png?fileID=2800000&amp;guid=73e059c9684d86f41ae19b39a2a7c8a9&amp;type=3#HealthBarFill&quot;); position: absolute; width: 500px; height: 100%; overflow: visible;" />
+        </engine:VisualElement>
+        <engine:Label text="Current Health" name="HealthLabel" style="position: absolute; width: 100%; height: 100%; -unity-text-align: middle-left; font-size: 28px; padding-left: 50px; margin-top: 0; margin-right: 0; margin-bottom: 0; padding-bottom: 0; padding-right: 0; padding-top: 0; margin-left: 0; overflow: hidden;" />
+    </engine:VisualElement>
+</engine:UXML>

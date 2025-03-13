@@ -1,0 +1,9 @@
+.health-bar {
+}
+
+.unity-progress-bar__progress{
+	
+	max-height: 90%;	
+    height : 100%;
+
+}
