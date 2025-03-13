@@ -38,7 +38,8 @@ public class FlickerText : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(Random.Range(minInterval, maxInterval)); // Random interval
+            
+            yield return new WaitForSecondsRealtime(Random.Range(minInterval, maxInterval));
 
             if (textElements.Count == 0) continue;
 
@@ -58,7 +59,7 @@ public class FlickerText : MonoBehaviour
 
             // Apply flicker effect
             SetText(element, flickeredText);
-            yield return new WaitForSeconds(0.1f); // Short flicker duration
+            yield return new WaitForSecondsRealtime(0.1f); // Short flicker duration
             SetText(element, originalText); // Restore original text
         }
     }

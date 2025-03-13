@@ -74,7 +74,7 @@ public class ButtonHoverScrambler : MonoBehaviour
             }
 
             button.text = new string(scrambled);
-            yield return new WaitForSeconds(scrambleInterval);
+            yield return new WaitForSecondsRealtime(scrambleInterval);
 
             elapsedTime += scrambleInterval;
         }

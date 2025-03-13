@@ -69,7 +69,6 @@ public class GameOverEvent : MonoBehaviour
     }
 
     /// <summary>
-    /// ********************************************************************************************************
     /// Buttons Click Events
     /// </summary>
 
@@ -101,11 +100,6 @@ public class GameOverEvent : MonoBehaviour
             _audioSource.Play();
         }
     }
-
-
-
-
-
     //Enumerators Overraids  for smooth transitions-->> no arguments current scene, scene name, scene index also available
     private IEnumerator LoadSceneWithDelay()
     {
