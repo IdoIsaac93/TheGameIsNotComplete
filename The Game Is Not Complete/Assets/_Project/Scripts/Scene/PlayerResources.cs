@@ -60,14 +60,14 @@ public class PlayerResources : Singleton<PlayerResources> , IDataPersistance
 
     public void LoadData(GameData data)
     {
-        lives = data.lives;
+        currentHelth = data.lives;
         score = data.score;
         systemPoints = data.systemPoints;
     }
 
     public void SaveData(ref GameData data)
     {
-        data.lives = lives;
+        data.lives = currentHelth;
         data.score = score;
         data.systemPoints = systemPoints;
     }
