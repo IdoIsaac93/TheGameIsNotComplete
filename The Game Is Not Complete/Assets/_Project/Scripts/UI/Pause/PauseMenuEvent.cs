@@ -16,11 +16,25 @@ public class PauseMenuEvent : MonoBehaviour
     private AudioSource _audioSource;
     private List<Button> _listButtons = new List<Button>();
     private bool _isPaused = false;
-
+    private GameObject _canvasUI;
     private void Awake()
     {
         _uiDocument = GetComponent<UIDocument>();
         _audioSource = GetComponent<AudioSource>();
+
+
+        if (_uiDocument == null)
+        {
+            Debug.LogError("UIDocument is not found!");
+            return;
+        }
+
+        // Cache the CanvasUI reference once
+        _canvasUI = GameObject.FindWithTag("CanvasUI");
+        if (_canvasUI == null)
+        {
+            Debug.LogError("CanvasUI is not found!");
+        }
 
         if (_uiDocument == null)
         {
@@ -160,13 +174,30 @@ public class PauseMenuEvent : MonoBehaviour
         _isPaused = !_isPaused;
         //using Time.timeScale to pause the game with ternary operator to toggle between 0 and 1
         Time.timeScale = _isPaused ? 0f : 1f;
+
+        if (_canvasUI != null)
+        {
+            _canvasUI.SetActive(!_isPaused);
+        }
+        else 
+        { 
+        
+            Debug.LogError("CanvasUI is not found!");
+        }
+
+
         if (_isPaused)
         {
+            _canvasUI.SetActive(false);
             ShowPauseMenu();
+
         }
         else
         {
+
+            _canvasUI.SetActive(true);
             HidePauseMenu();
+
         }
 
         Debug.Log(_isPaused ? "Game Paused" : "Game Unpause");

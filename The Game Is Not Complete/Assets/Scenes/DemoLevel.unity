@@ -757,6 +757,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CanvasUI
       objectReference: {fileID: 0}
+    - target: {fileID: 6333433151589151208, guid: c3e269126854bf84887bc8a57badbb87, type: 3}
+      propertyPath: m_TagString
+      value: CanvasUI
+      objectReference: {fileID: 0}
     - target: {fileID: 7025154775357140094, guid: c3e269126854bf84887bc8a57badbb87, type: 3}
       propertyPath: playerResources
       value: 
@@ -1417,6 +1421,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d1ccc20a0215ba341bbd4d190a42b44f, type: 3}
+--- !u!223 &539580246 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 7602557642928234764, guid: c3e269126854bf84887bc8a57badbb87, type: 3}
+  m_PrefabInstance: {fileID: 370888362}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &540155197
 GameObject:
   m_ObjectHideFlags: 0
@@ -1775,6 +1784,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4067356551618697897, guid: 8988f8200ea5f0847859942bd018559a, type: 3}
+      propertyPath: _mainCanvasOverlay
+      value: 
+      objectReference: {fileID: 539580246}
     - target: {fileID: 5538650395517864012, guid: 8988f8200ea5f0847859942bd018559a, type: 3}
       propertyPath: m_Name
       value: PauseMenu
