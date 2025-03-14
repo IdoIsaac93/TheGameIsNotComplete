@@ -208,10 +208,7 @@ public class PauseMenuEvent : MonoBehaviour
     /// Buttons Click Events
     private void OnRestartLevelClick()
     {
-        Debug.Log("Restart Level clicked");
-        // Set timeScale back to 1 immediately to ensure UI responsiveness
-        Time.timeScale = 1f;
-        StartCoroutine(LoadSceneWithDelay());
+        DataPersistanceManager.Instance.NewGame();
     }
 
     private void OnMainMenuClick()
@@ -220,6 +217,7 @@ public class PauseMenuEvent : MonoBehaviour
         // Set timeScale back to 1 immediately to ensure UI responsiveness
         Time.timeScale = 1f;
         StartCoroutine(LoadSceneWithDelay("MainMenu"));
+
     }
 
     private void OnNewGameClick()
@@ -227,8 +225,8 @@ public class PauseMenuEvent : MonoBehaviour
         Debug.Log("New Game clicked");
         // Set timeScale back to 1 immediately to ensure UI responsiveness
         Time.timeScale = 1f;
-        StartCoroutine(LoadSceneWithDelay("Level_001"));
         DataPersistanceManager.Instance.NewGame();
+
     }
 
     private void OnLoadGameClick()
