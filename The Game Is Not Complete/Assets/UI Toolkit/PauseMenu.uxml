@@ -1,11 +1,11 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/UI%20Toolkit/PauseMenu.uss?fileID=7433441132597879392&amp;guid=29c3ae0f23e22b04f972ae08716e9a01&amp;type=3#PauseMenu" />
-    <engine:VisualElement name="MainContainer" class="main" style="flex-grow: 1; width: 70%; height: 70%; background-color: rgba(0, 0, 0, 0.71); border-top-width: 0; align-self: center; flex-direction: column; align-items: center; justify-content: flex-start; max-height: 70%; position: relative; top: 15%;">
-        <engine:Label text="On Hold" name="Tittle" class="tittle" style="font-size: 120%; margin-top: 5%; margin-bottom: 5%;" />
+    <Style src="project://database/Assets/UI%20Toolkit/MainMenuStyle.uss?fileID=7433441132597879392&amp;guid=088f09dbbbfd7d244b812702165432a3&amp;type=3#MainMenuStyle" />
+    <engine:VisualElement name="MainContainer" class="main button" style="flex-grow: 1; width: 70%; height: 70%; background-color: rgba(0, 0, 0, 0.71); border-top-width: 0; align-self: center; flex-direction: column; align-items: center; justify-content: center; max-height: 70%; position: relative; top: 15%;">
         <engine:Button text="Restart Level" name="RestartLevel" class="button" />
         <engine:Button text="Main Menu" name="MainMenu" class="button" />
         <engine:Button text="New Game" name="NewGame" class="button" />
+        <engine:Button text="Load Game" name="LoadGame" class="button" />
         <engine:Button text="Exit Game" name="ExitGame" class="button" />
-        <engine:Label text="Press Escape to UnPause" name="PauseLabel" style="-unity-text-align: upper-right; padding-right: 5%; justify-content: flex-start; align-content: flex-start; position: absolute; top: 931px; left: 1330px;" />
+        <engine:Label text="Press Esc to Exit" name="ExitLabel" style="white-space: pre; -unity-text-align: lower-left; position: absolute; top: auto; left: auto; bottom: 2%; right: 2%;" />
     </engine:VisualElement>
 </engine:UXML>

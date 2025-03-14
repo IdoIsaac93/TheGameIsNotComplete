@@ -11,6 +11,7 @@ public class PauseMenuEvent : MonoBehaviour
     private Button _restartLevelButton;
     private Button _mainMenuButton;
     private Button _newGameButton;
+    private Button _loadGameButton;
     private Button _exitGameButton;
     private AudioSource _audioSource;
     private List<Button> _listButtons = new List<Button>();
@@ -54,6 +55,7 @@ public class PauseMenuEvent : MonoBehaviour
         _mainMenuButton = null;
         _newGameButton = null;
         _exitGameButton = null;
+        _loadGameButton = null;
         _listButtons.Clear();
 
         if (_uiDocument == null || _uiDocument.rootVisualElement == null) return;
@@ -63,8 +65,8 @@ public class PauseMenuEvent : MonoBehaviour
         _mainMenuButton = _uiDocument.rootVisualElement.Q<Button>("MainMenu");
         _newGameButton = _uiDocument.rootVisualElement.Q<Button>("NewGame");
         _exitGameButton = _uiDocument.rootVisualElement.Q<Button>("ExitGame");
+        _loadGameButton = _uiDocument.rootVisualElement.Q<Button>("LoadGame");
 
-        Debug.Log($"Buttons found: RestartLevel={_restartLevelButton != null}, MainMenu={_mainMenuButton != null}, NewGame={_newGameButton != null}, ExitGame={_exitGameButton != null}");
 
         // Register click events - with event removal first to prevent duplicates
         if (_restartLevelButton != null)
@@ -85,6 +87,12 @@ public class PauseMenuEvent : MonoBehaviour
             _newGameButton.clicked += OnNewGameClick;
         }
 
+        if (_loadGameButton != null)
+        {
+            _loadGameButton.clicked -= OnLoadGameClick;
+            _loadGameButton.clicked += OnLoadGameClick;
+        }
+
         if (_exitGameButton != null)
         {
             _exitGameButton.clicked -= OnExitGameClick;
@@ -100,20 +108,20 @@ public class PauseMenuEvent : MonoBehaviour
 
             // Make buttons more responsive by adding mouse events
             button.RegisterCallback<ClickEvent>(evt => {
-                Debug.Log($"Button {button.name} clicked via ClickEvent");
+                
             });
 
             button.RegisterCallback<MouseDownEvent>(evt => {
-                Debug.Log($"MouseDown on {button.name}");
+                
             });
         }
 
-        Debug.Log($"Total buttons registered: {_listButtons.Count}");
+        //Debug.Log($"Total buttons registered: {_listButtons.Count}");
     }
 
     public void ShowPauseMenu()
     {
-        Debug.Log("ShowPauseMenu called");
+        
         
 
         if (_uiDocument == null)
@@ -135,7 +143,7 @@ public class PauseMenuEvent : MonoBehaviour
 
     public void HidePauseMenu()
     {
-        Debug.Log("HidePauseMenu called");
+        
 
         if (_uiDocument != null && _uiDocument.rootVisualElement != null)
         {
@@ -189,6 +197,14 @@ public class PauseMenuEvent : MonoBehaviour
         // Set timeScale back to 1 immediately to ensure UI responsiveness
         Time.timeScale = 1f;
         StartCoroutine(LoadSceneWithDelay("Level_001"));
+        DataPersistanceManager.Instance.NewGame();
+    }
+
+    private void OnLoadGameClick()
+    {
+        // Set timeScale back to 1 immediately to ensure UI responsiveness
+        Time.timeScale = 1f;
+        DataPersistanceManager.Instance.LoadGame();
     }
 
     private void OnExitGameClick()
