@@ -1,27 +1,62 @@
+/* MainMenuStyle.uss */
+.root {
+    background-color: #000000;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+}
+
 .header {
-    font-size: 45px;
-    color: rgb(255, 255, 255);
+    font-size: 48px;
+    color: #FFFFFF;
+    text-align: center;
+    padding-top: 20px;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.5); /* Glow for text */
 }
 
 .title {
+    font-size: 72px;
+    color: #FFFFFF;
+    text-align: center;
+    margin-bottom: 40px;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.9), 0 0 30px rgba(255, 255, 255, 0.6), 0 0 50px rgba(255, 255, 255, 0.3); /* Stronger glow */
 }
 
 .main {
-    color: rgb(255, 255, 255);
+    color: #FFFFFF;
 }
 
 .button {
     font-size: 24px;
-    width: 160px;
-    height: 50px;
-    color: rgb(255, 255, 255);
-    border-left-color: rgba(255, 255, 255, 0);
-    border-right-color: rgba(255, 255, 255, 0);
-    border-top-color: rgba(255, 255, 255, 0);
-    border-bottom-color: rgba(255, 255, 255, 0);
-    -unity-text-align: upper-left;
+    width: 200px;
+    height: 60px;
+    color: #FFFFFF;
+    background-color: #1A1A1A; /* Dark gray */
+    border-width: 4px; /* Thicker border for glow-like effect */
+    border-color: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    margin: 10px auto;
+    text-align: center;
+    opacity: 0.9;
+    transition: background-color 0.2s, border-color 0.2s, opacity 0.2s;
 }
 
-.unity-button {
-    background-color: rgba(0, 0, 0, 0.57);
+.button:hover {
+    background-color: #FFFFFF;
+    color: #000000;
+    border-color: rgba(255, 255, 255, 1.0); /* Brighten border */
+    opacity: 1.0; /* Full opacity on hover */
+}
+
+.button:focus {
+    border-color: #CCCCCC;
+    opacity: 1.0;
+}
+
+#Container {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #000000;
 }

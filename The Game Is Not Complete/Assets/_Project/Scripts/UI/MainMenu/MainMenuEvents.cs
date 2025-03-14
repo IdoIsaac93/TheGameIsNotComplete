@@ -6,64 +6,38 @@ using UnityEngine.UIElements;
 public class MainMenuEvents : MonoBehaviour
 {
     private UIDocument _uiDocument;
-    private Button _startButton;
-    private Button _settingsButton;
-    private Button _creditsButton;
-    private Button _quitGameButton;
-    
-    private List<Button> _menuButtons = new();
     private AudioSource _audioSource;
+    private Dictionary<string, Button> _buttons = new();
 
     private void Awake()
     {
         _uiDocument = GetComponent<UIDocument>();
         _audioSource = GetComponent<AudioSource>();
 
-        // Check if UIDocument is found
         if (_uiDocument == null)
         {
-            Debug.LogError("UIDocument is not found!");
+            Debug.LogError("UIDocument component not found!");
             return;
         }
 
-        // Get buttons from UIDocument and register click events
-        _startButton = _uiDocument.rootVisualElement.Q<Button>("StartButton");
-        _settingsButton = _uiDocument.rootVisualElement.Q<Button>("Settings");
-        _creditsButton = _uiDocument.rootVisualElement.Q<Button>("Credits");
-        _quitGameButton = _uiDocument.rootVisualElement.Q<Button>("Exit");
+        _buttons["Start"] = _uiDocument.rootVisualElement.Q<Button>("StartButton");
+        _buttons["Settings"] = _uiDocument.rootVisualElement.Q<Button>("Settings");
+        _buttons["LoadGame"] = _uiDocument.rootVisualElement.Q<Button>("LoadGame");
+        _buttons["Exit"] = _uiDocument.rootVisualElement.Q<Button>("Exit");
 
+        _buttons["Start"].clicked += OnPlayGameClick;
+        _buttons["Settings"].clicked += OnSettingsClick;
+        _buttons["LoadGame"].clicked += OnLoadGameClick;
+        _buttons["Exit"].clicked += OnExitGame;
 
-        _startButton.clicked += OnPlayGameClick;
-        _settingsButton.clicked += OnSettingsClick;
-        _creditsButton.clicked += OnCreditsClick;
-        _quitGameButton.clicked += OnExitGame;
-
-
-
-        // Get all buttons and register click event
-        _menuButtons = _uiDocument.rootVisualElement.Query<Button>().ToList();
-        _menuButtons.ForEach(button => button.clicked += OnAllButtonsClick);
-
-
+        foreach (var button in _buttons.Values)
+        {
+            button.clicked += PlayButtonSound;
+            button.clicked += () => PulseGlow(button);
+        }
     }
 
-
-    /// <summary>
-    /// ********************************************************************************************************
-    /// Buttons Click Events
-    /// </summary>
-
-
-    //Play game button click event :: start button
-    private void OnPlayGameClick()
-    {
-        Debug.Log("Play Game Button Clicked");
-        DataPersistanceManager.Instance.NewGame();
-        //SceneManager.LoadScene("DemoLevel");
-    }
-
-    //All buttons click event
-    private void OnAllButtonsClick()
+    private void PlayButtonSound()
     {
         if (_audioSource != null)
         {
@@ -71,49 +45,75 @@ public class MainMenuEvents : MonoBehaviour
         }
     }
 
-    //Settings button click event
+    private void PulseGlow(Button button)
+    {
+        button.style.borderTopWidth = 6; // Thicker border for pulse
+        button.style.borderBottomWidth = 6;
+        button.style.borderLeftWidth = 6;
+        button.style.borderRightWidth = 6;
+        button.style.opacity = 1.0f;
+        Invoke(nameof(ResetGlow), 0.2f); // Reset after 0.2 seconds
+    }
+
+    private void ResetGlow()
+    {
+        foreach (var button in _buttons.Values)
+        {
+            button.style.borderTopWidth = 4; // Back to normal
+            button.style.borderBottomWidth = 4;
+            button.style.borderLeftWidth = 4;
+            button.style.borderRightWidth = 4;
+            button.style.opacity = 0.9f;
+        }
+    }
+
+    private void OnPlayGameClick()
+    {
+        
+        DataPersistanceManager.Instance.NewGame();
+        // SceneManager.LoadScene("DemoLevel");
+    }
+
     private void OnSettingsClick()
     {
-        Debug.Log("Settings Button Clicked"); // remove when adding functionality
+        Debug.Log("Opening settings...");
+    }
+
+    private void OnLoadGameClick()
+    {
+        //subject to change when save/load system is implemented
+        DataPersistanceManager.Instance.LoadGame();
     }
 
     private void OnExitGame()
     {
-        Debug.Log("Exit Game Button Clicked"); // remove when adding functionality
+        Debug.Log("Exiting game...");
         Application.Quit();
     }
 
-    private void OnCreditsClick()
-    {
-        Debug.Log("Credits Button Clicked"); // remove when adding functionality
-    }
-
-
-
-    //Nothing to see here just best practices
     private void OnDestroy()
     {
-        if (_startButton != null)
-        {
-            _startButton.clicked -= OnPlayGameClick;
-        }
-
-        for (int i = 0; i < _menuButtons.Count; i++)
-        {
-            _menuButtons[i].clicked -= OnAllButtonsClick;
-        }
+        UnregisterEvents();
     }
 
     private void OnDisable()
     {
-        if (_startButton != null)
-        {
-            _startButton.clicked -= OnPlayGameClick;
-        }
+        UnregisterEvents();
+    }
 
-        for (int i = 0; i < _menuButtons.Count; i++)
+    private void UnregisterEvents()
+    {
+        if (_buttons.Count == 0) return;
+
+        _buttons["Start"].clicked -= OnPlayGameClick;
+        _buttons["Settings"].clicked -= OnSettingsClick;
+        _buttons["LoadGame"].clicked -= OnLoadGameClick;
+        _buttons["Exit"].clicked -= OnExitGame;
+
+        foreach (var button in _buttons.Values)
         {
-            _menuButtons[i].clicked -= OnAllButtonsClick;
+            button.clicked -= PlayButtonSound;
+            button.clicked -= () => PulseGlow(button);
         }
     }
 }
