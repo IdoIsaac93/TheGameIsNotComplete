@@ -674,6 +674,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3081476655919997402, guid: c3e269126854bf84887bc8a57badbb87, type: 3}
+      propertyPath: core
+      value: 
+      objectReference: {fileID: 2016844739}
+    - target: {fileID: 3081476655919997402, guid: c3e269126854bf84887bc8a57badbb87, type: 3}
       propertyPath: cubeCenter
       value: 
       objectReference: {fileID: 1952351434}
@@ -3607,6 +3611,11 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 1087276427853938011, guid: d1ccc20a0215ba341bbd4d190a42b44f, type: 3}
   m_PrefabInstance: {fileID: 1246117285}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2016844739 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1923235416657889728, guid: a5b658ff641f0d147938222af8ba6942, type: 3}
+  m_PrefabInstance: {fileID: 1625030270}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &2090224305 stripped
 Transform:
