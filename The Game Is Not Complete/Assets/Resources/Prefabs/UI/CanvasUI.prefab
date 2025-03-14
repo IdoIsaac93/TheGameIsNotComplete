@@ -215,6 +215,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1517242311133934548}
   - component: {fileID: 7776565965641805329}
+  - component: {fileID: 3081476655919997402}
   m_Layer: 5
   m_Name: Minimap
   m_TagString: Untagged
@@ -255,8 +256,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PanelSettings: {fileID: 11400000, guid: 7bd7de46babe136469fd150212d12724, type: 2}
   m_ParentUI: {fileID: 0}
-  sourceAsset: {fileID: 9197481963319205126, guid: 310986dc2333d2c45850090c5fb390c5, type: 3}
+  sourceAsset: {fileID: 9197481963319205126, guid: 1e16a4d2c0c3e224a927f0ee69f29fdd, type: 3}
   m_SortingOrder: 0
   m_WorldSpaceSizeMode: 1
   m_WorldSpaceWidth: 1920
   m_WorldSpaceHeight: 1080
+--- !u!114 &3081476655919997402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6930269094743373863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77e2e3435a142064eb7484e3606fa832, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiDocument: {fileID: 7776565965641805329}
