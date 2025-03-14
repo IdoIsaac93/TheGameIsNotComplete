@@ -12,6 +12,8 @@ public class GameOverEvent : MonoBehaviour
     private Button _mainMenuButton;
     private Button _newGame;
     private Button _exitGameButton;
+    private GameObject _pauseMenu;
+    private GameObject _canvasUI;
     
 
     private AudioSource _audioSource;
@@ -45,6 +47,9 @@ public class GameOverEvent : MonoBehaviour
         _menuButtons.ForEach(button => button.clicked += OnAllButtonsClick);
 
 
+        _canvasUI = GameObject.Find("CanvasUI");
+        _pauseMenu = GameObject.Find("PauseMenu");
+
     }
 
     public void ShowGameOverScreen()
@@ -65,6 +70,15 @@ public class GameOverEvent : MonoBehaviour
         }
 
         _uiDocument.rootVisualElement.style.display = DisplayStyle.Flex;
+        //Disable pause menu and main Canvas UI
+        if (_pauseMenu != null)
+        {
+            _pauseMenu.SetActive(false);
+        }
+        if (_canvasUI != null)
+        {
+            _canvasUI.SetActive(false);
+        }
         Time.timeScale = 0;
     }
 
