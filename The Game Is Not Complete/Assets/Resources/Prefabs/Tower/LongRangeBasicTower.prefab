@@ -130,11 +130,13 @@ MonoBehaviour:
   attackSpeed: 0
   attackRange: 0
   price: 0
-  rangeCollider: {fileID: 0}
   upgradeOptions: []
   shootParticleEffect: {fileID: 7367981846087889174, guid: fb556cfbcd348954bb57e98a625ac07f, type: 3}
   towerParticlePoint: {fileID: 1773048216702291874}
   hitParticleEffect: {fileID: 1935215041109294462, guid: cd3639c44d43bad4ebe4ac9c0836717f, type: 3}
+  shootSound: {fileID: 0}
+  towerId: 0
+  towerName: RangeUpgrade
 --- !u!135 &1141283017861605234
 SphereCollider:
   m_ObjectHideFlags: 0
