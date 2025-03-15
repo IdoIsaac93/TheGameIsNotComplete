@@ -4,7 +4,7 @@
         <engine:Label text="Game Over" name="GameOver" style="font-size: 80%; width: 497px; align-self: center; margin-top: 5%; margin-bottom: 5%; height: 8px; -unity-text-align: middle-center; white-space: pre; position: absolute; top: 5%; left: auto;" />
         <engine:Button text="Restart Level" name="RestartLevel" class="button" />
         <engine:Button text="Main Menu" name="MainMenu" class="button" />
-        <engine:Button text="New Game" name="NewGame" class="button" />
+        <engine:Button text="Load Game" name="LoadGame" class="button" />
         <engine:Button text="Exit Game" name="ExitGame" class="button" />
     </engine:VisualElement>
 </engine:UXML>
