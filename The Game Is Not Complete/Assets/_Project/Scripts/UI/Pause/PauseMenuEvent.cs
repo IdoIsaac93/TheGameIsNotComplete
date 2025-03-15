@@ -8,10 +8,8 @@ public class PauseMenuEvent : MonoBehaviour
 {
     [SerializeField] float sceneTransitionDelay = 1.5f;
     private UIDocument _uiDocument;
-    private Button _restartLevelButton;
     private Button _mainMenuButton;
     private Button _newGameButton;
-    private Button _loadGameButton;
     private Button _exitGameButton;
     private AudioSource _audioSource;
     private List<Button> _listButtons = new List<Button>();
@@ -65,29 +63,21 @@ public class PauseMenuEvent : MonoBehaviour
     private void InitializeButtons()
     {
         // Clear any existing references
-        _restartLevelButton = null;
+        
         _mainMenuButton = null;
         _newGameButton = null;
         _exitGameButton = null;
-        _loadGameButton = null;
+        
         _listButtons.Clear();
 
         if (_uiDocument == null || _uiDocument.rootVisualElement == null) return;
 
         // Get button references
-        _restartLevelButton = _uiDocument.rootVisualElement.Q<Button>("RestartLevel");
+        
         _mainMenuButton = _uiDocument.rootVisualElement.Q<Button>("MainMenu");
         _newGameButton = _uiDocument.rootVisualElement.Q<Button>("NewGame");
         _exitGameButton = _uiDocument.rootVisualElement.Q<Button>("ExitGame");
-        _loadGameButton = _uiDocument.rootVisualElement.Q<Button>("LoadGame");
-
-
-        // Register click events - with event removal first to prevent duplicates
-        if (_restartLevelButton != null)
-        {
-            _restartLevelButton.clicked -= OnRestartLevelClick;
-            _restartLevelButton.clicked += OnRestartLevelClick;
-        }
+        
 
         if (_mainMenuButton != null)
         {
@@ -101,11 +91,6 @@ public class PauseMenuEvent : MonoBehaviour
             _newGameButton.clicked += OnNewGameClick;
         }
 
-        if (_loadGameButton != null)
-        {
-            _loadGameButton.clicked -= OnLoadGameClick;
-            _loadGameButton.clicked += OnLoadGameClick;
-        }
 
         if (_exitGameButton != null)
         {
