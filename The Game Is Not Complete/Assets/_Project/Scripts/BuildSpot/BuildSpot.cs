@@ -52,20 +52,16 @@ public class BuildSpot : MonoBehaviour
 
         // Build nothing if prefab is null, used when TowerId.Empty
         if (towerPrefab == null) { return; }
-        Tower towerScript = towerPrefab.GetComponent<Tower>();
 
         Debug.Log("Building tower for free");
         Vector3 newTowerPosition = new(transform.position.x, towerPrefab.transform.position.y + transform.position.y, transform.position.z);
         currentTower = Instantiate(towerPrefab, newTowerPosition, Quaternion.identity).GetComponent<Tower>();
         isOccupied = true;
         currentTower.SetBuildSpot(this);
-        // I have no idea why, but when loading it gave towers an ID that is 1 lower than it should be
-        // I couldn't figure out why so I just added this +1 at the end
         towerId = currentTower.GetTowerId();
     }
 
-    public void SellTower() //For Raz: This method will be called by the UI when the player selects to sell a tower.
-                            //Some towers cover the build spot so it might be better to sell by clicking on a tower rather than the build spot. There is a method in tower that can call this method
+    public void SellTower()
     {
         if (isOccupied)
         {
@@ -109,26 +105,4 @@ public class BuildSpot : MonoBehaviour
             }
         }
     }
-
-
-    //public Tower[] GetTowers()// For Raz: This method returns the towers that can be built on this build spot.
-    //{
-    //    return towers;
-    //}
-
-    //public TowerId[] GetTowerIds()// For Raz : This method returns the tower ids of the towers that can be built on this build spot.
-    //                              //This can be used to determine which tower to build when the player clicks on a build spot.
-    //                              //The UI object could have a list of towers, then use a switch statement to determine which tower to build based on the tower id selected in the UI
-    //{
-
-    //    TowerId[] towerIds = new TowerId[towers.Length];
-
-    //    for (int i = 0; i < towers.Length; i++)
-    //    {
-    //        towerIds[i] = towers[i].GetTowerId();
-    //    }
-
-    //    return towerIds;
-    //}
-
 }

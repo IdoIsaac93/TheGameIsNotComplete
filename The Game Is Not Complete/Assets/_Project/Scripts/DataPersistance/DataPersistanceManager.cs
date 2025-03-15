@@ -32,12 +32,13 @@ public class DataPersistanceManager : Singleton<DataPersistanceManager>
         return new List<IDataPersistance>(dataPersistanceMonoBehaviours);
     }
 
-    public void NewGame()
+    public void NewGame(int levelIndex)
     {
         //Create new data file and save it then change to first level
         gameData = new GameData();
         SaveGame();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex +1);
+        SceneManager.LoadScene(levelIndex);
+        PlayerResources.Instance.RestoreHealth();
     }
 
     public void SaveGame()
@@ -60,7 +61,6 @@ public class DataPersistanceManager : Singleton<DataPersistanceManager>
 
     public void LoadGame()
     {
-
         //Loads the game data from the file handler
         gameData = fileHandler.Load();
 
@@ -68,7 +68,7 @@ public class DataPersistanceManager : Singleton<DataPersistanceManager>
         if (gameData == null)
         {
             Debug.Log("No savefile found, starting a new game");
-            NewGame();
+            NewGame(1);
         }
         //Load data if no scene change is needed
         if (gameData.currentLevelIndex == SceneManager.GetActiveScene().buildIndex)
@@ -91,6 +91,7 @@ public class DataPersistanceManager : Singleton<DataPersistanceManager>
         }
 
         // After scene has finished loading, load the game data
+        SceneController.Instance.ResetTimer();
         LoadData();
     }
 

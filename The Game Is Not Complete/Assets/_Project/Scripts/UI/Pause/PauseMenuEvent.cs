@@ -193,7 +193,10 @@ public class PauseMenuEvent : MonoBehaviour
     /// Buttons Click Events
     private void OnRestartLevelClick()
     {
-        DataPersistanceManager.Instance.NewGame();
+        Debug.Log("Restart Game clicked");
+        // Set timeScale back to 1 immediately to ensure UI responsiveness
+        Time.timeScale = 1f;
+        DataPersistanceManager.Instance.NewGame(SceneManager.GetActiveScene().buildIndex);    
     }
 
     private void OnMainMenuClick()
@@ -210,7 +213,7 @@ public class PauseMenuEvent : MonoBehaviour
         Debug.Log("New Game clicked");
         // Set timeScale back to 1 immediately to ensure UI responsiveness
         Time.timeScale = 1f;
-        DataPersistanceManager.Instance.NewGame();
+        DataPersistanceManager.Instance.NewGame(1);
 
     }
 

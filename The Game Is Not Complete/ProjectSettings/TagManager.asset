@@ -8,6 +8,7 @@ TagManager:
   - SystemCore
   - PauseMenu
   - CanvasUI
+  - Spawner
   layers:
   - Default
   - TransparentFX

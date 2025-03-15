@@ -53,8 +53,10 @@ public class GameOverlayController : MonoBehaviour
 
     private Label CreateKeyBinding(string key, string description)
     {
-        var bindingLabel = new Label();
-        bindingLabel.text = $"{key}: {description}";
+        var bindingLabel = new Label
+        {
+            text = $"{key}: {description}"
+        };
         bindingLabel.AddToClassList("key-binding");
         _keyBindingsContainer.Add(bindingLabel);
         return bindingLabel;

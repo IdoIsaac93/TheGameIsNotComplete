@@ -13,6 +13,7 @@ public class GameUIHandler : MonoBehaviour
 
     private void Awake()
     {
+        //playerResources = FindFirstObjectByType<PlayerResources>();
         PlayerResources.OnHealthChanged += HealthChanged;
         m_HealthLabel = _UIDocument.rootVisualElement.Q<Label>("HealthLabel");
         m_HealthBarMask = _UIDocument.rootVisualElement.Q<VisualElement>("HealthBarMask");
@@ -27,10 +28,10 @@ public class GameUIHandler : MonoBehaviour
 
     private void HealthChanged()
     {
-        float healthRatio = (float)playerResources.GetCurrentHealth() / playerResources.GetMaxHealth();
+        float healthRatio = (float)PlayerResources.Instance.GetCurrentHealth() / PlayerResources.Instance.GetMaxHealth();
         float healthPercent = Mathf.Lerp(8, 88, healthRatio);
         m_HealthBarMask.style.width = Length.Percent(healthPercent);
-        m_HealthLabel.text = $"{playerResources.GetCurrentHealth()}/{playerResources.GetMaxHealth()}";
+        m_HealthLabel.text = $"{PlayerResources.Instance.GetCurrentHealth()}/{PlayerResources.Instance.GetMaxHealth()}";
 
     }
 
@@ -51,8 +52,7 @@ public class GameUIHandler : MonoBehaviour
         PlayerResources.OnHealthChanged += HealthChanged;
         m_HealthLabel = _UIDocument.rootVisualElement.Q<Label>("HealthLabel");
         m_HealthBarMask = _UIDocument.rootVisualElement.Q<VisualElement>("HealthBarMask");
-        HealthChanged();
-     
+        HealthChanged();  
     }
 
 }

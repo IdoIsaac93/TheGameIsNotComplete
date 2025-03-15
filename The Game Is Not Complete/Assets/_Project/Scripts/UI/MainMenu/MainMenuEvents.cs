@@ -70,7 +70,7 @@ public class MainMenuEvents : MonoBehaviour
     private void OnPlayGameClick()
     {
         
-        DataPersistanceManager.Instance.NewGame();
+        DataPersistanceManager.Instance.NewGame(1);
         // SceneManager.LoadScene("DemoLevel");
     }
 
@@ -83,6 +83,7 @@ public class MainMenuEvents : MonoBehaviour
     {
         //subject to change when save/load system is implemented
         DataPersistanceManager.Instance.LoadGame();
+        Debug.Log("Loading game...");
     }
 
     private void OnExitGame()
