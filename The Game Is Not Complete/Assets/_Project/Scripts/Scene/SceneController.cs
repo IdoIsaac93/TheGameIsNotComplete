@@ -3,20 +3,34 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
-public class SceneController : Singleton<SceneController> , IDataPersistance
+public class SceneController : MonoBehaviour, IDataPersistance
 {
-    public float timeBetweenWaves;
-    public float waveTimer;
-    public List<Wave> waves;
-    public List<EnemySpawn> spawnLocations;
-    public int waveNumber = 0;
-    public bool isWaveInProgress = false;
-    public Slider waveTimerVisual;
+    [SerializeField] private float timeBetweenWaves;
+    [SerializeField] private float waveTimer;
+    [SerializeField] private List<Wave> waves;
+    [SerializeField] private List<EnemySpawn> spawnLocations;
+    [SerializeField] private int waveNumber = 0;
+    [SerializeField] private bool isWaveInProgress = false;
+    [SerializeField] private Slider waveTimerVisual;
     public int numberOfEnemiesAlive = 0;
+    public static SceneController Instance { get; private set; }
 
-    new private void Awake()
+    private void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
+
+        // Register the scene loaded listener
+        SceneManager.sceneLoaded += OnSceneLoaded;
+
         //Commented out by Raz
         //waveTimerVisual.maxValue = timeBetweenWaves;
     }
@@ -25,8 +39,11 @@ public class SceneController : Singleton<SceneController> , IDataPersistance
     {
         if (!isWaveInProgress)
         {
-            waveTimer += Time.deltaTime;
-            if (waveTimer >= timeBetweenWaves)
+            if (waveTimer < timeBetweenWaves)
+            {
+                waveTimer += Time.deltaTime;
+            }
+            else
             {
                 StartWave();
             }
@@ -42,6 +59,10 @@ public class SceneController : Singleton<SceneController> , IDataPersistance
         }
     }
 
+    public void ResetTimer()
+    {
+        waveTimer = 0;
+    }
     public void SkipTimer()
     {
         waveTimer = timeBetweenWaves;
@@ -74,5 +95,30 @@ public class SceneController : Singleton<SceneController> , IDataPersistance
     public void SaveData(ref GameData data)
     {
         data.waveNumber = waveNumber;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        ResetTimer();
+
+        // Clear the current spawn locations
+        spawnLocations.Clear();
+
+        // Find all GameObjects with the tag "Spawner" and add them to the spawnLocations list
+        GameObject[] spawners = GameObject.FindGameObjectsWithTag("Spawner");
+        foreach (GameObject spawner in spawners)
+        {
+            EnemySpawn spawnComponent = spawner.GetComponent<EnemySpawn>();
+            if (spawnComponent != null)
+            {
+                spawnLocations.Add(spawnComponent);
+            }
+        }
+    }
+
+    private void OnDestroy()
+    {
+        // Unsubscribe from the event when this object is destroyed
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 }

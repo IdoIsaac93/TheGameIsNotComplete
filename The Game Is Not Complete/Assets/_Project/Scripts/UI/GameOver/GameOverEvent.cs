@@ -17,7 +17,7 @@ public class GameOverEvent : MonoBehaviour
     
 
     private AudioSource _audioSource;
-    private List<Button> _menuButtons = new List<Button>();
+    private List<Button> _menuButtons = new();
 
     private void Awake()
     {
@@ -88,7 +88,7 @@ public class GameOverEvent : MonoBehaviour
 
     private void OnRestartClick()
     {
-        DataPersistanceManager.Instance.NewGame();
+        DataPersistanceManager.Instance.NewGame(SceneManager.GetActiveScene().buildIndex);
     }
 
     private void OnMainMenuClick()
