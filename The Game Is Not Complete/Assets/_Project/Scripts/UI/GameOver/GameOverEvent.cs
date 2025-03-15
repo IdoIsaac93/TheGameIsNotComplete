@@ -8,9 +8,9 @@ public class GameOverEvent : MonoBehaviour
 {
     [SerializeField] float sceneTransitionDelay = 1.5f;
     private UIDocument _uiDocument;
-    private Button _restartButton;
+
     private Button _mainMenuButton;
-    private Button _loadGame;
+
     private Button _exitGameButton;
     private GameObject _pauseMenu;
     private GameObject _canvasUI;
@@ -30,15 +30,15 @@ public class GameOverEvent : MonoBehaviour
             return;
         }
 
-        _restartButton = _uiDocument.rootVisualElement.Q<Button>("RestartLevel");
+        
         _mainMenuButton = _uiDocument.rootVisualElement.Q<Button>("MainMenu");
-        _loadGame = _uiDocument.rootVisualElement.Q<Button>("LoadGame");
+        
         _exitGameButton = _uiDocument.rootVisualElement.Q<Button>("ExitGame");
 
 
-        _restartButton.clicked += OnRestartClick;
+        
         _mainMenuButton.clicked += OnMainMenuClick;
-        _loadGame.clicked += OnLoadGameClick;
+        
         _exitGameButton.clicked += OnExitGame;
 
 

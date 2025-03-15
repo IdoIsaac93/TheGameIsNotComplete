@@ -1,0 +1,9 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/ScoreAndPoints/ScoreUI.uss?fileID=7433441132597879392&amp;guid=fca545a0175bd7f4f965f23a4c00cfa0&amp;type=3#ScoreUI" />
+    <engine:VisualElement name="score-container" class="score-container" style="flex-grow: 1; position: absolute; top: 486px; right: 22px;">
+        <engine:Label text="Score" class="score-header" />
+        <engine:Label text="0" name="scoreValue" class="score-value" />
+        <engine:Label text="System Points" class="points-header" />
+        <engine:Label text="0" name="systemPointsValue" class="points-value" />
+    </engine:VisualElement>
+</engine:UXML>

@@ -1,14 +1,18 @@
 using System;
 using UnityEngine;
 
-public class PlayerResources : Singleton<PlayerResources> , IDataPersistance
+public class PlayerResources : Singleton<PlayerResources>, IDataPersistance
 {
     public static event Action OnHealthChanged;
+    public static event Action OnScoreChanged;
+    public static event Action OnSysPointsChanged;
+
     [SerializeField] private int currentHealth;
     [SerializeField] private int score;
     [SerializeField] private int systemPoints;
     [SerializeField] private int maxHealth = 100;
-    public int GetCurrentHealth() {  return currentHealth; }
+
+    public int GetCurrentHealth() { return currentHealth; }
     public int GetMaxHealth() { return maxHealth; }
     public int GetScore() { return score; }
     public int GetSystemPoints() { return systemPoints; }
@@ -18,19 +22,22 @@ public class PlayerResources : Singleton<PlayerResources> , IDataPersistance
     public void RestoreHealth()
     {
         currentHealth = maxHealth;
+        OnHealthChanged?.Invoke();
     }
 
     public void TakeDamage(int damage, int scoreDamage)
     {
-        //If you have enough health take damage, otherwise set health to 0 and Die
         currentHealth = (currentHealth > damage) ? currentHealth - damage : 0;
         if (currentHealth == 0) Die();
 
-        //for UI when it takes damage
         OnHealthChanged?.Invoke();
 
-        //Makes sure score doesn't go below 0
-        score = (score > scoreDamage) ? score - scoreDamage : 0;
+        int newScore = (score > scoreDamage) ? score - scoreDamage : 0;
+        if (newScore != score)
+        {
+            score = newScore;
+            OnScoreChanged?.Invoke();
+        }
 
         Debug.Log(currentHealth);
     }
@@ -53,22 +60,22 @@ public class PlayerResources : Singleton<PlayerResources> , IDataPersistance
     public void GainSystemPoints(int sysPoints)
     {
         systemPoints += sysPoints;
+        OnSysPointsChanged?.Invoke();
     }
 
     public bool SpendSystemPoints(int sysPoints)
     {
-        //Returns false if you don't have enough points
         if (systemPoints < sysPoints) return false;
-        else
-        {
-            systemPoints -= sysPoints;
-            return true;
-        }
+
+        systemPoints -= sysPoints;
+        OnSysPointsChanged?.Invoke();
+        return true;
     }
 
-    public void GainScore(int score)
+    public void GainScore(int scoreToAdd)
     {
-        this.score += score;
+        score += scoreToAdd;
+        OnScoreChanged?.Invoke();
     }
 
     public void LoadData(GameData data)
@@ -76,6 +83,9 @@ public class PlayerResources : Singleton<PlayerResources> , IDataPersistance
         currentHealth = data.lives;
         score = data.score;
         systemPoints = data.systemPoints;
+        OnHealthChanged?.Invoke();
+        OnScoreChanged?.Invoke();
+        OnSysPointsChanged?.Invoke();
     }
 
     public void SaveData(ref GameData data)
