@@ -47,7 +47,7 @@ public class ChainEffect : IAttackEffect
             {
                 // Apply the effect to the closest enemy
                 lastAffectedEnemy = nearbyEnemies[0];
-                lastAffectedEnemy.health.TakeDamage(10);
+                lastAffectedEnemy.health.TakeDamage(5);
                 Object.Instantiate(chainParticleEffect, lastAffectedEnemy.transform.position, Quaternion.identity);
 
                 // Add this enemy to the affected enemies set

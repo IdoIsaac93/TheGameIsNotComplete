@@ -12,6 +12,9 @@ public abstract class Tower : MonoBehaviour
 
     [SerializeField] private Transform towerParticlePoint;
     [SerializeField] private ParticleSystem hitParticleEffect;
+    [SerializeField] private AudioSource shootSource;
+    [SerializeField] private AudioClip shootClip;
+    [SerializeField] private bool allowSoundOverlapping;
 
     [SerializeField] protected TowerId towerId;
     [SerializeField] protected string towerName;
@@ -35,6 +38,7 @@ public abstract class Tower : MonoBehaviour
     private void Awake()
     {
         SetValues();
+        shootSource.clip = shootClip;
     }
 
     protected virtual void Update()
@@ -128,6 +132,7 @@ public abstract class Tower : MonoBehaviour
         }
 
         attackTimer = attackSpeed;
+        handleAudio();
         target.health.TakeDamage(attackDamage);
         attackEffect?.ApplyEffect(target);
         areaEffect?.ApplyAreaEffect(enemiesInRange);
@@ -162,6 +167,15 @@ public abstract class Tower : MonoBehaviour
     private void CleanUpEnemies()
     {
         enemiesInRange.RemoveWhere(enemy => enemy == null);
+    }
+
+    private void handleAudio()
+    {
+        if (allowSoundOverlapping)
+        {
+            shootSource.PlayOneShot(shootClip);
+        }
+        else if (!shootSource.isPlaying) shootSource.Play();
     }
 
     public Tower[] GetUpgradeOptions() //For Raz: This method returns the upgrade options of a tower.
