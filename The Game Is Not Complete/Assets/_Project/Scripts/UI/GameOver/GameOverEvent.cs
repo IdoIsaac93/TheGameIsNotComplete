@@ -10,7 +10,7 @@ public class GameOverEvent : MonoBehaviour
     private UIDocument _uiDocument;
     private Button _restartButton;
     private Button _mainMenuButton;
-    private Button _newGame;
+    private Button _loadGame;
     private Button _exitGameButton;
     private GameObject _pauseMenu;
     private GameObject _canvasUI;
@@ -32,13 +32,13 @@ public class GameOverEvent : MonoBehaviour
 
         _restartButton = _uiDocument.rootVisualElement.Q<Button>("RestartLevel");
         _mainMenuButton = _uiDocument.rootVisualElement.Q<Button>("MainMenu");
-        _newGame = _uiDocument.rootVisualElement.Q<Button>("NewGame");
+        _loadGame = _uiDocument.rootVisualElement.Q<Button>("LoadGame");
         _exitGameButton = _uiDocument.rootVisualElement.Q<Button>("ExitGame");
 
 
         _restartButton.clicked += OnRestartClick;
         _mainMenuButton.clicked += OnMainMenuClick;
-        _newGame.clicked += OnNewGameClick;
+        _loadGame.clicked += OnLoadGameClick;
         _exitGameButton.clicked += OnExitGame;
 
 
@@ -88,7 +88,7 @@ public class GameOverEvent : MonoBehaviour
 
     private void OnRestartClick()
     {
-        StartCoroutine(LoadSceneWithDelay());
+        DataPersistanceManager.Instance.NewGame();
     }
 
     private void OnMainMenuClick()
@@ -96,9 +96,9 @@ public class GameOverEvent : MonoBehaviour
         StartCoroutine(LoadSceneWithDelay("MainMenu"));
     }
 
-    private void OnNewGameClick()
+    private void OnLoadGameClick()
     {
-        StartCoroutine(LoadSceneWithDelay("Level_001"));
+        DataPersistanceManager.Instance.LoadGame();
     }
 
     private void OnExitGame()
