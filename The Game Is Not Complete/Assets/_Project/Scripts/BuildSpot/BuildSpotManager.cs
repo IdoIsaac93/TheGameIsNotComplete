@@ -29,20 +29,21 @@ public class BuildSpotManager : MonoBehaviour, IDataPersistance
     {
         HandleInput();
         // Mouse left click
-        if (Input.GetMouseButtonDown(0)) { HandleMouseClick(); }
+        HandleMouseClick();
     }
 
+    //This is the old method for handlinf moush clicks
+
+    /*
     private void HandleMouseClick()
     {
         // Send a raycast from the camera to the mouse position
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
         if (Physics.Raycast(ray, out hit))
         {
             // Check if the hit object is a BuildSpot
             BuildSpot clickedSpot = hit.collider?.GetComponentInParent<BuildSpot>();
-
             if (clickedSpot != null)
             {
                 if (clickedSpot.currentTower == null)
@@ -57,6 +58,46 @@ public class BuildSpotManager : MonoBehaviour, IDataPersistance
             }
         }
     }
+    */
+
+    //This should handle touch inputs for mobile
+    private void HandleMouseClick()
+    {
+        // Check if there's at least one touch on the screen
+        if (Input.touchCount > 0)
+        {
+            // Get the first touch (for simplicity, we handle the first touch here)
+            Touch touch = Input.GetTouch(0);
+
+            // Check if the touch is a tap (phase is Began)
+            if (touch.phase == TouchPhase.Began)
+            {
+                // Convert the touch position to world position (like a raycast from camera)
+                Ray ray = Camera.main.ScreenPointToRay(touch.position);
+                RaycastHit hit;
+
+                if (Physics.Raycast(ray, out hit))
+                {
+                    // Check if the hit object is a BuildSpot
+                    BuildSpot clickedSpot = hit.collider?.GetComponentInParent<BuildSpot>();
+
+                    if (clickedSpot != null)
+                    {
+                        if (clickedSpot.currentTower == null)
+                        {
+                            buildMenuScript.OpenMenu(clickedSpot, clickedSpot.baseTowerOptions);
+                        }
+                        else
+                        {
+                            // Open the menu at the clicked build spot and with its available towers
+                            buildMenuScript.OpenMenu(clickedSpot, clickedSpot.currentTower.GetUpgradeOptions());
+                        }
+                    }
+                }
+            }
+        }
+    }
+
 
     //Temporary inputs for testing
     private void HandleInput()
