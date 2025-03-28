@@ -3230,10 +3230,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoUnparentOnAwake: 1
-  currentHealth: 100
-  score: 300
-  systemPoints: 10
-  maxHealth: 100
+  currentHealth: 10
+  score: 0
+  systemPoints: 100
+  maxHealth: 10
 --- !u!1001 &1780315370
 PrefabInstance:
   m_ObjectHideFlags: 0

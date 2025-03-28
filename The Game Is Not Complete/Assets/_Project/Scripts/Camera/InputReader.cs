@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using static InputSystem_Actions;
+//Test
 
 
 [CreateAssetMenu(fileName = "InputReader", menuName = "Scriptable Objects/InputReader")]
