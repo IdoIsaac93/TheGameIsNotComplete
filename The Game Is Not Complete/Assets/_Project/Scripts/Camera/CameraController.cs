@@ -1,11 +1,17 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Unity.Cinemachine;
+using UnityEngine.InputSystem.OnScreen;
+
 public class CameraController : Singleton<CameraController>
 {
     [Header("Components")]
     [SerializeField] private CinemachineCamera cinemachineCamera;
     [SerializeField] private InputReader inputReader;
+
+    [Header("UI Controls")]
+    [SerializeField] private OnScreenStick leftStick;  // Left stick for movement
+    [SerializeField] private OnScreenStick rightStick; // Right stick for zoom
 
     [Header("Movement")]
     [SerializeField] private float moveSpeed = 5f;
@@ -19,6 +25,10 @@ public class CameraController : Singleton<CameraController>
 
     private void OnEnable()
     {
+#if UNITY_EDITOR && !UNITY_ANDROID
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+#endif
         if (inputReader != null)
         {
             inputReader.Move += OnMove;
@@ -35,19 +45,35 @@ public class CameraController : Singleton<CameraController>
         }
     }
 
+    private void Start()
+    {
+        if (cinemachineCamera != null)
+            zoomLevel = cinemachineCamera.Lens.FieldOfView;
+        else
+            Debug.LogError("CinemachineCamera not assigned in CameraController!");
+
+        if (leftStick == null) Debug.LogWarning("Left Stick not assigned!");
+        if (rightStick == null) Debug.LogWarning("Right Stick not assigned!");
+    }
+
     private void Update()
     {
+        // Update inputs from sticks using predefined control paths
+        moveInput = InputSystem.GetDevice<Gamepad>()?.leftStick.ReadValue() ?? Vector2.zero;
+        float zoomInput = InputSystem.GetDevice<Gamepad>()?.rightStick.ReadValue().y ?? 0f;
+
+        ZoomCamera(zoomInput);
         MoveCamera();
     }
 
     private void OnMove(Vector2 input)
     {
-        moveInput = input;
+        moveInput = input; // Still supports InputReader if used
     }
 
     private void MoveCamera()
     {
-        Vector3 moveDirection = new (moveInput.x, 0, moveInput.y);
+        Vector3 moveDirection = new Vector3(moveInput.x, 0, moveInput.y);
         transform.position += moveSpeed * Time.deltaTime * moveDirection;
     }
 
@@ -56,7 +82,7 @@ public class CameraController : Singleton<CameraController>
         if (cinemachineCamera == null) return;
 
         zoomLevel = Mathf.Clamp(
-            cinemachineCamera.Lens.FieldOfView - (zoomInput * zoomSpeed),
+            zoomLevel - (zoomInput * zoomSpeed * Time.deltaTime),
             minFOV,
             maxFOV
         );
