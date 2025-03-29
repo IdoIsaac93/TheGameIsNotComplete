@@ -369,7 +369,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114017654419583406, guid: f77f88b14a477764bb65a49d28c02d33, type: 3}
       propertyPath: m_Text
-      value: Right Stick
+      value: Disabled
+      objectReference: {fileID: 0}
+    - target: {fileID: 114017654419583406, guid: f77f88b14a477764bb65a49d28c02d33, type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114017654419583406, guid: f77f88b14a477764bb65a49d28c02d33, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 114017654419583406, guid: f77f88b14a477764bb65a49d28c02d33, type: 3}
+      propertyPath: m_FontData.m_FontStyle
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114480945186419424, guid: f77f88b14a477764bb65a49d28c02d33, type: 3}
       propertyPath: m_Behaviour
@@ -982,10 +994,10 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 6136238734198921962, guid: c3e269126854bf84887bc8a57badbb87, type: 3}
-      insertIndex: -1
+      insertIndex: 0
       addedObject: {fileID: 985189726}
     - targetCorrespondingSourceObject: {fileID: 6136238734198921962, guid: c3e269126854bf84887bc8a57badbb87, type: 3}
-      insertIndex: -1
+      insertIndex: 1
       addedObject: {fileID: 318735968}
     - targetCorrespondingSourceObject: {fileID: 2585973441617452209, guid: c3e269126854bf84887bc8a57badbb87, type: 3}
       insertIndex: -1
@@ -2343,7 +2355,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 150, y: 150}
+  m_AnchoredPosition: {x: 200, y: 200}
   m_SizeDelta: {x: 140, y: 140}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &985189727
