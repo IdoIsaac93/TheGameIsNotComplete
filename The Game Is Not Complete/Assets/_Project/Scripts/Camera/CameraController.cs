@@ -47,7 +47,7 @@ public class CameraController : Singleton<CameraController>
 
     private void MoveCamera()
     {
-        Vector3 moveDirection = new (moveInput.x, 0, moveInput.y);
+        Vector3 moveDirection = new(moveInput.x, 0, moveInput.y);
         transform.position += moveSpeed * Time.deltaTime * moveDirection;
     }
 
