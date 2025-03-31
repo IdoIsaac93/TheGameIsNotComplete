@@ -21,11 +21,14 @@ public class SceneController : MonoBehaviour, IDataPersistance
     {
         if (Instance != null && Instance != this)
         {
-            Destroy(gameObject);
+            Debug.LogWarning("Duplicate SceneController destroyed");
+           Destroy(gameObject);
+            
         }
         else
         {
             Instance = this;
+            Debug.Log("SceneController initialized");
         }
 
         // Register the scene loaded listener
@@ -119,6 +122,8 @@ public class SceneController : MonoBehaviour, IDataPersistance
     private void OnDestroy()
     {
         // Unsubscribe from the event when this object is destroyed
+        Debug.LogError("SceneController was destroyed! Stack Trace:\n" + System.Environment.StackTrace);
+
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 }

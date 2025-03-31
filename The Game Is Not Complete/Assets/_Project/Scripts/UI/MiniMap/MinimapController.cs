@@ -10,8 +10,8 @@ public class MinimapController : MonoBehaviour
     private VisualElement minimapContainer;
     private VisualElement coreDot; // Core dot UI element
     private const float mapSize = 50f; // Cubes world size (50x50)
-    private const float uiWidth = 200f; // Minimap UI width
-    private const float uiHeight = 199f; // Minimap UI height// odd number cuz I took a screenshot of 1061x1060
+    private const float uiWidth = 81f; // Minimap UI width
+    private const float uiHeight = 87f; // Minimap UI height// odd number cuz I took a screenshot of 1061x1060
     private List<Transform> enemies = new List<Transform>();
     private List<VisualElement> enemyDots = new List<VisualElement>();
 
@@ -41,8 +41,8 @@ public class MinimapController : MonoBehaviour
         {
             coreDot = new VisualElement();
             coreDot.name = "CoreDot";
-            coreDot.style.width = 10;
-            coreDot.style.height = 10;
+            coreDot.style.width = 4;
+            coreDot.style.height = 4;
             coreDot.style.backgroundColor = Color.green;
             coreDot.style.borderTopLeftRadius = 5;
             coreDot.style.borderTopRightRadius = 5;
@@ -118,8 +118,8 @@ public class MinimapController : MonoBehaviour
         {
             VisualElement dot = new VisualElement();
             dot.name = "EnemyDot";
-            dot.style.width = 10;
-            dot.style.height = 10;
+            dot.style.width = 4;
+            dot.style.height = 4;
             dot.style.backgroundColor = Color.red;
             dot.style.borderTopLeftRadius = 5;
             dot.style.borderTopRightRadius = 5;

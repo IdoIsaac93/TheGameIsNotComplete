@@ -764,6 +764,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: HealthBar
       objectReference: {fileID: 0}
+    - target: {fileID: 2585973441617452209, guid: c3e269126854bf84887bc8a57badbb87, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2585973441617452209, guid: c3e269126854bf84887bc8a57badbb87, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3081476655919997402, guid: c3e269126854bf84887bc8a57badbb87, type: 3}
       propertyPath: core
       value: 
@@ -864,6 +872,10 @@ PrefabInstance:
       propertyPath: playerResources
       value: 
       objectReference: {fileID: 1724974406}
+    - target: {fileID: 9002937872991319349, guid: c3e269126854bf84887bc8a57badbb87, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -2852,15 +2864,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8998670031230439243, guid: d172a4839e1d2f242823ccafe1e2d64e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.42334002
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8998670031230439243, guid: d172a4839e1d2f242823ccafe1e2d64e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -9.136313
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8998670031230439243, guid: d172a4839e1d2f242823ccafe1e2d64e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.221781
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8998670031230439243, guid: d172a4839e1d2f242823ccafe1e2d64e, type: 3}
       propertyPath: m_LocalRotation.w
