@@ -7,13 +7,21 @@ using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour, IDataPersistance
 {
+    [Header("Waves")]
+    [SerializeField] private List<Wave> waves;
+    [SerializeField] private int waveNumber = 0;
+
+    [Header("Timer")]
     [SerializeField] private float timeBetweenWaves;
     [SerializeField] private float waveTimer;
-    [SerializeField] private List<Wave> waves;
-    [SerializeField] private List<EnemySpawn> spawnLocations;
-    [SerializeField] private int waveNumber = 0;
     [SerializeField] private bool isWaveInProgress = false;
+
+    [Header("Visuals")]
     [SerializeField] private Slider waveTimerVisual;
+    [SerializeField] private Button skipTimerButton;
+
+    [Header("Enemies")]
+    [SerializeField] private List<EnemySpawn> spawnLocations;
     public int numberOfEnemiesAlive = 0;
     public static SceneController Instance { get; private set; }
 
@@ -22,8 +30,8 @@ public class SceneController : MonoBehaviour, IDataPersistance
         if (Instance != null && Instance != this)
         {
             Debug.LogWarning("Duplicate SceneController destroyed");
-           Destroy(gameObject);
-            
+            Destroy(gameObject);
+
         }
         else
         {
@@ -34,8 +42,8 @@ public class SceneController : MonoBehaviour, IDataPersistance
         // Register the scene loaded listener
         SceneManager.sceneLoaded += OnSceneLoaded;
 
-        //Commented out by Raz
-        //waveTimerVisual.maxValue = timeBetweenWaves;
+        //Comment this out when we have another visual
+        waveTimerVisual.maxValue = timeBetweenWaves;
     }
 
     private void Update()
@@ -50,8 +58,8 @@ public class SceneController : MonoBehaviour, IDataPersistance
             {
                 StartWave();
             }
-            //Commented out by Raz
-            //waveTimerVisual.value = timeBetweenWaves - waveTimer;
+            //Comment this out when we have another visual
+            waveTimerVisual.value = timeBetweenWaves - waveTimer;
         }
         else
         {
@@ -68,7 +76,10 @@ public class SceneController : MonoBehaviour, IDataPersistance
     }
     public void SkipTimer()
     {
-        waveTimer = timeBetweenWaves;
+        if (!isWaveInProgress)
+        {
+            waveTimer = timeBetweenWaves;
+        }
     }
 
     public void StartWave()
@@ -80,6 +91,8 @@ public class SceneController : MonoBehaviour, IDataPersistance
         isWaveInProgress = true;
         Wave currentWave = waves[waveNumber];
         spawnLocations[currentWave.spawnLocationNumber].SpawnWave(currentWave);
+        //Deactivate skip timer button
+        skipTimerButton.interactable = false;
     }
 
     public void WaveCompleted()
@@ -88,6 +101,8 @@ public class SceneController : MonoBehaviour, IDataPersistance
         isWaveInProgress = false;
         DataPersistanceManager.Instance.SaveGame();
         Debug.Log("Wave completed, Autosaving game");
+        //Reactivate skip timer button
+        skipTimerButton.interactable = true;
     }
 
     public void LoadData(GameData data)
@@ -122,8 +137,6 @@ public class SceneController : MonoBehaviour, IDataPersistance
     private void OnDestroy()
     {
         // Unsubscribe from the event when this object is destroyed
-        Debug.LogError("SceneController was destroyed! Stack Trace:\n" + System.Environment.StackTrace);
-
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 }
