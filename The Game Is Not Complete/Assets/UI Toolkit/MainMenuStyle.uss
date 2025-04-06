@@ -74,3 +74,42 @@
 .bottomsheet-show {
     translate: 0 0;
 }
+
+.pausebars {
+    flex-grow: 1;
+    width: 20%;
+    height: 85%;
+    background-color: rgb(255, 255, 255);
+    border-left-color: rgb(255, 255, 255);
+    border-right-color: rgb(255, 255, 255);
+    border-top-color: rgb(255, 255, 255);
+    border-bottom-color: rgb(255, 255, 255);
+    position: relative;
+    border-bottom-left-radius: 10%;
+    border-bottom-right-radius: 10%;
+    border-bottom-width: initial;
+    border-top-right-radius: 10%;
+    border-top-left-radius: 10%;
+    margin-top: 15%;
+    margin-right: 15%;
+    margin-bottom: 15%;
+    margin-left: 15%;
+}
+
+.closebar {
+    flex-grow: 1;
+    background-color: rgb(255, 0, 0);
+    height: 150%;
+    rotate: 45deg;
+    border-top-left-radius: 5%;
+    border-top-right-radius: 5%;
+    border-bottom-right-radius: 5%;
+    border-bottom-left-radius: 5%;
+    width: 15%;
+    align-items: center;
+    margin-top: 20%;
+    margin-right: 20%;
+    margin-bottom: 20%;
+    margin-left: 20%;
+    position: absolute;
+}

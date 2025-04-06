@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using static UnityEngine.Rendering.DebugUI.Table;
 
 public class SceneController : MonoBehaviour, IDataPersistance
 {
@@ -18,7 +19,7 @@ public class SceneController : MonoBehaviour, IDataPersistance
 
     [Header("Visuals")]
     [SerializeField] private Slider waveTimerVisual;
-    [SerializeField] private Button skipTimerButton;
+    //[SerializeField] private Button skipTimerButton;
 
     [Header("Enemies")]
     [SerializeField] private List<EnemySpawn> spawnLocations;
@@ -93,8 +94,10 @@ public class SceneController : MonoBehaviour, IDataPersistance
         isWaveInProgress = true;
         Wave currentWave = waves[waveNumber];
         spawnLocations[currentWave.spawnLocationNumber].SpawnWave(currentWave);
+
+        //Not needed for now, Done in UI toolkit
         //Deactivate skip timer button
-        skipTimerButton.interactable = false;
+        //skipTimerButton.interactable = false;
     }
 
     public void WaveCompleted()
@@ -103,8 +106,9 @@ public class SceneController : MonoBehaviour, IDataPersistance
         isWaveInProgress = false;
         DataPersistanceManager.Instance.SaveGame();
         Debug.Log("Wave completed, Autosaving game");
+        // Not needed for now, Done in UI toolkit
         //Reactivate skip timer button
-        skipTimerButton.interactable = true;
+        //skipTimerButton.interactable = true;
         //Activate the event for achievements
         OnWaveCompleted?.Invoke(waveNumber);
     }
