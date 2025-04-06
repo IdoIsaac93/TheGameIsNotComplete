@@ -52,3 +52,25 @@
     border-color: rgb(204, 204, 204);
     opacity: 1;
 }
+
+.bottomsheet {
+    flex-grow: 1;
+    width: 70%;
+    height: 70%;
+    background-color: rgba(0, 0, 0, 0.71);
+    border-top-width: 0;
+    align-self: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-height: 70%;
+    position: absolute;
+    top: 15%;
+    transition-duration: 1s, 1s, 0.2s;
+    transition-timing-function: ease-out-back, ease-in-bounce, ease;
+    translate: 0 -150%;
+}
+
+.bottomsheet-show {
+    translate: 0 0;
+}
