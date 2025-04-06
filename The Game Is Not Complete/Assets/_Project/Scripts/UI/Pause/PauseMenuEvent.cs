@@ -13,8 +13,10 @@ public class PauseMenuEvent : MonoBehaviour
     private Button _exitGameButton;
     private Button _pauseMenuButton;
     private Button _closeButton;
+    private Button _skipTimerButton;
     private AudioSource _audioSource;
     private VisualElement _menuMainContainer;
+    private VisualElement _playButtonsContainer;
     private List<Button> _listButtons = new List<Button>();
     private bool _isPaused = false;
     private GameObject _canvasUI;
@@ -59,7 +61,7 @@ public class PauseMenuEvent : MonoBehaviour
 
     private void OnEnable()
     {
-        Debug.Log("PauseMenu OnEnable called");
+        
         InitializeButtons();
     }
 
@@ -72,6 +74,7 @@ public class PauseMenuEvent : MonoBehaviour
         _exitGameButton = null;
         _pauseMenuButton = null;
         _closeButton = null;
+        _skipTimerButton = null;
 
         _listButtons.Clear();
 
@@ -84,6 +87,8 @@ public class PauseMenuEvent : MonoBehaviour
         _exitGameButton = _uiDocument.rootVisualElement.Q<Button>("ExitGame");
         _pauseMenuButton = _uiDocument.rootVisualElement.Q<Button>("Pause");
         _closeButton = _uiDocument.rootVisualElement.Q<Button>("CloseMenu");
+        _skipTimerButton = _uiDocument.rootVisualElement.Q<Button>("Foward");
+        _playButtonsContainer = _uiDocument.rootVisualElement.Q<VisualElement>("PlayButtonsContainer");
 
 
         if (_mainMenuButton != null)
@@ -115,6 +120,12 @@ public class PauseMenuEvent : MonoBehaviour
         {
             _closeButton.clicked -= OnCloseMenubutton;
             _closeButton.clicked += OnCloseMenubutton;
+        }
+
+        if (_skipTimerButton != null)
+        {
+            _skipTimerButton.clicked -= OnSkipButton;
+            _skipTimerButton.clicked += OnSkipButton;
         }
 
 
@@ -250,11 +261,12 @@ public class PauseMenuEvent : MonoBehaviour
 
     private void OnPauseMenuButton()
     {
-        Debug.Log("Pause Menu Button clicked  or touched");
+       
         // Set timeScale back to 1 immediately to ensure UI responsiveness
         Time.timeScale = 0f;
-        _pauseMenuButton.style.display = DisplayStyle.None;
-        
+        //_pauseMenuButton.style.display = DisplayStyle.None;
+        _playButtonsContainer.style.display = DisplayStyle.None;
+
         ShowPauseMenu();
     }
 
@@ -263,15 +275,21 @@ public class PauseMenuEvent : MonoBehaviour
         _menuMainContainer.RemoveFromClassList("bottomsheet-show");
         _menuMainContainer.style.display = DisplayStyle.None;
         _menuMainContainer.style.visibility = Visibility.Hidden;
-        _pauseMenuButton.style.display = DisplayStyle.Flex;
-        
+        //_pauseMenuButton.style.display = DisplayStyle.Flex;
+        _playButtonsContainer.style.display = DisplayStyle.Flex;
+
         Time.timeScale = 1f;
         
     }
 
+    private void OnSkipButton() { 
+        SceneController.Instance.SkipTimer();
+    }
+
+
     private void OnAllButtonsClick()
     {
-        Debug.Log("Button Clicked - common handler");
+        
         if (_audioSource != null)
         {
             _audioSource.Play();
