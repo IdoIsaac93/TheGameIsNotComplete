@@ -24,6 +24,8 @@ public class SceneController : MonoBehaviour, IDataPersistance
     [SerializeField] private List<EnemySpawn> spawnLocations;
     public int numberOfEnemiesAlive = 0;
     public static SceneController Instance { get; private set; }
+    public static event System.Action<int> OnWaveCompleted;
+
 
     private void Awake()
     {
@@ -103,6 +105,8 @@ public class SceneController : MonoBehaviour, IDataPersistance
         Debug.Log("Wave completed, Autosaving game");
         //Reactivate skip timer button
         skipTimerButton.interactable = true;
+        //Activate the event for achievements
+        OnWaveCompleted?.Invoke(waveNumber);
     }
 
     public void LoadData(GameData data)

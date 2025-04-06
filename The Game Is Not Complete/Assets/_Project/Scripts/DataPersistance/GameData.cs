@@ -12,6 +12,7 @@ public class GameData
     public int lives;
     public int currentLevelIndex;
     public List<TowerId> towers;
+    public List<bool> achievements;
 
     //When starting a new game these are the initial values assigned
     public GameData()
