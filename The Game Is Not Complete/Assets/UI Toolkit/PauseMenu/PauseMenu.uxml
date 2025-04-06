@@ -1,11 +1,17 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Toolkit/MainMenuStyle.uss?fileID=7433441132597879392&amp;guid=088f09dbbbfd7d244b812702165432a3&amp;type=3#MainMenuStyle" />
-    <engine:Button text="Pause Game&#10;" name="Pause" class="button main" style="top: 15%;" />
+    <engine:Button name="Pause" style="top: auto; position: absolute; width: 60px; height: 60px; background-color: rgb(13, 12, 12); border-top-left-radius: 50%; border-top-right-radius: 50%; border-bottom-right-radius: 50%; border-bottom-left-radius: 50%; flex-direction: row; align-items: center; justify-content: flex-start; align-content: stretch; align-self: auto; left: auto; right: 5%; bottom: 5%;">
+        <engine:VisualElement class="pausebars" style="width: 20%; height: 90%;" />
+        <engine:VisualElement class="pausebars" style="width: 20%; height: 90%;" />
+    </engine:Button>
     <engine:VisualElement name="MainContainer" enabled="true" class="main button bottomsheet">
         <engine:Button text="Main Menu" name="MainMenu" class="button" />
         <engine:Button text="New Game" name="NewGame" class="button" />
         <engine:Button text="Exit Game" name="ExitGame" class="button" />
         <engine:Label text="Press Esc to Exit" name="ExitLabel" style="white-space: pre; -unity-text-align: lower-left; position: absolute; top: auto; left: auto; bottom: 2%; right: 2%;" />
-        <engine:Button text="Close" name="CloseMenu" class="button" style="position: absolute; right: 5%; top: 5%; width: 60px;" />
+        <engine:Button name="CloseMenu" class="button" style="position: absolute; right: 5%; top: 5%; width: 60px; flex-direction: row; justify-content: space-evenly; align-items: center; align-self: center; align-content: stretch;">
+            <engine:VisualElement name="VisualElement" class="closebar" style="rotate: 45deg; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; top: -14px; left: 24px;" />
+            <engine:VisualElement name="VisualElement" class="closebar" style="rotate: -45deg; align-self: stretch; justify-content: flex-end; align-content: flex-start; top: -20px; left: 16px;" />
+        </engine:Button>
     </engine:VisualElement>
 </engine:UXML>
