@@ -26,12 +26,13 @@ public class AchievementManager : Singleton<AchievementManager>, IDataPersistanc
 
     private void Start()
     {
+        Debug.Log("AchievementManager initialized");
         // Subscribing to events
         PlayerResources.OnScoreChanged += CheckScoreAchievements;
         PlayerResources.OnSysPointsChanged += CheckSysPointsAchievements;
         SceneController.OnWaveCompleted += CheckWaveAchievements;
 
-        _uiDocument = GetComponent<UIDocument>();
+        _uiDocument = GetComponentInChildren<UIDocument>();
         _mainContainer = _uiDocument.rootVisualElement.Q<VisualElement>("Container");
         _achievementText = _mainContainer.Q<Label>("Body");
         _mainContainer.style.display = DisplayStyle.None;
