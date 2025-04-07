@@ -34,6 +34,7 @@ Material:
     - _NoiseScale: 10
     - _PulseSpeed: 1
     - _RingDensity: 5
+    - _RingFadeDistance: 0.116
     - _RotationSpeed: 0.3
     - _StarBrightness: 0.89
     - _SwirlSpeed: 0.5

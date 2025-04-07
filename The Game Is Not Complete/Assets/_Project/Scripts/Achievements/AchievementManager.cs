@@ -3,10 +3,14 @@ using UnityEngine;
 using System;
 using TMPro;
 using System.Collections;
+using UnityEngine.UIElements;
 
 public class AchievementManager : Singleton<AchievementManager>, IDataPersistance
 {
-    [SerializeField] private GameObject achievementPrefab;
+    //[SerializeField] private GameObject achievementPrefab;
+    [SerializeField] private UIDocument _uiDocument;
+    private VisualElement _mainContainer;
+    private Label _achievementText;
 
     private Dictionary<string, bool> achievements = new Dictionary<string, bool>()
     {
@@ -19,12 +23,19 @@ public class AchievementManager : Singleton<AchievementManager>, IDataPersistanc
         { "Complete Wave 3", false }
     };
 
+
     private void Start()
     {
+        Debug.Log("AchievementManager initialized");
         // Subscribing to events
         PlayerResources.OnScoreChanged += CheckScoreAchievements;
         PlayerResources.OnSysPointsChanged += CheckSysPointsAchievements;
         SceneController.OnWaveCompleted += CheckWaveAchievements;
+
+        _uiDocument = GetComponentInChildren<UIDocument>();
+        _mainContainer = _uiDocument.rootVisualElement.Q<VisualElement>("Container");
+        _achievementText = _mainContainer.Q<Label>("Body");
+        _mainContainer.style.display = DisplayStyle.None;
     }
 
     //Score achievements
@@ -84,15 +95,26 @@ public class AchievementManager : Singleton<AchievementManager>, IDataPersistanc
 
     public void DisplayAchievement(string id)
     {
-        achievementPrefab.SetActive(true);
-        achievementPrefab.GetComponentInChildren<TextMeshProUGUI>().text = id;
+        //Old UI
+        //achievementPrefab.SetActive(true);
+        //achievementPrefab.GetComponentInChildren<TextMeshProUGUI>().text = id;
+
+        //Enable UI container
+        _mainContainer.style.display = DisplayStyle.Flex;
+
+        //Change body text to the id of the achievement
+        _achievementText.text = id;
+
         StartCoroutine(DisableDisplay());
     }
 
     public IEnumerator DisableDisplay()
     {
         yield return new WaitForSeconds(4);
-        achievementPrefab.SetActive(false);
+
+        _mainContainer.style.display = DisplayStyle.None;
+        //Old UI
+        //achievementPrefab.SetActive(false);
     }
 
     public void LoadData(GameData data)
