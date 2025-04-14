@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.AI;
 using System.Collections;
+using System;
 
 public class EnemyController : MonoBehaviour
 {
@@ -27,6 +28,8 @@ public class EnemyController : MonoBehaviour
     //Status Effects
     public bool isSlowed = false;
     public float slowTimer = 0;
+
+    public static event Action OnEnemyReachCore;
 
     private void Awake()
     {
@@ -66,7 +69,7 @@ public class EnemyController : MonoBehaviour
         {
             PlayerResources.Instance.TakeDamage(damage, resourceWorth/2);
             // Keep count of enemies alive for wave completion
-            SceneController.Instance.numberOfEnemiesAlive--;
+            OnEnemyReachCore?.Invoke();
             Destroy(gameObject);
         }
     }

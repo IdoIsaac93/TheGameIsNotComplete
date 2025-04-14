@@ -57,6 +57,13 @@ public class PlayerResources : Singleton<PlayerResources>, IDataPersistance
         _gameOverEvent.ShowGameOverScreen();
     }
 
+    public void HealDamage(int amount)
+    {
+        currentHealth = (amount + currentHealth >= maxHealth) ? maxHealth : currentHealth + amount;
+        OnHealthChanged?.Invoke();
+        Debug.Log(currentHealth);
+    }
+
     public void GainSystemPoints(int sysPoints)
     {
         systemPoints += sysPoints;

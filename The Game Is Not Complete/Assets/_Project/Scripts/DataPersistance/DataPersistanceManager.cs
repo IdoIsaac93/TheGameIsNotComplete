@@ -105,18 +105,4 @@ public class DataPersistanceManager : Singleton<DataPersistanceManager>
             dataPersistanceObject.LoadData(gameData);
         }
     }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            Debug.Log("Manual Load");
-            LoadGame();
-        }
-
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            DataPersistanceManager.Instance.LoadData();
-        }
-    }
 }
