@@ -1,3 +1,4 @@
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,6 +8,7 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] private float Maxhealth;
     [SerializeField] private float currentHealth;
     [SerializeField] private Slider healthBar;
+    public static event Action OnEnemyDeath;
 
     public void Awake()
     {
@@ -29,7 +31,7 @@ public class EnemyHealth : MonoBehaviour
         PlayerResources.Instance.GainScore(enemy.scoreWorth);
         PlayerResources.Instance.GainSystemPoints(enemy.resourceWorth);
         // Keep count of enemies alive for wave completion
-        SceneController.Instance.numberOfEnemiesAlive--;
+        OnEnemyDeath?.Invoke();
         Destroy(gameObject);
     }
 

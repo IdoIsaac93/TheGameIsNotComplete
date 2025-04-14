@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,7 @@ public class EnemySpawn : MonoBehaviour
 {
     public List<Vector3> path;
     public float spawnDelay;
+    public static event Action OnEnemySpawn;
 
     public void SpawnWave(Wave currentWave)
     {
@@ -20,7 +22,7 @@ public class EnemySpawn : MonoBehaviour
             EnemyController newEnemy = Instantiate(enemy.enemyPrefab, transform.position, Quaternion.identity).GetComponent<EnemyController>();
             newEnemy.path = path;
             // Count the enemies spawned to track when wave ends
-            SceneController.Instance.numberOfEnemiesAlive++;
+            OnEnemySpawn?.Invoke();
             // Wait beofre spawning another enemy
             yield return new WaitForSeconds(spawnDelay);
         }

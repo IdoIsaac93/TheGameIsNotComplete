@@ -19,12 +19,20 @@ public class AchievementManager : Singleton<AchievementManager>, IDataPersistanc
         { "Complete Wave 3", false }
     };
 
-    private void Start()
+    private void OnEnable()
     {
         // Subscribing to events
         PlayerResources.OnScoreChanged += CheckScoreAchievements;
         PlayerResources.OnSysPointsChanged += CheckSysPointsAchievements;
         SceneController.OnWaveCompleted += CheckWaveAchievements;
+    }
+
+    private void OnDisable()
+    {
+        // Unsubscribing to events
+        PlayerResources.OnScoreChanged -= CheckScoreAchievements;
+        PlayerResources.OnSysPointsChanged -= CheckSysPointsAchievements;
+        SceneController.OnWaveCompleted -= CheckWaveAchievements;
     }
 
     //Score achievements
@@ -78,10 +86,13 @@ public class AchievementManager : Singleton<AchievementManager>, IDataPersistanc
 
         //Unlock the achievement and display it
         achievements[id] = true;
+
+        //Remove this when we have UI for achievement
         DisplayAchievement(id);
         Debug.Log("Achievement Unlocked: " + id);
     }
 
+    //Remove this when we have UI for achievement
     public void DisplayAchievement(string id)
     {
         achievementPrefab.SetActive(true);
@@ -89,6 +100,7 @@ public class AchievementManager : Singleton<AchievementManager>, IDataPersistanc
         StartCoroutine(DisableDisplay());
     }
 
+    //Remove this when we have UI for achievement
     public IEnumerator DisableDisplay()
     {
         yield return new WaitForSeconds(4);
@@ -128,6 +140,8 @@ public class AchievementManager : Singleton<AchievementManager>, IDataPersistanc
         }
     }
 
+
+    //TESTING - DELETE THIS
     public void Update()
     {
         if(Input.GetKeyDown(KeyCode.T))

@@ -26,6 +26,29 @@ public class SceneController : MonoBehaviour, IDataPersistance
     public static SceneController Instance { get; private set; }
     public static event System.Action<int> OnWaveCompleted;
 
+    private void OnEnable()
+    {
+        EnemyHealth.OnEnemyDeath += EnemyDeath;
+        EnemyController.OnEnemyReachCore += EnemyDeath;
+        EnemySpawn.OnEnemySpawn += EnemySpawned;
+    }
+
+    private void OnDisable()
+    {
+        EnemyHealth.OnEnemyDeath -= EnemyDeath;
+        EnemyController.OnEnemyReachCore -= EnemyDeath;
+        EnemySpawn.OnEnemySpawn -= EnemySpawned;
+    }
+
+    private void EnemyDeath()
+    {
+        numberOfEnemiesAlive--;
+    }
+
+    private void EnemySpawned()
+    {
+        numberOfEnemiesAlive++;
+    }
 
     private void Awake()
     {
