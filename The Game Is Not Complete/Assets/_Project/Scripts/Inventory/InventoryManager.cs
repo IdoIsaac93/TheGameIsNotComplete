@@ -4,12 +4,11 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class InventoryManager : Singleton<InventoryManager>
+public class InventoryManager : Singleton<InventoryManager>, IDataPersistance
 {
     private Dictionary<Item.ItemType, int> itemInventory = new Dictionary<Item.ItemType, int>();
 
-    //For Raziel!
-    //I don't know if you need these actions for the UI, Please delete this if you're not using them
+    //Actions to control UI
     public static event UnityAction <int> ItemAdded = delegate { };
     public static event UnityAction<int> ItemRemoved = delegate { };
 
@@ -104,6 +103,16 @@ public class InventoryManager : Singleton<InventoryManager>
         {
             Debug.Log($"Not enough {itemType}s to use!");
         }
+    }
+
+    public void LoadData(GameData data)
+    {
+        itemInventory = data.items;
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.items = itemInventory;
     }
 
     //TESTING - REMOVE THIS

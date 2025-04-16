@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,7 @@ public class GameData
     public int currentLevelIndex;
     public List<TowerId> towers;
     public List<bool> achievements;
+    public Dictionary<Item.ItemType, int> items;
 
     //When starting a new game these are the initial values assigned
     public GameData()
