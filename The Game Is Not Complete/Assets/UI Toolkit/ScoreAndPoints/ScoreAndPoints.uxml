@@ -1,9 +1,27 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Toolkit/ScoreAndPoints/ScoreUI.uss?fileID=7433441132597879392&amp;guid=fca545a0175bd7f4f965f23a4c00cfa0&amp;type=3#ScoreUI" />
-    <engine:VisualElement name="score-container" class="score-container" style="flex-grow: 1; position: absolute; top: 5%; right: auto; align-self: center; height: 135px; left: 5%; width: 75px; max-height: 135px; padding-top: 13px; padding-right: 13px; padding-bottom: 13px; padding-left: 13px;">
-        <engine:Label text="Score" class="score-header" style="font-size: 8px;" />
-        <engine:Label text="0" name="scoreValue" class="score-value" style="font-size: 8px;" />
-        <engine:Label text="System Points" class="points-header" style="font-size: 8px;" />
-        <engine:Label text="0" name="systemPointsValue" class="points-value" style="font-size: 8px;" />
+    <engine:VisualElement name="MainContainer" style="flex-grow: 1; position: absolute; align-content: flex-start; align-self: flex-start; align-items: center; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; font-size: 14px;">
+        <engine:VisualElement name="score-container" class="score-container" style="position: relative; top: auto; right: auto; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; border-left-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-top-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); width: auto; height: auto; margin-top: 20px; margin-right: 20px; margin-bottom: 20px; margin-left: 20px;">
+            <engine:VisualElement name="ScoreContainer" style="flex-grow: 1; flex-direction: row; height: 36px; width: 81px;">
+                <engine:Label text="Score" class="score-header" style="-unity-text-align: middle-left;" />
+                <engine:Label text="0" name="scoreValue" class="score-value" />
+            </engine:VisualElement>
+            <engine:VisualElement name="PointsContainer" style="flex-grow: 1; flex-direction: row;">
+                <engine:Label text="System Points" class="points-header" style="-unity-text-align: middle-left;" />
+                <engine:Label text="0" name="systemPointsValue" class="points-value" />
+            </engine:VisualElement>
+        </engine:VisualElement>
+        <engine:VisualElement name="ItemsContainer" style="flex-grow: 1;">
+            <engine:Label text="Items" name="Items" style="color: rgb(255, 255, 255); -unity-text-align: upper-center; border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; border-left-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-top-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px;" />
+            <engine:Button name="Item1" class="item-button">
+                <engine:Label text="2" name="Count1" style="font-size: 10px; color: rgb(255, 255, 255); white-space: normal; align-self: center; position: absolute; top: -2px; left: 18px; -unity-text-align: middle-center; text-overflow: ellipsis; height: 8px; width: 7px;" />
+            </engine:Button>
+            <engine:Button name="Item2" class="item-button" style="background-image: url(&quot;project://database/Assets/_Project/Art/UI/Images/UI_Icon_Look.png?fileID=2800000&amp;guid=0617e5f43338d334298c33f07870d539&amp;type=3#UI_Icon_Look&quot;);">
+                <engine:Label text="2" name="Count2" style="font-size: 10px; color: rgb(255, 255, 255); white-space: normal; align-self: center; position: absolute; top: -2px; left: 18px; -unity-text-align: middle-center; text-overflow: ellipsis; height: 8px; width: 7px;" />
+            </engine:Button>
+            <engine:Button name="Item3" class="item-button" style="background-image: url(&quot;project://database/Assets/_Project/Art/UI/Images/UI_Icon_Move.png?fileID=2800000&amp;guid=4f983370dffa33140a684be380bfba19&amp;type=3#UI_Icon_Move&quot;);">
+                <engine:Label text="2" name="Count3" style="font-size: 10px; color: rgb(255, 255, 255); white-space: normal; align-self: center; position: absolute; top: -2px; left: 18px; -unity-text-align: middle-center; text-overflow: ellipsis; height: 8px; width: 7px;" />
+            </engine:Button>
+        </engine:VisualElement>
     </engine:VisualElement>
 </engine:UXML>
