@@ -113,3 +113,35 @@
     margin-left: 20%;
     position: absolute;
 }
+
+.button-game {
+    top: auto;
+    position: relative;
+    width: 60px;
+    height: 60px;
+    background-color: rgba(13, 12, 12, 0);
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    align-content: flex-start;
+    align-self: auto;
+    left: auto;
+    right: 5%;
+    bottom: 5%;
+    margin-bottom: 10px;
+    background-image: url("project://database/Assets/_Project/Art/UI/Buttons/Circle02.png?fileID=2800000&guid=156a455deacc9c041af68547a5a79ecb&type=3#Circle02");
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+}
+
+.button-game:hover {
+    scale: 1.2 1.2;
+    transition-duration: 0.25s;
+    transition-timing-function: ease-in-out;
+}
+
+.button-game:active {
+    -unity-background-image-tint-color: rgb(132, 249, 77);
+}

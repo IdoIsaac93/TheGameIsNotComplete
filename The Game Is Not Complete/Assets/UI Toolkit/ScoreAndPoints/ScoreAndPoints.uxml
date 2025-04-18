@@ -1,25 +1,25 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Toolkit/ScoreAndPoints/ScoreUI.uss?fileID=7433441132597879392&amp;guid=fca545a0175bd7f4f965f23a4c00cfa0&amp;type=3#ScoreUI" />
     <engine:VisualElement name="MainContainer" style="flex-grow: 1; position: absolute; align-content: flex-start; align-self: flex-start; align-items: center; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; font-size: 14px;">
-        <engine:VisualElement name="score-container" class="score-container" style="position: relative; top: auto; right: auto; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; border-left-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-top-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); width: auto; height: auto; margin-top: 20px; margin-right: 20px; margin-bottom: 20px; margin-left: 20px;">
-            <engine:VisualElement name="ScoreContainer" style="flex-grow: 1; flex-direction: row; height: 36px; width: 81px;">
-                <engine:Label text="Score" class="score-header" style="-unity-text-align: middle-left;" />
-                <engine:Label text="0" name="scoreValue" class="score-value" />
+        <engine:VisualElement name="score-container" class="score-container" style="position: relative; top: auto; right: auto; width: auto; height: auto; margin-top: 20px; margin-right: 20px; margin-bottom: 20px; margin-left: 20px; background-image: url(&quot;project://database/Assets/_Project/Art/UI/Images/Card%20X5.png?fileID=2800000&amp;guid=d0c0bf003a727fe44a9a90e33f24f8ad&amp;type=3#Card X5&quot;);">
+            <engine:VisualElement name="ScoreContainer" style="flex-grow: 1; flex-direction: row; height: 100%; width: 100%;">
+                <engine:Label text="Score" />
+                <engine:Label text="0" name="scoreValue" style="white-space: pre; align-self: flex-end; left: auto; right: auto;" />
             </engine:VisualElement>
-            <engine:VisualElement name="PointsContainer" style="flex-grow: 1; flex-direction: row;">
-                <engine:Label text="System Points" class="points-header" style="-unity-text-align: middle-left;" />
-                <engine:Label text="0" name="systemPointsValue" class="points-value" />
+            <engine:VisualElement name="PointsContainer" style="flex-grow: 1; flex-direction: row; width: 100%; height: 100%;">
+                <engine:Label text="System Points" />
+                <engine:Label text="0" name="systemPointsValue" />
             </engine:VisualElement>
         </engine:VisualElement>
         <engine:VisualElement name="ItemsContainer" style="flex-grow: 1;">
-            <engine:Label text="Items" name="Items" style="color: rgb(255, 255, 255); -unity-text-align: upper-center; border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; border-left-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-top-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px;" />
+            <engine:Label text="Items" name="Items" style="color: rgb(255, 255, 255); -unity-text-align: upper-center; background-image: url(&quot;project://database/Assets/_Project/Art/UI/Images/Card%20X2.png?fileID=2800000&amp;guid=cf4f202616a4fd74db1f232de7db42df&amp;type=3#Card X2&quot;);" />
             <engine:Button name="Item1" class="item-button">
                 <engine:Label text="2" name="Count1" style="font-size: 10px; color: rgb(255, 255, 255); white-space: normal; align-self: center; position: absolute; top: -2px; left: 18px; -unity-text-align: middle-center; text-overflow: ellipsis; height: 8px; width: 7px;" />
             </engine:Button>
-            <engine:Button name="Item2" class="item-button" style="background-image: url(&quot;project://database/Assets/_Project/Art/UI/Images/UI_Icon_Look.png?fileID=2800000&amp;guid=0617e5f43338d334298c33f07870d539&amp;type=3#UI_Icon_Look&quot;);">
+            <engine:Button name="Item2" class="item-button" style="background-image: url(&quot;project://database/Assets/_Project/Art/UI/Buttons/Icon38.png?fileID=2800000&amp;guid=4aff8fc38641a0342a51d9597a7df6b5&amp;type=3#Icon38&quot;);">
                 <engine:Label text="2" name="Count2" style="font-size: 10px; color: rgb(255, 255, 255); white-space: normal; align-self: center; position: absolute; top: -2px; left: 18px; -unity-text-align: middle-center; text-overflow: ellipsis; height: 8px; width: 7px;" />
             </engine:Button>
-            <engine:Button name="Item3" class="item-button" style="background-image: url(&quot;project://database/Assets/_Project/Art/UI/Images/UI_Icon_Move.png?fileID=2800000&amp;guid=4f983370dffa33140a684be380bfba19&amp;type=3#UI_Icon_Move&quot;);">
+            <engine:Button name="Item3" class="item-button" style="background-image: url(&quot;project://database/Assets/_Project/Art/UI/Buttons/Icon33.png?fileID=2800000&amp;guid=b4541f8efd913bd4ba6d0a3fcda0e8cc&amp;type=3#Icon33&quot;);">
                 <engine:Label text="2" name="Count3" style="font-size: 10px; color: rgb(255, 255, 255); white-space: normal; align-self: center; position: absolute; top: -2px; left: 18px; -unity-text-align: middle-center; text-overflow: ellipsis; height: 8px; width: 7px;" />
             </engine:Button>
         </engine:VisualElement>
