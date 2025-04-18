@@ -32,6 +32,7 @@ public class EnemyHealth : MonoBehaviour
         PlayerResources.Instance.GainSystemPoints(enemy.resourceWorth);
         // Keep count of enemies alive for wave completion
         OnEnemyDeath?.Invoke();
+        QuestEvents.OnQuestProgress?.Invoke(QuestType.KillEnemy);
         Destroy(gameObject);
     }
 

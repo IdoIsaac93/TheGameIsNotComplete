@@ -28,6 +28,7 @@ public class BuildSpot : MonoBehaviour
                 Debug.Log("Spending " + towerScript.GetPrice() + " points to build ");
                 Vector3 towerPosition = new(transform.position.x, towerScript.transform.position.y + transform.position.y, transform.position.z);
                 currentTower = Instantiate(towerScript, towerPosition, towerScript.transform.rotation, transform);
+                QuestEvents.OnQuestProgress?.Invoke(QuestType.BuildTower);
                 isOccupied = true;
                 currentTower.SetBuildSpot(this);
                 towerId = currentTower.GetTowerId();
@@ -102,6 +103,7 @@ public class BuildSpot : MonoBehaviour
                 currentTower = Instantiate(towerScript, towerPosition, Quaternion.identity);
                 currentTower.SetBuildSpot(this);
                 towerId = currentTower.GetTowerId();
+                QuestEvents.OnQuestProgress?.Invoke(QuestType.UpgradeTower);
             }
         }
     }

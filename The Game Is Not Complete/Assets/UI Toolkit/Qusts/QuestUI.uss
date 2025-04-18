@@ -1,0 +1,6 @@
+#QuestText {
+    unity-fontsize: 18px;
+    color: red;
+    -unity-font-style: bold;
+    font-size: 28px;
+}

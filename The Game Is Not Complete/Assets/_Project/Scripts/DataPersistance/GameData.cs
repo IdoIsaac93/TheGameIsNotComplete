@@ -15,6 +15,8 @@ public class GameData
     public List<TowerId> towers;
     public List<bool> achievements;
     public Dictionary<Item.ItemType, int> items;
+    public int currentQuestIndex;
+    public bool questWasCompleted;
 
     //When starting a new game these are the initial values assigned
     public GameData()
@@ -23,5 +25,7 @@ public class GameData
         systemPoints = 500;
         waveNumber = 0;
         lives = 100;
+        currentQuestIndex = 0;
+        questWasCompleted = false;
     }
 }
