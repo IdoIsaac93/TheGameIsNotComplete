@@ -66,6 +66,7 @@ public class InventoryManager : Singleton<InventoryManager>, IDataPersistance
             itemInventory[itemType] = quantity;
         }
         ItemAdded?.Invoke(quantity);
+        QuestEvents.OnQuestProgress?.Invoke(QuestType.CollectItem);
     }
 
     // Use item
@@ -96,6 +97,7 @@ public class InventoryManager : Singleton<InventoryManager>, IDataPersistance
                 itemToUse.UseItem();
                 itemInventory[itemType] -= 1;
                 ItemRemoved?.Invoke(-1);
+                QuestEvents.OnQuestProgress?.Invoke(QuestType.UseItem);
                 Debug.Log($"{itemType} used!");
             }
         }

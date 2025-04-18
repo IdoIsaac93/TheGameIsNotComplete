@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/Qusts/QuestUI.uss?fileID=7433441132597879392&amp;guid=83ae98a1ad2f25e4cb8bffb19afc504f&amp;type=3#QuestUI" />
+    <ui:VisualElement name="QuestContainer" style="flex-grow: 1; height: 75px; width: 220px; max-height: 75px; max-width: 220px; position: absolute; top: 25px; left: 225px;">
+        <ui:Label text="Current Quest" name="QuestText" style="position: relative; top: auto; left: auto;" />
+    </ui:VisualElement>
+</ui:UXML>
