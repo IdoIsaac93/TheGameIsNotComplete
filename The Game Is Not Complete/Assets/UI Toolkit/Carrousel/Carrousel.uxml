@@ -1,0 +1,8 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/Carrousel/Carrousel.uss?fileID=7433441132597879392&amp;guid=e4815a23be63eb64dbbb8cd950dad46c&amp;type=3#Carrousel" />
+    <engine:VisualElement name="MainContainer" class="main" style="position: absolute; flex-direction: row; top: 429px; left: 1687px;">
+        <engine:Button name="Item1" class="item-button" style="background-image: url(&quot;project://database/Assets/_Project/Art/UI/Images/UI_Icon_Jump.png?fileID=2800000&amp;guid=2f2c379053697d14993a38b78b5e2fb2&amp;type=3#UI_Icon_Jump&quot;);" />
+        <engine:Button name="Item2" class="item-button" style="background-image: url(&quot;project://database/Assets/_Project/Art/UI/Images/UI_Icon_Move.png?fileID=2800000&amp;guid=4f983370dffa33140a684be380bfba19&amp;type=3#UI_Icon_Move&quot;);" />
+        <engine:Button name="Item3" class="item-button" style="background-image: url(&quot;project://database/Assets/_Project/Art/UI/Images/UI_Icon_Look.png?fileID=2800000&amp;guid=0617e5f43338d334298c33f07870d539&amp;type=3#UI_Icon_Look&quot;);" />
+    </engine:VisualElement>
+</engine:UXML>
