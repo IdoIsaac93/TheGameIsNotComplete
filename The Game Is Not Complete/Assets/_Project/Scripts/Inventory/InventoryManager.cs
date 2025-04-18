@@ -115,6 +115,12 @@ public class InventoryManager : Singleton<InventoryManager>, IDataPersistance
         data.items = itemInventory;
     }
 
+    public int GetItemCount(Item.ItemType itemType)
+    {
+        return itemInventory.ContainsKey(itemType) ? itemInventory[itemType] : 0;
+    }
+
+
     //TESTING - REMOVE THIS
     private void Update()
     {

@@ -25,13 +25,52 @@ public class ItemsMenuController : MonoBehaviour
         _itemOne.clicked += () => OnItemButtonClicked(1);
         _itemTwo.clicked += () => OnItemButtonClicked(2);
         _itemThree.clicked += () => OnItemButtonClicked(3);
+        // Initialize the inventory display
+        _itemOneCountLabel.text = InventoryManager.Instance.GetItemCount(Item.ItemType.Bomb).ToString();
+        _itemTwoCountLabel.text = InventoryManager.Instance.GetItemCount(Item.ItemType.Freeze).ToString();
+        _itemThreeCountLabel.text = InventoryManager.Instance.GetItemCount(Item.ItemType.Heal).ToString();
+    }
+
+    private void OnEnable()
+    {
+        InventoryManager.ItemAdded += UpdateInventoryDisplay;
+        InventoryManager.ItemRemoved += UpdateInventoryDisplay;
+        
+    }
+
+    private void OnDisable()
+    {
+        InventoryManager.ItemAdded -= UpdateInventoryDisplay;
+        InventoryManager.ItemRemoved -= UpdateInventoryDisplay;
+    }
+
+
+    private void UpdateInventoryDisplay(int _)
+    {
+        // Safely get the counts from InventoryManager
+        int bombCount = InventoryManager.Instance.GetItemCount(Item.ItemType.Bomb);
+        int freezeCount = InventoryManager.Instance.GetItemCount(Item.ItemType.Freeze);
+        int healCount = InventoryManager.Instance.GetItemCount(Item.ItemType.Heal);
+
+        _itemOneCountLabel.text = bombCount.ToString();
+        _itemTwoCountLabel.text = freezeCount.ToString();
+        _itemThreeCountLabel.text = healCount.ToString();
     }
 
     private void OnItemButtonClicked(int itemIndex)
     {
-        
-        Debug.Log($"Item {itemIndex} clicked");
-        
+        switch (itemIndex)
+        {
+            case 1:
+                InventoryManager.Instance.UseItem(Item.ItemType.Bomb);
+                break;
+            case 2:
+                InventoryManager.Instance.UseItem(Item.ItemType.Freeze);
+                break;
+            case 3:
+                InventoryManager.Instance.UseItem(Item.ItemType.Heal);
+                break;
+        }
     }
 
 }
